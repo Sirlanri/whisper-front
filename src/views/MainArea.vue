@@ -2,7 +2,10 @@
   <div>
     <div class="whitearea"></div>
     <v-row >
-      <v-col cols="4">
+      <v-col cols="2">
+        左侧栏
+      </v-col>
+      <v-col cols="3">
         <div class="flex-column">
           <card></card>
           <card></card>
@@ -11,7 +14,7 @@
           <card></card>
         </div>
       </v-col>
-      <v-col cols="4">
+      <v-col cols="3">
         <div class="flex-column">
           <card></card>
           <card></card>
@@ -20,7 +23,7 @@
           <card></card>
         </div>
       </v-col>
-      <v-col cols="4">
+      <v-col cols="3">
         <div class="flex-column">
           <card></card>
           <card></card>
