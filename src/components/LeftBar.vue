@@ -1,7 +1,7 @@
 <template>
   <div>
     
-    <v-navigation-drawer fixed 
+    <v-navigation-drawer fixed stateless
       v-model="leftdrawer" style="top:64px">
       <v-list>
         <v-list-item>
@@ -48,8 +48,8 @@ export default {
       get:function(){
         return store.state.leftdrawer
       },
-      set:function(){}
-      
+      set:function(){
+      }
     }
     
   },
