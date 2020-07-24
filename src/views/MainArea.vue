@@ -166,14 +166,29 @@ export default {
     
   },
   mounted () {
-      const that = this
-      window.onresize = () => {
-        return (() => {
-          window.screenWidth = document.body.clientWidth
-          that.screenWidth = window.screenWidth
-        })()
+    const that = this
+    window.onresize = () => {
+      return (() => {
+        window.screenWidth = document.body.clientWidth
+        that.screenWidth = window.screenWidth
+      })()
+    }
+  },
+  watch:{
+    screenWidth:function() {
+      if (this.screenWidth>=1264) {
+        this.shunt3()
+        return
+      }
+      if (this.screenWidth<=600) {
+        this.shunt1()
+        return
+      }
+      else{
+        this.shunt2()
       }
     }
+  }
 
 
   
