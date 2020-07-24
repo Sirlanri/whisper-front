@@ -3,7 +3,7 @@
     <div class="whitearea"></div>
     <v-row >
       <v-col cols="2">
-        左侧栏
+        <leftbar></leftbar>
       </v-col>
       <v-col cols="3">
         <div class="flex-column">
@@ -39,9 +39,11 @@
 
 <script>
 import card from "@/components/Card.vue"
+import leftbar from "@/components/LeftBar.vue"
 export default {
   components:{
-    card
+    card,
+    leftbar
   },
   data(){
     return{
