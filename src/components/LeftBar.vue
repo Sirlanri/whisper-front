@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-navigation-drawer>
+    
+    <v-navigation-drawer fixed style="top:64px">
       <v-list>
         <v-list-item>
           <v-btn block text large>
