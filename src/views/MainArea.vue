@@ -2,25 +2,28 @@
   <div>
     <div class="whitearea"></div>
     <v-row  >
-      <v-col cols="2">
-        <leftbar></leftbar>
-      </v-col>
-      <v-col cols="3">
-        <div class="flex-column" v-for="(card,index) in cardsData" :key="index">
+      <leftbar></leftbar>
+      <v-col lg="2" class="d-none d-lg-flex"></v-col>
+      
+      <v-col lg="3" md="5" sm="8" offset-sm="1" offset-lg="0">
+        <div class="flex-column" v-for="(card,index) in cards1" :key="index">
           <card 
             :username="card.username" :groupname="card.groupname"
             :content="card.content" :topic="card.topic" :replays="card.replays"></card>
-          
         </div>
       </v-col>
-      <v-col cols="3">
-        <div class="flex-column">
-          
+      <v-col lg="3" md="5" class="hidden-sm-and-down">
+        <div class="flex-column" v-for="(card,index) in cards2" :key="index">
+          <card 
+            :username="card.username" :groupname="card.groupname"
+            :content="card.content" :topic="card.topic" :replays="card.replays"></card>
         </div>
       </v-col>
-      <v-col cols="3">
-        <div class="flex-column">
-          
+      <v-col lg="3" md="0" class="hidden-md-and-down">
+        <div class="flex-column" v-for="(card,index) in cards3" :key="index">
+          <card 
+            :username="card.username" :groupname="card.groupname"
+            :content="card.content" :topic="card.topic" :replays="card.replays"></card>
         </div>
       </v-col>
     </v-row>
@@ -113,13 +116,11 @@ export default {
       cards1:[],
       cards2:[],
       cards3:[],
-      screenWidth:0
+      screenWidth:1800
     }
   },
   computed:{
-    length(){
-      return document.body.clientWidth
-    }
+    
   },
   methods:{
     //将数据均匀地分到3列
@@ -140,6 +141,7 @@ export default {
           
         }else{
           this.cards1.push(element)
+          count1++
         }
       });
     },
@@ -152,8 +154,10 @@ export default {
       this.cardsData.forEach(element=>{
         if (count2%2==0) {
           this.cards1.push(element)
+          count2++
         }else{
           this.cards2.push(element)
+          count2++
         }
       })
     },
@@ -173,6 +177,7 @@ export default {
         that.screenWidth = window.screenWidth
       })()
     }
+    this.shunt3()
   },
   watch:{
     screenWidth:function() {

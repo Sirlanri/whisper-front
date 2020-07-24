@@ -2,7 +2,7 @@
   <v-card>
     <v-app-bar 
       fixed >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="changDrawer"></v-app-bar-nav-icon>
       <v-btn outlined>
         <v-icon>mdi-account-circle</v-icon>
         用户名
@@ -14,8 +14,13 @@
 </template>
 
 <script>
+import store from "@/store/index"
 export default {
-
+  methods:{
+    changDrawer(){
+      store.commit('changeDrawer')
+    }
+  }
 }
 </script>
 

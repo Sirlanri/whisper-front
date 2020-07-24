@@ -1,7 +1,8 @@
 <template>
   <div>
     
-    <v-navigation-drawer fixed style="top:64px">
+    <v-navigation-drawer fixed 
+      v-model="leftdrawer" style="top:64px">
       <v-list>
         <v-list-item>
           <v-btn block text large>
@@ -40,8 +41,20 @@
 </template>
 
 <script>
+import store from "@/store/index"
 export default {
-
+  computed:{
+    leftdrawer:{
+      get:function(){
+        return store.state.leftdrawer
+      },
+      set:function(){}
+      
+    }
+    
+  },
+  
+  
 }
 </script>
 

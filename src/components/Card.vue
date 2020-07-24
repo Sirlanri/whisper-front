@@ -1,5 +1,5 @@
 <template>
-  <v-card  class="mycard" >
+  <v-card  class="mycard" :elevation="5">
     <v-card-title>
       <v-avatar color="indigo" size="24" class="myavatar">
         <v-icon dark>mdi-account-circle</v-icon>
@@ -115,7 +115,7 @@ export default {
 
 <style scoped>
 .mycard{
-  margin: 30px ;
+  margin:30px 0;
   padding: 0 1rem;
 
 }
