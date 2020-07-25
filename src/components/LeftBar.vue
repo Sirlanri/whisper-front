@@ -4,7 +4,7 @@
     <v-navigation-drawer fixed stateless
       v-model="leftdrawer" style="top:64px">
       <v-list>
-        <v-list-item>
+        <v-list-item @click="jumpto('message')">
           <v-btn block text large>
             <v-list-item-icon>
               <v-icon>mdi-bell</v-icon>
@@ -14,7 +14,7 @@
             </v-list-item-content>
           </v-btn>
         </v-list-item>
-        <v-list-item>
+        <v-list-item @click="jumpto('group')">
           <v-btn block text large>
             <v-list-item-icon>
               <v-icon>mdi-account-multiple</v-icon>
@@ -24,7 +24,7 @@
             </v-list-item-content>
           </v-btn>
         </v-list-item>
-        <v-list-item>
+        <v-list-item @click="jumpto('topic')">
           <v-btn block text large>
             <v-list-item-icon>
               <v-icon>mdi-arrange-send-to-back</v-icon>
@@ -50,9 +50,26 @@ export default {
       },
       set:function(){
       }
-    }
-    
+    },
+
   },
+
+  methods:{
+      jumpto(name){
+        if (name=="message") {
+          this.$router.push("/message")
+          return
+        }
+        if (name=="group") {
+          this.$router.push("/group")
+          return
+        }
+        if (name=="topic") {
+          this.$router.push("/topic")
+          return
+        }
+      }
+    }
   
   
 }

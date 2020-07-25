@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="whitearea"></div>
+    
     <v-row  >
       <v-col lg="2" class="d-none d-lg-flex"></v-col>
       
@@ -204,7 +204,5 @@ export default {
 </script>
 
 <style>
-.whitearea{
-  height: 60px;
-}
+
 </style>

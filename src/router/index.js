@@ -7,13 +7,18 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: '',
     component: Home,
     children:[
       {
         path:'',
         name:'mainarea',
         component: () => import('../views/MainArea.vue')
+      },
+      {
+        path:'message',
+        name:'message',
+        component: () => import('../views/Message.vue')
       },
 
     ]

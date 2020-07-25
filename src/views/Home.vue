@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <topbar></topbar>
+    <div class="whitearea"></div>
     <leftbar></leftbar>
     <router-view></router-view>
   </div>
@@ -18,3 +19,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.whitearea{
+  height: 60px;
+}
+</style>
