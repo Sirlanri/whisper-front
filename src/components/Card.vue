@@ -41,7 +41,7 @@
             :src="replay.imgsrc"
           >
           </v-avatar>
-        {{replay.name}}:{{replay.content}}
+        {{replay.name}}：{{replay.content}}
         </v-row>
       </v-card-subtitle>
     </v-expand-transition>

@@ -5,7 +5,7 @@
       <leftbar></leftbar>
       <v-col lg="2" class="d-none d-lg-flex"></v-col>
       
-      <v-col lg="3" md="5" sm="8" offset-sm="1" offset-lg="0">
+      <v-col lg="3" md="5" sm="8" offset-sm="2" offset-md="1" offset-lg="0">
         <div class="flex-column" v-for="(card,index) in cards1" :key="index">
           <card 
             :username="card.username" :groupname="card.groupname"
@@ -34,6 +34,7 @@
 <script>
 import card from "@/components/Card.vue"
 import leftbar from "@/components/LeftBar.vue"
+import store from "@/store/index"
 export default {
   components:{
     card,
@@ -144,6 +145,7 @@ export default {
           count1++
         }
       });
+
     },
     //将数据均匀地分到2列
     shunt2(){
@@ -160,12 +162,14 @@ export default {
           count2++
         }
       })
+      store.commit('closeDrawer')
     },
     //只分到一列
     shunt1(){
       this.cards2=[]
       this.cards3=[]
       this.cards1=this.cardsData
+      store.commit('closeDrawer')
     },
     
   },

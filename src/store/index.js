@@ -10,6 +10,9 @@ export default new Vuex.Store({
   mutations: {
     changeDrawer(state){
       state.leftdrawer=!state.leftdrawer
+    },
+    closeDrawer(state){
+      state.leftdrawer=false
     }
   },
   actions: {

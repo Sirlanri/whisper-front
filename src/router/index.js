@@ -9,7 +9,14 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home,
-    
+    children:[
+      {
+        path:'',
+        name:'mainarea',
+        component: () => import('../views/MainArea.vue')
+      },
+
+    ]
   }
   
 ]
