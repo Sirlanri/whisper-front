@@ -20,6 +20,11 @@ Vue.use(VueRouter)
         name:'message',
         component: () => import('../views/Message.vue')
       },
+      {
+        path:'group',
+        name:'group',
+        component: () => import('../views/Groups.vue')
+      },
 
     ]
   }
