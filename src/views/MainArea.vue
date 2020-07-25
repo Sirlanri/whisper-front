@@ -2,7 +2,6 @@
   <div>
     <div class="whitearea"></div>
     <v-row  >
-      <leftbar></leftbar>
       <v-col lg="2" class="d-none d-lg-flex"></v-col>
       
       <v-col lg="3" md="5" sm="8" offset-sm="2" offset-md="1" offset-lg="0">
@@ -33,12 +32,12 @@
 
 <script>
 import card from "@/components/Card.vue"
-import leftbar from "@/components/LeftBar.vue"
+
 import store from "@/store/index"
 export default {
   components:{
     card,
-    leftbar
+    
   },
   data(){
     return{
