@@ -4,8 +4,8 @@
     <v-navigation-drawer fixed stateless
       v-model="leftdrawer" style="top:64px">
       <v-list>
-        <v-list-item @click="jumpto('message')">
-          <v-btn block text large>
+        <v-list-item>
+          <v-btn block text large @click="jumpto('message')">
             <v-list-item-icon>
               <v-icon>mdi-bell</v-icon>
             </v-list-item-icon>
@@ -14,8 +14,8 @@
             </v-list-item-content>
           </v-btn>
         </v-list-item>
-        <v-list-item @click="jumpto('group')">
-          <v-btn block text large>
+        <v-list-item>
+          <v-btn block text large @click="jumpto('group')">
             <v-list-item-icon>
               <v-icon>mdi-account-multiple</v-icon>
             </v-list-item-icon>
@@ -24,8 +24,8 @@
             </v-list-item-content>
           </v-btn>
         </v-list-item>
-        <v-list-item @click="jumpto('topic')">
-          <v-btn block text large>
+        <v-list-item>
+          <v-btn block text large @click="jumpto('topic')">
             <v-list-item-icon>
               <v-icon>mdi-arrange-send-to-back</v-icon>
             </v-list-item-icon>
