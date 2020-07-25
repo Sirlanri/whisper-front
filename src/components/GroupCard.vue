@@ -3,11 +3,11 @@
   <v-card class="group-card">
     <v-img class="align-end"
         height="200px"
-        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+        :src="imgsrc">
     </v-img>
-    <v-card-title>群组名称</v-card-title>
+    <v-card-title>{{name}}</v-card-title>
     <v-card-text class="text--primary">
-      群组介绍，简短一点
+      {{intro}}
     </v-card-text>
 
     <v-card-actions>
@@ -39,7 +39,11 @@
 
 <script>
 export default {
-
+  props:{
+    imgsrc:String,
+    name:String,
+    intro:String,
+  }
 }
 </script>
 
