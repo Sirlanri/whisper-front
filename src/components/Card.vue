@@ -14,7 +14,7 @@
         {{content}}
       </v-row>
       <v-row class="topicarea">
-        <v-chip outlined v-for="(topic,index) in topics" :key="index">
+        <v-chip outlined v-for="topic in topics" :key="topic">
           {{topic}}
         </v-chip>
         
