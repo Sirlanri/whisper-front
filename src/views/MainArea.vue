@@ -7,21 +7,21 @@
       <v-col lg="3" md="5" sm="8" offset-sm="2" offset-md="1" offset-lg="0">
         <div class="flex-column" v-for="(card,index) in cards1" :key="index">
           <card 
-            :username="card.username" :groupname="card.groupname" 
+            :username="card.username" :groupname="card.groupname" :pics="card.pics"
             :content="card.content" :topics="card.topic" :replays="card.replays"></card>
         </div>
       </v-col>
       <v-col lg="3" md="5" class="hidden-sm-and-down">
         <div class="flex-column" v-for="(card,index) in cards2" :key="index">
           <card 
-            :username="card.username" :groupname="card.groupname"
+            :username="card.username" :groupname="card.groupname" :pics="card.pics"
             :content="card.content" :topics="card.topic" :replays="card.replays"></card>
         </div>
       </v-col>
       <v-col lg="3" md="0" class="hidden-md-and-down">
         <div class="flex-column" v-for="(card,index) in cards3" :key="index">
           <card 
-            :username="card.username" :groupname="card.groupname"
+            :username="card.username" :groupname="card.groupname" :pics="card.pics"
             :content="card.content" :topics="card.topic" :replays="card.replays"></card>
         </div>
       </v-col>
@@ -47,6 +47,12 @@ export default {
           groupname:"",
           content:'第一条信息的内容',
           topic:["测试","测试2"],
+          pics:[
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/purple.jpg",
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/white1.jpg",
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/black-white.jpg",
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/red-white.jpg"
+          ],
           replays:[
             {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
             content:"精彩！"},

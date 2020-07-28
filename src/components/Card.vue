@@ -13,6 +13,16 @@
       <v-row>
         {{content}}
       </v-row>
+      <v-carousel
+        height="auto"
+        hide-delimiter-background
+        show-arrows-on-hover
+      >
+        <v-carousel-item v-for="(pic,i) in pics" :key="i"
+        :src="pic">
+        </v-carousel-item>
+
+      </v-carousel>
       <v-row class="topicarea">
         <v-chip outlined v-for="topic in topics" :key="topic">
           {{topic}}
@@ -81,6 +91,7 @@ export default {
     content:String,
     topics:Array,
     replays:Array,
+    pics:Array,
   },
   computed:{
     ismoreReply(){
