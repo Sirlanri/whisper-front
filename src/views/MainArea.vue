@@ -4,14 +4,14 @@
     <v-row  >
       <v-col lg="2" class="d-none d-lg-flex"></v-col>
       
-      <v-col lg="3" md="5" sm="8" offset-sm="2" offset-md="1" offset-lg="0">
+      <v-col lg="3" md="5" sm="6" cols="10" offset="1" offset-sm="0" offset-md="1" offset-lg="0">
         <div class="flex-column" v-for="(card,index) in cards1" :key="index">
           <card 
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
             :content="card.content" :topics="card.topic" :replays="card.replays"></card>
         </div>
       </v-col>
-      <v-col lg="3" md="5" class="hidden-sm-and-down">
+      <v-col lg="3" md="5" sm="6" class="hidden-xs-and-down">
         <div class="flex-column" v-for="(card,index) in cards2" :key="index">
           <card 
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
@@ -73,6 +73,10 @@ export default {
           groupname:"",
           content:'第2条信息的内容',
           topic:["测试"],
+          pics:[
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/purple.jpg",
+            
+          ],
           replays:[
             {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
             content:"精彩！"}

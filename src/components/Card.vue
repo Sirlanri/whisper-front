@@ -15,8 +15,8 @@
       </v-row>
       <v-carousel
         height="auto"
-        hide-delimiter-background
         show-arrows-on-hover
+        hide-delimiter-background
       >
         <v-carousel-item v-for="(pic,i) in pics" :key="i"
         :src="pic">
