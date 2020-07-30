@@ -1,6 +1,6 @@
 <template>
   <v-card  class="mycard" :elevation="5" color="rgba(255,255,255,.95)">
-    <!-- 头像-用户名>群名称 --> 
+    <!-- 头像-用户名>群名称 时间--> 
     <v-card-title>
       <v-avatar color="indigo" size="24" class="myavatar">
         <v-icon dark>mdi-account-circle</v-icon>
@@ -27,10 +27,13 @@
 
       <!-- tag话题 --> 
       <v-row class="topicarea">
-        <v-chip outlined v-for="topic in topics" :key="topic">
+        <v-chip outlined v-for="topic in topics" :key="topic" @click="clickTag">
           {{topic}}
         </v-chip>
+        <v-spacer></v-spacer>
+        {{time}}
       </v-row>
+      
     </v-card-text>
     <v-divider></v-divider>
 
@@ -93,6 +96,7 @@ export default {
     username:String,
     groupname:String,
     content:String,
+    time:String,
     topics:Array,
     replays:Array,
     pics:Array,
@@ -123,6 +127,10 @@ export default {
   methods:{
     sendreply(){
 
+    },
+    clickTag(tag){
+      let name=tag.target.textContent
+      this.$emit("tagname",name)
     }
   }
 }
@@ -136,7 +144,7 @@ export default {
 }
 
 .topicarea{
-  padding-top: 0.5rem; 
+  padding-top: 0.8rem;
 }
 .v-chip{
   margin-right: 0.5rem;

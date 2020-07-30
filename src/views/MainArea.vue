@@ -6,21 +6,21 @@
       
       <v-col lg="3" md="5" sm="6" cols="10" offset="1" offset-sm="0" offset-md="1" offset-lg="0">
         <div class="flex-column" v-for="(card,index) in cards1" :key="index">
-          <card 
+          <card v-on:tagname="openTag" :time="card.time"
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
             :content="card.content" :topics="card.topic" :replays="card.replays"></card>
         </div>
       </v-col>
       <v-col lg="3" md="5" sm="6" class="hidden-xs-and-down">
         <div class="flex-column" v-for="(card,index) in cards2" :key="index">
-          <card 
+          <card v-on:tagname="openTag" :time="card.time"
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
             :content="card.content" :topics="card.topic" :replays="card.replays"></card>
         </div>
       </v-col>
       <v-col lg="3" md="0" class="hidden-md-and-down">
         <div class="flex-column" v-for="(card,index) in cards3" :key="index">
-          <card 
+          <card v-on:tagname="openTag" :time="card.time"
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
             :content="card.content" :topics="card.topic" :replays="card.replays"></card>
         </div>
@@ -47,6 +47,7 @@ export default {
           groupname:"source",
           content:'第一条信息的内容',
           topic:["测试","测试2"],
+          time:"4/23 13:50",
           pics:[
             "https://blog.ri-co.cn/wp-content/uploads/2020/04/purple.jpg",
             "https://blog.ri-co.cn/wp-content/uploads/2020/04/white1.jpg",
@@ -73,6 +74,7 @@ export default {
           groupname:"",
           content:'第2条信息的内容',
           topic:["测试"],
+          time:"4/23 13:50",
           pics:[
             "https://blog.ri-co.cn/wp-content/uploads/2020/04/purple.jpg",
             
@@ -87,6 +89,7 @@ export default {
           groupname:"",
           content:'第3条信息的内容',
           topic:["测试"],
+          time:"4/23 13:50",
           replays:[
             {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
             content:"精彩！"}
@@ -97,6 +100,7 @@ export default {
           groupname:"",
           content:'第4条信息的内容',
           topic:["测试"],
+          time:"4/23 13:50",
           replays:[
             {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
             content:"精彩！"}
@@ -107,6 +111,7 @@ export default {
           groupname:"小组1",
           content:'第5条信息的内容',
           topic:["测试"],
+          time:"4/23 13:50",
           replays:[
             {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
             content:"精彩！"}
@@ -117,6 +122,7 @@ export default {
           groupname:"小组1",
           content:'第5条信息的内容',
           topic:["测试"],
+          time:"4/23 13:50",
           replays:[
             {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
             content:"精彩！"}
@@ -133,6 +139,10 @@ export default {
     
   },
   methods:{
+    //card组件点击tag后，显示此tag的全部推文
+    openTag(tagname){
+      console.log(tagname)
+    },
     //将数据均匀地分到3列
     shunt3(){
       this.cards1=[]
