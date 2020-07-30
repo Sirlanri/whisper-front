@@ -27,5 +27,6 @@ export default {
 .home{
   background-image: url("https://blog.ri-co.cn/wp-content/uploads/2020/04/black-white.jpg");
   background-attachment: fixed;
+  min-height: 100vh;
 }
 </style>

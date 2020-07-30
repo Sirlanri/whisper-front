@@ -1,5 +1,5 @@
 <template>
-  <v-card  class="mycard" :elevation="5">
+  <v-card  class="mycard" :elevation="5" color="rgba(255,255,255,.95)">
     <v-card-title>
       <v-avatar color="indigo" size="24" class="myavatar">
         <v-icon dark>mdi-account-circle</v-icon>
