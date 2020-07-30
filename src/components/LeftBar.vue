@@ -1,7 +1,7 @@
 <template>
   <div>
     
-    <v-navigation-drawer fixed stateless
+    <v-navigation-drawer fixed stateless color="rgba(255,255,255,0.7)"
       v-model="leftdrawer" style="top:64px">
       <v-list>
         <v-list-item>
@@ -75,6 +75,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.v-btn:hover{
+  background-color: rgba(255, 255, 255, 0.80);
+  transition: 0.3s;
+}
+.v-btn{
+  transition: 0.5s;
+}
 </style>

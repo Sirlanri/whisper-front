@@ -1,8 +1,9 @@
 <template>
 <div>
   <v-card>
-    <v-app-bar 
+    <v-app-bar color="rgba(255,255,255,0.7)" 
       fixed >
+      
       <v-app-bar-nav-icon @click="changDrawer"></v-app-bar-nav-icon>
       <v-btn outlined>
         <v-icon>mdi-account-circle</v-icon>

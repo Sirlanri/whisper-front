@@ -44,7 +44,7 @@ export default {
       cardsData:[
         {
           username:"深蓝",
-          groupname:"",
+          groupname:"source",
           content:'第一条信息的内容',
           topic:["测试","测试2"],
           pics:[
