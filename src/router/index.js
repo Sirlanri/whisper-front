@@ -17,8 +17,15 @@ Vue.use(VueRouter)
       },
       {
         path:'message',
-        name:'message',
-        component: () => import('../views/Message.vue')
+        name:'',
+        component: () => import('../views/Message.vue'),
+        children:[
+          {
+            path:"",
+            name:"replys",
+            component:()=>import('../views/Replys.vue')
+          }
+        ]
       },
       {
         path:'group',

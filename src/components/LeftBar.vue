@@ -78,6 +78,7 @@ export default {
 <style scoped>
 .v-btn:hover{
   background-color: rgba(255, 255, 255, 0.80);
+  border-radius: 20px 20px;
   transition: 0.3s;
 }
 .v-btn{
