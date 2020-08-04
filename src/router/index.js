@@ -32,6 +32,11 @@ Vue.use(VueRouter)
         name:'group',
         component: () => import('../views/Groups.vue')
       },
+      {
+        path:'topic',
+        name:'topic',
+        component: () => import('../views/Topics.vue')
+      },
 
     ]
   }
