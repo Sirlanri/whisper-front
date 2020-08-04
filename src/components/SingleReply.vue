@@ -44,5 +44,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.v-avatar{
+  margin: 0 1rem;
+}
 </style>
