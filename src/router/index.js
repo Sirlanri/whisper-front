@@ -37,6 +37,11 @@ Vue.use(VueRouter)
         name:'topic',
         component: () => import('../views/Topics.vue')
       },
+      {
+        path:'mine',
+        name:'mine',
+        component: () => import('../views/Mine.vue')
+      },
 
     ]
   }

@@ -5,6 +5,16 @@
       v-model="leftdrawer" style="top:64px">
       <v-list>
         <v-list-item>
+          <v-btn block text large @click="jumpto('mine')">
+            <v-list-item-icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              我的
+            </v-list-item-content>
+          </v-btn>
+        </v-list-item>
+        <v-list-item>
           <v-btn block text large @click="jumpto('message')">
             <v-list-item-icon>
               <v-icon>mdi-bell</v-icon>
@@ -66,6 +76,10 @@ export default {
         }
         if (name=="topic") {
           this.$router.push("/topic")
+          return
+        }
+        if (name=="mine") {
+          this.$router.push("/mine")
           return
         }
       }
