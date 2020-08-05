@@ -16,6 +16,8 @@
         {{content}}
       </v-row>
       <v-carousel
+        :hide-delimiters="onepic"
+        :show-arrows="!onepic"
         height="auto"
         show-arrows-on-hover
         hide-delimiter-background
@@ -122,6 +124,13 @@ export default {
         rest[index-4]=this.replays[index]
       }
       return rest
+    },
+    onepic(){
+      if (this.pics.length==1) {
+        return true
+      }else{
+        return false
+      }
     }
   },
   methods:{
