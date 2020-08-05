@@ -5,11 +5,16 @@
         height="200px"
         :src="imgsrc">
     </v-img>
-    <v-card-title>{{name}}</v-card-title>
+    <v-card-title>
+      {{name}}
+      <v-spacer></v-spacer>
+      <span class="amount">{{amount}}</span>
+      
+    </v-card-title>
     <v-card-text class="text--primary">
       {{intro}}
     </v-card-text>
-
+    
     <v-card-actions>
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
@@ -31,6 +36,7 @@
         </template>
         <span>浏览此群的帖子</span>
       </v-tooltip>
+
       
     </v-card-actions>
   </v-card>
@@ -40,9 +46,11 @@
 <script>
 export default {
   props:{
+    id:Number,
     imgsrc:String,
     name:String,
     intro:String,
+    amount:Number,
   }
 }
 </script>
@@ -54,5 +62,8 @@ export default {
 }
 .v-btn{
   margin: 0 0.5rem;
+}
+.amount{
+  color:#5b5b5b;
 }
 </style>

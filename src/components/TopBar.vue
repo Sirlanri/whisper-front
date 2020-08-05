@@ -12,6 +12,7 @@
         </v-btn>
       </router-link>
       <v-spacer></v-spacer>
+      <v-btn icon @click="groupDialog=!groupDialog"><v-icon>mdi-account-multiple-plus</v-icon></v-btn>
       <v-btn icon @click="dialog=!dialog"><v-icon>mdi-plus-circle</v-icon></v-btn>
     </v-app-bar>
   </v-card>
@@ -85,6 +86,33 @@
       </v-card-text>
     </v-card>
   </v-dialog>
+
+  <v-dialog v-model="groupDialog" max-width="1000px">
+    <v-card>
+      <v-card-title>创建一个群</v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col cols="10" offset="1">
+            <v-text-field label="群名称" v-model="groupname"></v-text-field>
+          </v-col>
+          <v-col cols="10" offset="1">
+            <v-textarea outlined label="群组介绍" v-model="groupintro"></v-textarea>
+          </v-col>
+          <v-col cols="10" offset="1">
+             <v-file-input show-size counter label="群图片"></v-file-input>
+          </v-col>
+          <v-col cols="4" offset="8">
+          <v-spacer></v-spacer>
+          <v-btn outlined color="error" large @click="groupDialog=false">放弃</v-btn>
+          <v-btn color="primary" large>发布</v-btn>
+        
+          </v-col>
+
+        </v-row>
+      </v-card-text>
+      
+    </v-card>
+  </v-dialog>
 </div>
 </template>
 
@@ -93,6 +121,9 @@ import store from "@/store/index"
 export default {
   data(){
     return{
+      groupDialog:false,
+      groupname:"",
+      groupintro:"",
       dialog:false,
       content:"",
       files:null,
