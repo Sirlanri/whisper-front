@@ -55,7 +55,7 @@
           </v-btn>
         </v-list-item>
         <v-list-item>
-          <v-btn block text large @click="jumpto('topic')">
+          <v-btn block text large @click="jumpto('about')">
             <v-list-item-icon>
               <v-icon>mdi-information-outline</v-icon>
             </v-list-item-icon>
@@ -151,6 +151,10 @@ export default {
         }
         if (name=="mine") {
           this.$router.push("/mine")
+          return
+        }
+        if (name=="about") {
+          this.$router.push("/about")
           return
         }
       }

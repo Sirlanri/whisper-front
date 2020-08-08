@@ -42,6 +42,11 @@ Vue.use(VueRouter)
         name:'mine',
         component: () => import('../views/Mine.vue')
       },
+      {
+        path:'about',
+        name:'about',
+        component: () => import('../views/About.vue')
+      },
 
     ]
   }
