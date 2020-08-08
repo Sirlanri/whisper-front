@@ -104,7 +104,7 @@
           <v-col cols="4" offset="8">
           <v-spacer></v-spacer>
           <v-btn outlined color="error" large @click="groupDialog=false">放弃</v-btn>
-          <v-btn color="primary" large>发布</v-btn>
+          <v-btn color="primary" large>创建群</v-btn>
         
           </v-col>
 

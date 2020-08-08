@@ -4,13 +4,23 @@
     <v-navigation-drawer fixed stateless color="rgba(255,255,255,0.7)"
       v-model="leftdrawer" style="top:64px">
       <v-list>
-        <v-list-item>
-          <v-btn block text large @click="jumpto('mine')">
+        <v-list-item v-if="islogin">
+          <v-btn block text large @click="jumpto('mine')" >
+            <v-list-item-icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content >
+              我的
+            </v-list-item-content>
+          </v-btn>
+        </v-list-item>
+        <v-list-item  v-else>
+          <v-btn block text large @click="dialog=!dialog">
             <v-list-item-icon>
               <v-icon>mdi-account-circle</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              我的
+              登录/注册
             </v-list-item-content>
           </v-btn>
         </v-list-item>
@@ -44,15 +54,66 @@
             </v-list-item-content>
           </v-btn>
         </v-list-item>
+        <v-list-item>
+          <v-btn block text large @click="jumpto('topic')">
+            <v-list-item-icon>
+              <v-icon>mdi-information-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              关于
+            </v-list-item-content>
+          </v-btn>
+        </v-list-item>
         
       </v-list>
     </v-navigation-drawer>
+
+    <v-dialog v-model="dialog" max-width="800">
+      <v-card width="100%">
+        <v-row>
+          <v-col cols="10" offset="1">
+            <v-card-title>登录/注册</v-card-title>
+            <v-tabs centered grow>
+              <v-tab @click="loginwindow=true">登录</v-tab>
+              <v-tab @click="loginwindow=false">注册</v-tab>
+            </v-tabs>
+          </v-col>
+          <v-col cols="10" offset="1" v-if="loginwindow">
+            <v-text-field label="邮箱"></v-text-field>
+            <v-text-field label="密码" type="password"></v-text-field>
+          </v-col>
+          <v-col cols="10" offset="1" v-if="!loginwindow">
+            <v-text-field label="昵称"></v-text-field>
+            <v-text-field label="邮箱"></v-text-field>
+            <v-text-field label="密码" type="password"></v-text-field>
+          </v-col>
+          <v-col cols="4" offset="8">
+            <v-btn outlined large color="primary" style="margin-right:2rem" @click="dialog=false">取消</v-btn>
+            <v-btn color="primary" large v-show="loginwindow">登录</v-btn>
+            <v-btn color="primary" large v-show="!loginwindow">注册</v-btn>
+          </v-col>
+          
+        </v-row>
+        
+
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
 <script>
 import store from "@/store/index"
 export default {
+  data(){
+    return{
+      dialog:false,
+      loginwindow:true,
+      //登录，注册信息
+      email:"",
+      password:"",
+      nickname:"",
+    }
+  },
   computed:{
     leftdrawer:{
       get:function(){
@@ -61,6 +122,16 @@ export default {
       set:function(){
       }
     },
+
+    //登录，返回true
+    islogin(){
+      let power = this.$store.state.power
+      if (power=="visitor") {
+        return false
+      }else{
+        return true
+      }
+    }
 
   },
 
@@ -90,12 +161,15 @@ export default {
 </script>
 
 <style scoped>
-.v-btn:hover{
+.v-list-item .v-btn:hover{
   background-color: rgba(255, 255, 255, 0.80);
   border-radius: 20px 20px;
   transition: 0.3s;
 }
-.v-btn{
+.v-list-item .v-btn{
   transition: 0.5s;
+}
+.row{
+  margin: 0;
 }
 </style>

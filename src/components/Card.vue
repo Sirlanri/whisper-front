@@ -126,6 +126,9 @@ export default {
       return rest
     },
     onepic(){
+      if (this.pics==undefined) {
+        return false
+      }
       if (this.pics.length==1) {
         return true
       }else{
