@@ -78,20 +78,23 @@
               <v-tab @click="loginwindow=false">注册</v-tab>
             </v-tabs>
           </v-col>
-          <v-col cols="10" offset="1" v-if="loginwindow">
-            <v-text-field label="邮箱"></v-text-field>
-            <v-text-field label="密码" type="password"></v-text-field>
-          </v-col>
-          <v-col cols="10" offset="1" v-if="!loginwindow">
-            <v-text-field label="昵称"></v-text-field>
-            <v-text-field label="邮箱"></v-text-field>
-            <v-text-field label="密码" type="password"></v-text-field>
-          </v-col>
-          <v-col cols="4" offset="8">
-            <v-btn outlined large color="primary" style="margin-right:2rem" @click="dialog=false">取消</v-btn>
-            <v-btn color="primary" large v-show="loginwindow">登录</v-btn>
-            <v-btn color="primary" large v-show="!loginwindow">注册</v-btn>
-          </v-col>
+          <v-card-text>
+            <v-col cols="10" offset="1" v-if="loginwindow">
+              <v-text-field label="邮箱"></v-text-field>
+              <v-text-field label="密码" type="password"></v-text-field>
+            </v-col>
+            <v-col cols="10" offset="1" v-if="!loginwindow">
+              <v-text-field label="昵称"></v-text-field>
+              <v-text-field label="邮箱"></v-text-field>
+              <v-text-field label="密码" type="password"></v-text-field>
+            </v-col>
+            <v-row>
+              <v-spacer></v-spacer>
+              <v-btn outlined large color="primary" style="margin-right:2rem" @click="dialog=false">取消</v-btn>
+              <v-btn color="primary" large v-show="loginwindow">登录</v-btn>
+              <v-btn color="primary" large v-show="!loginwindow">注册</v-btn>
+            </v-row>
+          </v-card-text>
           
         </v-row>
         

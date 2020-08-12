@@ -91,4 +91,7 @@ export default {
 .v-card{
   margin:1rem 0;
 }
+.v-btn{
+  text-transform: none;
+}
 </style>

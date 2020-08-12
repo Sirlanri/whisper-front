@@ -101,12 +101,11 @@
           <v-col cols="10" offset="1">
              <v-file-input show-size counter label="群图片"></v-file-input>
           </v-col>
-          <v-col cols="4" offset="8">
-          <v-spacer></v-spacer>
-          <v-btn outlined color="error" large @click="groupDialog=false">放弃</v-btn>
-          <v-btn color="primary" large>创建群</v-btn>
-        
-          </v-col>
+          <v-row>
+            <v-spacer></v-spacer>
+            <v-btn outlined color="error" large @click="groupDialog=false">放弃</v-btn>
+            <v-btn color="primary" large>发布</v-btn>
+          </v-row>
 
         </v-row>
       </v-card-text>

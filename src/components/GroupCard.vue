@@ -1,5 +1,5 @@
 <template>
-<v-col cols="4">
+<v-col lg="4" md="6" cols="10" offset="1" offset-md="0">
   <v-card class="group-card">
     <v-img class="align-end"
         height="200px"
@@ -57,7 +57,7 @@ export default {
 
 <style scoped>
 .group-card{
-  max-width: 400px;
+  max-width: 600px;
   margin:1rem
 }
 .v-btn{

@@ -3,7 +3,7 @@
     <v-row>
       <v-col lg="2" class="d-none d-lg-flex"></v-col>
       <v-col>
-        <v-row>
+        <v-row >
           <groupcard v-for="(group,index) in groups" :key="index" :id="group.id" :amount="group.amount"
             :name=group.name :intro=group.intro :imgsrc=group.imgsrc
           ></groupcard>
