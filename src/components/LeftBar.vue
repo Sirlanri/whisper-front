@@ -80,18 +80,18 @@
           </v-col>
           <v-card-text>
             <v-col cols="10" offset="1" v-if="loginwindow">
-              <v-text-field label="邮箱"></v-text-field>
-              <v-text-field label="密码" type="password"></v-text-field>
+              <v-text-field label="邮箱" v-model="email"></v-text-field>
+              <v-text-field label="密码" type="password" v-model="password"></v-text-field>
             </v-col>
             <v-col cols="10" offset="1" v-if="!loginwindow">
-              <v-text-field label="昵称"></v-text-field>
-              <v-text-field label="邮箱"></v-text-field>
-              <v-text-field label="密码" type="password"></v-text-field>
+              <v-text-field label="昵称" v-model="nickname"></v-text-field>
+              <v-text-field label="邮箱" v-model="email"></v-text-field>
+              <v-text-field label="密码" type="password" v-model="password"></v-text-field>
             </v-col>
             <v-row>
               <v-spacer></v-spacer>
               <v-btn outlined large color="primary" style="margin-right:2rem" @click="dialog=false">取消</v-btn>
-              <v-btn color="primary" large v-show="loginwindow">登录</v-btn>
+              <v-btn color="primary" large v-show="loginwindow" @click="goLogin">登录</v-btn>
               <v-btn color="primary" large v-show="!loginwindow">注册</v-btn>
             </v-row>
           </v-card-text>
@@ -101,6 +101,21 @@
 
       </v-card>
     </v-dialog>
+
+    <v-snackbar
+      v-model="resultWin">
+      {{ result }}
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="resultWin = false"
+        >
+          OK
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -115,6 +130,8 @@ export default {
       email:"",
       password:"",
       nickname:"",
+      resultWin:false,
+      result:""
     }
   },
   computed:{
@@ -139,29 +156,51 @@ export default {
   },
 
   methods:{
-      jumpto(name){
-        if (name=="message") {
-          this.$router.push("/message")
-          return
+    //登录
+    goLogin(){
+      this.axios.post('login',{
+        mail:this.email,
+        password:this.password
+      }).then(res=>{
+        if (res.status==200) {
+          this.result="登录成功"
+          this.resultWin=true
+          this.$store.commit('changePower','visitor')
         }
-        if (name=="group") {
-          this.$router.push("/group")
-          return
+        if (res.status==201) {
+          this.result="欢迎管理员登录~"
+          this.resultWin=true
+          this.$store.commit('changePower','admin')
+        }else{
+          this.result=res.data
+          this.resultWin=true
         }
-        if (name=="topic") {
-          this.$router.push("/topic")
-          return
-        }
-        if (name=="mine") {
-          this.$router.push("/mine")
-          return
-        }
-        if (name=="about") {
-          this.$router.push("/about")
-          return
-        }
+      })
+      this.dialog=false
+    },
+    jumpto(name){
+      if (name=="message") {
+        this.$router.push("/message")
+        return
+      }
+      if (name=="group") {
+        this.$router.push("/group")
+        return
+      }
+      if (name=="topic") {
+        this.$router.push("/topic")
+        return
+      }
+      if (name=="mine") {
+        this.$router.push("/mine")
+        return
+      }
+      if (name=="about") {
+        this.$router.push("/about")
+        return
       }
     }
+  }
   
   
 }
