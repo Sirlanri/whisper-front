@@ -92,7 +92,7 @@
               <v-spacer></v-spacer>
               <v-btn outlined large color="primary" style="margin-right:2rem" @click="dialog=false">取消</v-btn>
               <v-btn color="primary" large v-show="loginwindow" @click="goLogin">登录</v-btn>
-              <v-btn color="primary" large v-show="!loginwindow">注册</v-btn>
+              <v-btn color="primary" large v-show="!loginwindow" @click="goRegist">注册</v-btn>
             </v-row>
           </v-card-text>
           
@@ -156,6 +156,10 @@ export default {
   },
 
   methods:{
+    //登录后调用此函数，获取用户信息
+    userLogin(){
+
+    },
     //登录
     goLogin(){
       this.axios.post('login',{
@@ -165,18 +169,44 @@ export default {
         if (res.status==200) {
           this.result="登录成功"
           this.resultWin=true
-          this.$store.commit('changePower','visitor')
+          this.$store.commit('changePower','user')
+          this.dialog=false
         }
         if (res.status==201) {
           this.result="欢迎管理员登录~"
           this.resultWin=true
           this.$store.commit('changePower','admin')
+          this.dialog=false
         }else{
           this.result=res.data
           this.resultWin=true
         }
       })
-      this.dialog=false
+      
+    },
+    goRegist(){
+      this.axios.post('regist',{
+        name:this.nickname,
+        password:this.password,
+        mail:this.email
+      }).then(res=>{
+        if (res.status==200) {
+          this.result=res.data
+          this.resultWin=true
+          this.dialog=false
+          return
+        }
+        if (res.status==201) {
+          this.result=res.data
+          this.resultWin=true
+          return
+        }
+        if (res.status==202) {
+          this.result=res.data
+          this.resultWin=true
+          return
+        }
+      })
     },
     jumpto(name){
       if (name=="message") {
