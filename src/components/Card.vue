@@ -1,5 +1,5 @@
 <template>
-  <v-card  class="mycard" :elevation="5" color="rgba(255,255,255,.95)">
+  <v-card  class="mycard" :elevation="5" color="rgba(255,255,255,.7)">
     <!-- 头像-用户名>群名称 时间--> 
     <v-card-title>
       <v-avatar color="indigo" size="24" class="myavatar">
@@ -164,5 +164,9 @@ export default {
 .groupname{
   font-size: 1rem;
   margin: 0;
+}
+.wwww{
+  color: #3b3b3b;
+  color: #0041bb;
 }
 </style>

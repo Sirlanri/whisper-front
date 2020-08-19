@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "particlesjs": "^2.2.3",
     "vue": "^2.6.11",
+    "vue-particles": "^1.0.9",
     "vue-router": "^3.3.4",
     "vuetify": "^2.2.11",
     "vuex": "^3.5.1"

@@ -7,7 +7,13 @@ export default new Vuex.Store({
   state: {
     leftdrawer:true,
     power:"visitor", //权限，visitor,user,admin
-    userData:{},
+    userData:{
+      name:"",
+      avatar:"",
+      mail:"",
+      intro:"",
+      bannar:""
+    },
   },
   mutations: {
     //控制LeftBar
