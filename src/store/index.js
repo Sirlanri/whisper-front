@@ -8,11 +8,11 @@ export default new Vuex.Store({
     leftdrawer:true,
     power:"user", //权限，visitor,user,admin
     userData:{
-      name:"",
-      avatar:"",
-      mail:"",
-      intro:"",
-      bannar:""
+      name:"Rico深蓝",
+      avatar:"https://blog.ri-co.cn/wp-content/uploads/2020/08/QQ截图20200821143241.jpg",
+      mail:"mail@ri-co.cn",
+      intro:"全沾工程师",
+      bannar:"https://blog.ri-co.cn/wp-content/uploads/2020/02/IMG_20191123_130850_1-scaled.jpg"
     },
   },
   mutations: {
