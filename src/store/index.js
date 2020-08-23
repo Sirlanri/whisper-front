@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     leftdrawer:true,
-    power:"visitor", //权限，visitor,user,admin
+    power:"user", //权限，visitor,user,admin
     userData:{
       name:"",
       avatar:"",

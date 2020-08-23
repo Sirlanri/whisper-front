@@ -66,15 +66,13 @@
             ></v-autocomplete>
           </v-col>
           <v-col cols="10" offset="1">
-            <v-autocomplete
+             <v-combobox
               v-model="selectTag"
               :items="tags"
-              outlined
-              chips
-              small-chips
-              label="选择标签"
+              label="选择或创建标签，用回车键入"
               multiple
-            ></v-autocomplete>
+              chips
+            ></v-combobox>
           </v-col>
         </v-row>
 
