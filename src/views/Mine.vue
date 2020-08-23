@@ -35,16 +35,160 @@
               
             </v-col>
           </v-row>
-          
-          
         </v-card>
+        <div class="d-flex flex-row flex-wrap ">
+          <card class="fall-card"
+            v-for="(card,index) in cardsData" 
+            :time="card.time" :key="index"
+            :username="card.username" :groupname="card.groupname" :pics="card.pics"
+            :content="card.content" :topics="card.topic" :replays="card.replays"
+          >
+          </card>
+        </div>
       </v-col>
     </v-row>
+    
   </div>
 </template>
 
 <script>
+import card from "@/components/Card.vue"
 export default {
+  components:{
+    card
+  },
+  data(){
+    return{
+      cardsData:[
+        {
+          username:"深蓝",
+          groupname:"source",
+          content:'第一条信息的内容',
+          topic:["测试","测试2"],
+          time:"4/23 13:50",
+          pics:[
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/purple.jpg",
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/white1.jpg",
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/black-white.jpg",
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/red-white.jpg"
+          ],
+          replays:[
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+          ]
+        },
+        {
+          username:"深蓝",
+          groupname:"source",
+          content:'第一条信息的内容',
+          topic:["测试","测试2"],
+          time:"4/23 13:50",
+          pics:[
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/white1.jpg",
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/black-white.jpg",
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/red-white.jpg"
+          ],
+          replays:[
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"},
+          ]
+        },
+        {
+          username:"深蓝",
+          groupname:"",
+          content:'第2条信息的内容',
+          topic:["测试"],
+          time:"4/23 13:50",
+          pics:[
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/blue.jpg",
+            
+          ],
+          replays:[
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"}
+          ]
+        },
+        {
+          username:"深蓝",
+          groupname:"",
+          content:'第3条信息的内容',
+          topic:["测试"],
+          time:"4/23 13:50",
+          replays:[
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"}
+          ]
+        },
+        {
+          username:"深蓝",
+          groupname:"",
+          content:'第4条信息的内容',
+          topic:["测试"],
+          pics:[
+            "https://blog.ri-co.cn/wp-content/uploads/2020/04/blue.jpg"
+          ],
+          time:"4/23 13:50",
+          replays:[
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"}
+          ]
+        },
+        {
+          username:"深蓝",
+          groupname:"小组1",
+          content:'第5条信息的内容',
+          topic:["测试"],
+          time:"4/23 13:50",
+          replays:[
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"}
+          ]
+        },
+        {
+          username:"深蓝",
+          groupname:"小组1",
+          content:'第5条信息的内容',
+          topic:["测试"],
+          time:"4/23 13:50",
+          replays:[
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"}
+          ]
+        },
+        {
+          username:"深蓝",
+          groupname:"小组1",
+          content:'第5条信息的内容',
+          topic:["测试"],
+          time:"4/23 13:50",
+          replays:[
+            {name:"visiter1",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
+            content:"精彩！"}
+          ]
+        },
+      ],
+    }
+  },
   computed:{
     userData(){
       return this.$store.state.userData
@@ -82,5 +226,11 @@ export default {
   padding: 15px;
 
 }
-
+.fall-card{
+  position: relative;
+  width: 30%;
+  margin: 1%;
+  overflow: hidden;
+  height: auto;
+}
 </style>
