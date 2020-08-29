@@ -2,7 +2,7 @@
   <div>
     
     <v-navigation-drawer fixed stateless color="rgba(255,255,255,0.7)"
-      v-model="leftdrawer" style="top:64px">
+      v-model="leftdrawer" style="top:64px" width="220px">
       <v-list>
         <v-list-item v-if="islogin">
           <v-btn block text large @click="jumpto('mine')" >
