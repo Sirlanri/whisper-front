@@ -5,12 +5,10 @@
       fixed >
       
       <v-app-bar-nav-icon @click="changDrawer"></v-app-bar-nav-icon>
-      <router-link to="/">
-        <v-btn outlined>
-          <v-icon>mdi-home</v-icon>
-          首页
-        </v-btn>
-      </router-link>
+      <v-btn outlined @click="goHome">
+        <v-icon>mdi-home</v-icon>
+        首页
+      </v-btn>
       <v-spacer></v-spacer>
       <v-btn icon @click="groupDialog=!groupDialog"><v-icon>mdi-account-multiple-plus</v-icon></v-btn>
       <v-btn icon @click="dialog=!dialog"><v-icon>mdi-plus-circle</v-icon></v-btn>
@@ -138,6 +136,9 @@ export default {
     }
   },
   methods:{
+    goHome(){
+      this.$router.push('/')
+    },
     changDrawer(){
       store.commit('changeDrawer')
     },
