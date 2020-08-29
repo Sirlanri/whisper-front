@@ -6,7 +6,7 @@
       <v-col lg="9">
         <v-card>
           <v-img :src="userData.bannar" class="align-end" height="300">
-            <v-btn class="changeBtn" @click="dialog=true">更改资料</v-btn>
+            <v-btn class="changeBtn" @click="changeInfo">更改资料</v-btn>
           </v-img>
           <v-row>
             <v-col lg="2">
@@ -78,7 +78,25 @@
         </div>
       </v-col>
     </v-row>
-    
+    <v-dialog v-model="dialog" max-width="800">
+      <v-card>
+          <v-col cols="10" offset="1">
+            <v-card-title>修改资料</v-card-title>
+            <v-card-text>
+              <v-text-field v-model="cUserName" label="用户昵称"></v-text-field>
+              <v-text-field v-model="cMail" label="邮箱"></v-text-field>
+              <v-textarea v-model="cIntro" label="个人简介" outlined></v-textarea>
+            </v-card-text>
+            <v-card-action>
+              <v-col offset-md="8" offset="5" cols="4">
+                <v-btn outlined color="error" large @click="dialog=false">放弃</v-btn>
+                <v-btn color="primary" large @click="commitChange">修改</v-btn>
+              </v-col>
+              
+            </v-card-action>
+          </v-col>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -92,6 +110,11 @@ export default {
   data() {
     return {
       dialog: false,
+      cUserName:"",
+      cMail:"",
+      cIntro:"",
+      cAvatar:null,
+      cBannar:null,
       cardsData: [
         {
           username: "深蓝",
@@ -291,6 +314,17 @@ export default {
     };
   },
   methods: {
+    //向后端提交用户信息的修改
+    commitChange(){
+
+    },
+    //用户点击更改资料按钮
+    changeInfo(){
+      this.cUserName=store.state.userData.name
+      this.cMail=store.state.userData.mail
+      this.cIntro=store.state.userData.intro
+      this.dialog=true
+    },
     //card组件点击tag后，显示此tag的全部推文
     openTag(tagname) {
       console.log(tagname);
@@ -373,6 +407,9 @@ export default {
 </script>
 
 <style>
+.v-btn{
+  margin: 0 0.5rem;
+}
 .avatar {
   height: 150px;
   width: 150px;
