@@ -6,11 +6,14 @@
       <v-col lg="9">
         <v-card>
           <v-img :src="userData.bannar" class="align-end" height="300">
+            <v-btn class="changeBtnTop" dark @click="changeBannarWin=true">更换背景图</v-btn>
             <v-btn class="changeBtn" @click="changeInfo">更改资料</v-btn>
           </v-img>
           <v-row>
             <v-col lg="2">
-              <v-img class="avatar" :src="userData.avatar"></v-img>
+              <v-img class="avatar align-center justify-center" :src="userData.avatar">
+                <v-btn x-large block dark class="changAvatarBtn" @click="changeAvatarWin=true">更换头像</v-btn>
+              </v-img>
             </v-col>
             <v-col lg="6">
               <v-card-title>{{userData.name}}</v-card-title>
@@ -78,23 +81,64 @@
         </div>
       </v-col>
     </v-row>
-    <v-dialog v-model="dialog" max-width="800">
+    <v-dialog v-model="changeInfoWin" max-width="800">
       <v-card>
-          <v-col cols="10" offset="1">
-            <v-card-title>修改资料</v-card-title>
-            <v-card-text>
-              <v-text-field v-model="cUserName" label="用户昵称"></v-text-field>
-              <v-text-field v-model="cMail" label="邮箱"></v-text-field>
-              <v-textarea v-model="cIntro" label="个人简介" outlined></v-textarea>
-            </v-card-text>
-            <v-card-action>
-              <v-col offset-md="8" offset="5" cols="4">
-                <v-btn outlined color="error" large @click="dialog=false">放弃</v-btn>
-                <v-btn color="primary" large @click="commitChange">修改</v-btn>
-              </v-col>
-              
-            </v-card-action>
-          </v-col>
+        <v-col cols="10" offset="1">
+          <v-card-title>修改资料</v-card-title>
+          <v-card-text>
+            <v-text-field v-model="cUserName" label="用户昵称"></v-text-field>
+            <v-text-field v-model="cMail" label="邮箱"></v-text-field>
+            <v-textarea v-model="cIntro" label="个人简介" outlined></v-textarea>
+          </v-card-text>
+          <v-card-action>
+            <v-col offset-md="8" offset="5" cols="4">
+              <v-btn outlined color="error" large @click="changeInfoWin=false">放弃</v-btn>
+              <v-btn color="primary" large @click="commitChange">修改</v-btn>
+            </v-col>
+          </v-card-action>
+        </v-col>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="changeBannarWin" max-width="800">
+      <v-card>
+        <v-col cols="10" offset="1">
+          <v-card-title>更换背景图</v-card-title>
+          <v-card-text>
+            <v-file-input
+              prepend-icon="mdi-image"
+              accept="image/*"
+              label="点击上传新背景图"
+              v-model="cBannar"
+            ></v-file-input>
+          </v-card-text>
+          <v-card-action>
+            <v-col offset-md="8" offset="5" cols="4">
+              <v-btn outlined color="error" large @click="changeBannarWin=false">放弃</v-btn>
+              <v-btn color="primary" large @click="commitBannar">修改</v-btn>
+            </v-col>
+          </v-card-action>
+        </v-col>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="changeAvatarWin" max-width="800">
+      <v-card>
+        <v-col cols="10" offset="1">
+          <v-card-title>更换头像</v-card-title>
+          <v-card-text>
+            <v-file-input
+              prepend-icon="mdi-account-circle"
+              accept="image/*"
+              label="点击上传新头像"
+              v-model="cAvatar"
+            ></v-file-input>
+          </v-card-text>
+          <v-card-action>
+            <v-col offset-md="8" offset="5" cols="4">
+              <v-btn outlined color="error" large @click="changeAvatarWin=false">放弃</v-btn>
+              <v-btn color="primary" large @click="commitAvatar">修改</v-btn>
+            </v-col>
+          </v-card-action>
+        </v-col>
       </v-card>
     </v-dialog>
   </div>
@@ -109,12 +153,14 @@ export default {
   },
   data() {
     return {
-      dialog: false,
-      cUserName:"",
-      cMail:"",
-      cIntro:"",
-      cAvatar:null,
-      cBannar:null,
+      changeInfoWin: false,
+      changeBannarWin: false,
+      changeAvatarWin: false,
+      cUserName: "",
+      cMail: "",
+      cIntro: "",
+      cAvatar: null,
+      cBannar: null,
       cardsData: [
         {
           username: "深蓝",
@@ -314,16 +360,18 @@ export default {
     };
   },
   methods: {
+    //提交头像的更换
+    commitAvatar() {},
+    //提交bannar的更换
+    commitBannar() {},
     //向后端提交用户信息的修改
-    commitChange(){
-
-    },
+    commitChange() {},
     //用户点击更改资料按钮
-    changeInfo(){
-      this.cUserName=store.state.userData.name
-      this.cMail=store.state.userData.mail
-      this.cIntro=store.state.userData.intro
-      this.dialog=true
+    changeInfo() {
+      this.cUserName = store.state.userData.name;
+      this.cMail = store.state.userData.mail;
+      this.cIntro = store.state.userData.intro;
+      this.changeInfoWin = true;
     },
     //card组件点击tag后，显示此tag的全部推文
     openTag(tagname) {
@@ -407,7 +455,7 @@ export default {
 </script>
 
 <style>
-.v-btn{
+.v-btn {
   margin: 0 0.5rem;
 }
 .avatar {
@@ -442,5 +490,25 @@ export default {
   margin: 1%;
   overflow: hidden;
   height: auto;
+}
+.changeBtnTop {
+  right: 10px;
+  position: absolute;
+  top: 5px;
+  opacity: 0.7;
+  transition: 1s;
+}
+.changeBtnTop:hover {
+  opacity: 1;
+  transition: 0.5s;
+}
+.changAvatarBtn {
+  height: 200px;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.changAvatarBtn:hover {
+  opacity: 1;
 }
 </style>
