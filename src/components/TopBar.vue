@@ -96,7 +96,7 @@
             <v-textarea outlined label="群组介绍" v-model="groupintro"></v-textarea>
           </v-col>
           <v-col cols="10" offset="1">
-             <v-file-input show-size counter label="群图片"></v-file-input>
+            <v-file-input show-size counter label="群图片"></v-file-input>
           </v-col>
           <v-row>
             <v-spacer></v-spacer>
