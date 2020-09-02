@@ -21,7 +21,8 @@
       <v-card-text>
         <v-row>
           <v-col cols="10" offset="1">
-            <v-textarea outlined label="随笔内容（不得超过256字哦）" v-model="content">
+            <v-textarea outlined label="随笔内容（不得超过256字哦）" 
+            v-model="content" counter :rules="areaRules">
             </v-textarea>
           </v-col>
           <v-col cols="10" offset="1">
@@ -116,6 +117,7 @@ import store from "@/store/index"
 export default {
   data(){
     return{
+      areaRules:[v => v.length <= 256 || '字数超过限制'],
       groupDialog:false,
       groupname:"",
       groupintro:"",
