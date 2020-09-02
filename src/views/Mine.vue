@@ -454,7 +454,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .v-btn {
   margin: 0 0.5rem;
 }
