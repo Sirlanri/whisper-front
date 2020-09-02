@@ -6,13 +6,13 @@
         <v-icon dark>mdi-account-circle</v-icon>
       </v-avatar>
       <v-btn text class="groupname">{{username}}</v-btn>
-      <v-icon class="from-group">mdi-chevron-right</v-icon>
+      <v-icon class="from-group" v-if="groupname!=''">mdi-chevron-right</v-icon>
       <v-btn text class="groupname">{{groupname}} </v-btn>
     </v-card-title>
 
     <!-- 内容 图片 --> 
     <v-card-text>
-      <v-row>
+      <v-row class="content-area">
         {{content}}
       </v-row>
       <v-carousel
@@ -22,13 +22,13 @@
         show-arrows-on-hover
         hide-delimiter-background
       >
-        <v-carousel-item v-for="(pic,i) in pics" :key="i"
+        <v-carousel-item v-for="(pic,i) in pics" :key="i" class="pic-area"
         :src="pic">
         </v-carousel-item>
       </v-carousel>
 
       <!-- tag话题 --> 
-      <v-row class="topicarea">
+      <v-row>
         <v-chip outlined v-for="topic in topics" :key="topic" @click="clickTag">
           {{topic}}
         </v-chip>
@@ -154,9 +154,11 @@ export default {
   padding: 0 1rem;
 
 }
-
-.topicarea{
-  padding-top: 0.8rem;
+.v-btn{
+  text-transform: none;
+}
+.pic-area{
+  padding-bottom: 0.8rem;
 }
 .v-chip{
   margin-right: 0.5rem;
@@ -168,5 +170,8 @@ export default {
 .wwww{
   color: #3b3b3b;
   color: #0041bb;
+}
+.content-area{
+  padding-bottom: 0.8rem;
 }
 </style>

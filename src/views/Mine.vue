@@ -5,7 +5,7 @@
 
       <v-col lg="9">
         <v-card>
-          <v-img src="../assets/pics/bannar_black.png" class="align-end" height="300"  v-if="userData.bannar==''">
+          <v-img src="../assets/pics/bannar_black.png" class="align-end" height="300"  v-if="userData.bannar==undefined||userData.bannar==''">
             <v-btn class="changeBtnTop" dark @click="changeBannarWin=true">更换背景图</v-btn>
             <v-btn class="changeBtn" @click="changeInfo">更改资料</v-btn>
           </v-img>
@@ -15,7 +15,7 @@
           </v-img>
           <v-row>
             <v-col lg="2">
-              <v-img class="avatar align-center justify-center" src="../assets/pics/avart.png" v-if="userData.avatar==''">
+              <v-img class="avatar align-center justify-center" src="../assets/pics/avart.png" v-if="userData.bannar==undefined||userData.avatar==''">
                 <v-btn x-large block dark class="changAvatarBtn" @click="changeAvatarWin=true">更换头像</v-btn>
               </v-img>
               <v-img class="avatar align-center justify-center" :src="userData.avatar" v-else>
