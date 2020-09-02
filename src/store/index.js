@@ -12,7 +12,7 @@ export default new Vuex.Store({
       avatar:"https://blog.ri-co.cn/wp-content/uploads/2020/08/QQ截图20200821143241.jpg",
       mail:"mail@ri-co.cn",
       intro:"全沾工程师",
-      bannar:"https://blog.ri-co.cn/wp-content/uploads/2020/02/IMG_20191123_130850_1-scaled.jpg",
+      bannar:"https://blog.ri-co.cn/wp-content/uploads/2020/04/purple.jpg",
       postCount:10,
       replyedCount:1,
       replyCount:20,
