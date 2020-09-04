@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     leftdrawer:true,
-    power:"user", //权限，visitor,user,admin
+    power:"visitor", //权限，visitor,user,admin
     userData:{
       name:"Rico深蓝",
       avatar:"https://blog.ri-co.cn/wp-content/uploads/2020/08/QQ截图20200821143241.jpg",
@@ -17,6 +17,15 @@ export default new Vuex.Store({
       replyedCount:1,
       replyCount:20,
     },
+  },
+  getters:{
+    isLogin(state){
+      if (state.power=="user"||state.power=="admin") {
+        return true
+      }else{
+        return false
+      }
+    }
   },
   mutations: {
     //控制LeftBar

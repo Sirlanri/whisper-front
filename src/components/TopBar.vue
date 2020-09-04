@@ -5,13 +5,32 @@
       fixed >
       
       <v-app-bar-nav-icon @click="changDrawer"></v-app-bar-nav-icon>
-      <v-btn outlined @click="goHome">
+      <v-btn outlined @click="goHome" class="btnmargin">
         <v-icon>mdi-home</v-icon>
         首页
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn icon @click="groupDialog=!groupDialog"><v-icon>mdi-account-multiple-plus</v-icon></v-btn>
-      <v-btn icon @click="dialog=!dialog"><v-icon>mdi-plus-circle</v-icon></v-btn>
+      <v-btn icon @click="dialog=!dialog" v-if="isLogin"><v-icon>mdi-plus-circle</v-icon></v-btn>
+      <v-menu v-if="isLogin">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item @click="groupDialog=!groupDialog">
+            <v-list-item-title>创建群</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="logoutWin=!logoutWin">
+            <v-list-item-title>注销登录</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
   </v-card>
 
@@ -106,9 +125,33 @@
 
         </v-row>
       </v-card-text>
-      
     </v-card>
   </v-dialog>
+  <v-dialog v-model="logoutWin" max-width="300">
+    <v-card>
+      <v-card-title>确认注销？</v-card-title>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn outlined @click="logoutWin=!logoutWin">取消</v-btn>
+        <v-btn color="error" @click="logout">注销</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+  <v-snackbar
+    v-model="resultWin"
+  >
+    {{ result }}
+    <template v-slot:action="{ attrs }">
+      <v-btn
+        color="blue"
+        text
+        v-bind="attrs"
+        @click="resultWin = false"
+      >
+        知道了
+      </v-btn>
+    </template>
+  </v-snackbar>
 </div>
 </template>
 
@@ -117,6 +160,9 @@ import store from "@/store/index"
 export default {
   data(){
     return{
+      logoutWin:false,
+      result:"",
+      resultWin:false,
       areaRules:[v => v.length <= 256 || '字数超过限制'],
       groupDialog:false,
       groupname:"",
@@ -138,6 +184,21 @@ export default {
     }
   },
   methods:{
+    getUserInfo(){
+
+    },
+    logout(){
+      this.axios.get('logout')
+      .then(res=>{
+        this.result=res.data
+        if (res.status==200) {
+          this.$store.commit('changePower','visitor')
+          this.getUserInfo()
+        }
+        this.resultWin=true
+        this.logoutWin=false
+      })
+    },
     goHome(){
       this.$router.push('/')
     },
@@ -149,12 +210,17 @@ export default {
       const searchText = queryText.toLowerCase()
       return textOne.indexOf(searchText) > -1 
     },
+  },
+  computed:{
+    isLogin(){
+      return this.$store.getters.isLogin
+    }
   }
 }
 </script>
 
 <style scoped>
-.v-btn{
+.btnmargin{
   margin: 0 1rem;
 }
 </style>
