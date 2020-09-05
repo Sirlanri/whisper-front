@@ -96,8 +96,8 @@
 
         <v-row>
           <v-spacer></v-spacer>
-          <v-btn outlined color="error" large @click="dialog=false">放弃</v-btn>
-          <v-btn color="primary" large>发布</v-btn>
+          <v-btn class="btnmargin" outlined color="error" large @click="dialog=false">放弃</v-btn>
+          <v-btn class="btnmargin" color="primary" large>发布</v-btn>
         </v-row>
       </v-card-text>
     </v-card>
@@ -119,8 +119,8 @@
           </v-col>
           <v-row>
             <v-spacer></v-spacer>
-            <v-btn outlined color="error" large @click="groupDialog=false">放弃</v-btn>
-            <v-btn color="primary" large>发布</v-btn>
+            <v-btn class="btnmargin" outlined color="error" large @click="groupDialog=false">放弃</v-btn>
+            <v-btn class="btnmargin" color="primary" large>发布</v-btn>
           </v-row>
 
         </v-row>
@@ -184,9 +184,6 @@ export default {
     }
   },
   methods:{
-    getUserInfo(){
-
-    },
     logout(){
       this.axios.get('logout')
       .then(res=>{

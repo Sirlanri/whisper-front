@@ -14,7 +14,6 @@ export default new Vuex.Store({
       intro:"全沾工程师",
       bannar:"https://blog.ri-co.cn/wp-content/uploads/2020/04/purple.jpg",
       postCount:10,
-      replyedCount:1,
       replyCount:20,
     },
   },
@@ -39,7 +38,12 @@ export default new Vuex.Store({
     //控制登录权限，传入visitor user admin
     changePower(state,power){
       state.power=power
-    }
+    },
+
+    //获取用户信息后，写入
+    setUserData(state,data){
+      state.userData=data
+    },
   },
   actions: {
   },

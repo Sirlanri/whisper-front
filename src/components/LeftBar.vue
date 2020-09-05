@@ -157,8 +157,17 @@ export default {
 
   methods:{
     //登录后调用此函数，获取用户信息
-    userLogin(){
-      
+    getUserInfo(){
+      this.axios.get('getUserInfo',{
+        params:{mail:this.email}
+      }).then(res=>{
+        if (res.status==200) {
+          this.$store.commit('setUserData',res.data)
+        }else{
+          this.result="获取用户信息失败"
+          this.resultWin=true
+        }
+      })
     },
     //登录
     goLogin(){
@@ -167,12 +176,14 @@ export default {
         password:this.password
       }).then(res=>{
         if (res.status==200) {
+          this.getUserInfo()
           this.result="登录成功"
           this.resultWin=true
           this.$store.commit('changePower','user')
           this.dialog=false
         }
         if (res.status==201) {
+          this.getUserInfo()
           this.result="欢迎管理员登录~"
           this.resultWin=true
           this.$store.commit('changePower','admin')

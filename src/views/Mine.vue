@@ -14,7 +14,7 @@
             <v-btn class="changeBtn" @click="changeInfo">更改资料</v-btn>
           </v-img>
           <v-row>
-            <v-col lg="2">
+            <v-col lg="3">
               <v-img class="avatar align-center justify-center" src="../assets/pics/avart.png" v-if="userData.bannar==undefined||userData.avatar==''">
                 <v-btn x-large block dark class="changAvatarBtn" @click="changeAvatarWin=true">更换头像</v-btn>
               </v-img>
@@ -22,7 +22,7 @@
                 <v-btn x-large block dark class="changAvatarBtn" @click="changeAvatarWin=true">更换头像</v-btn>
               </v-img>
             </v-col>
-            <v-col lg="6">
+            <v-col lg="5">
               <v-card-title>{{userData.name}}</v-card-title>
               <v-card-subtitle>{{userData.intro}}</v-card-subtitle>
             </v-col>
