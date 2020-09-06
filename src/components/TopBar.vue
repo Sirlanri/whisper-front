@@ -181,14 +181,16 @@ export default {
       ],
       tags:[
         "标签1","标签2"
-      ]
+      ],
+      //图片上传之后，返回的图片URL列表
+      picUrls:[]
     }
   },
   methods:{
-    newPost(picUrl){
+    newPost(){
       let sendData={
         content:this.content,
-        pics:picUrl,
+        pics:this.picUrls,
         group:this.selectGroup,
         tags:this.selectTag
       }
@@ -203,20 +205,24 @@ export default {
       })
     },
     uploadPic(){
-      var file = document.getElementById('pics').files[0]
-      let formData = new FormData()
-      formData.append("img",file)
-      console.log(formData)
-      this.axios.post('uploadPics',formData,{
-        headers:{'Content-Type':'multipart/form-data'}
-      }).then(res=>{
-        if (res.status==200) {
-          //this.newPost(res.data)
-        }else{
-          this.result="上传图片失败"+res.data
-          this.resultWin=true
-        }
-      })
+      this.pics.forEach(ele => {
+        var file = ele
+        console.log(file)
+        let formData = new FormData()
+        formData.append("img",file)
+        this.axios.post('uploadPics',formData,{
+          headers:{'Content-Type':'multipart/form-data'}
+        }).then(res=>{
+          if (res.status==200) {
+            this.picUrls.push(res.data)
+          }else{
+            this.result="上传图片失败"+res.data
+            this.resultWin=true
+            return
+          }
+        })
+      });
+      this.newPost()
     },
     logout(){
       this.axios.get('logout')
