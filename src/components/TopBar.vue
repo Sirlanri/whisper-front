@@ -46,7 +46,8 @@
           </v-col>
           <v-col cols="10" offset="1">
             <v-file-input
-              v-model="files"
+              v-model="pics"
+              id="pics"
               color="deep-purple accent-4"
               counter
               label="图片"
@@ -69,7 +70,7 @@
                   v-else-if="index === 2"
                   class="overline grey--text text--darken-3 mx-2"
                 >
-                  +{{ files.length - 2 }} File(s)
+                  +{{ pics.length - 2 }} File(s)
                 </span>
               </template>
             </v-file-input>
@@ -97,7 +98,7 @@
         <v-row>
           <v-spacer></v-spacer>
           <v-btn class="btnmargin" outlined color="error" large @click="dialog=false">放弃</v-btn>
-          <v-btn class="btnmargin" color="primary" large>发布</v-btn>
+          <v-btn class="btnmargin" color="primary" large @click="uploadPic">发布</v-btn>
         </v-row>
       </v-card-text>
     </v-card>
@@ -169,9 +170,9 @@ export default {
       groupintro:"",
       dialog:false,
       content:"",
-      files:null,
+      pics:null,
       selectGroup:"",
-      selectTag:"",
+      selectTag:[],
       groupNames:[
         {name:"无",id:0},
         {name:"小组1",id:1},
@@ -184,13 +185,44 @@ export default {
     }
   },
   methods:{
+    newPost(picUrl){
+      let sendData={
+        content:this.content,
+        pics:picUrl,
+        group:this.selectGroup,
+        tags:this.selectTag
+      }
+      this.axios.post('newPost',sendData)
+      .then(res=>{
+        if (res.status==200) {
+          this.result="上传成功"
+        }else{
+          this.result=res.data
+        }
+        this.resultWin=true
+      })
+    },
+    uploadPic(){
+      let formData = new FormData()
+      formData.append("pics",this.pics)
+      console.log(formData)
+      this.axios.post('uploadPics',formData,{
+        headers:{'Content-Type':'multipart/form-data'}
+      }).then(res=>{
+        if (res.status==200) {
+          //this.newPost(res.data)
+        }else{
+          this.result="上传图片失败"+res.data
+          this.resultWin=true
+        }
+      })
+    },
     logout(){
       this.axios.get('logout')
       .then(res=>{
         this.result=res.data
         if (res.status==200) {
           this.$store.commit('changePower','visitor')
-          this.getUserInfo()
         }
         this.resultWin=true
         this.logoutWin=false
