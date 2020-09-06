@@ -203,8 +203,9 @@ export default {
       })
     },
     uploadPic(){
+      var file = document.getElementById('pics').files[0]
       let formData = new FormData()
-      formData.append("pics",this.pics)
+      formData.append("img",file)
       console.log(formData)
       this.axios.post('uploadPics',formData,{
         headers:{'Content-Type':'multipart/form-data'}
