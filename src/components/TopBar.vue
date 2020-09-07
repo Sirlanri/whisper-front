@@ -98,7 +98,7 @@
         <v-row>
           <v-spacer></v-spacer>
           <v-btn class="btnmargin" outlined color="error" large @click="dialog=false">放弃</v-btn>
-          <v-btn class="btnmargin" color="primary" large @click="uploadPic">发布</v-btn>
+          <v-btn class="btnmargin" color="primary" :disabled="btndisable" large @click="uploadPic">发布</v-btn>
         </v-row>
       </v-card-text>
     </v-card>
@@ -161,6 +161,7 @@ import store from "@/store/index"
 export default {
   data(){
     return{
+      btndisable:false,
       logoutWin:false,
       result:"",
       resultWin:false,
@@ -226,6 +227,7 @@ export default {
       this.picUrls=[]
     },
     uploadPic(){
+      this.btndisable=true
       let len = this.pics.length
       if (len==0) {
         this.newPost()
