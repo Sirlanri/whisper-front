@@ -199,7 +199,7 @@ export default {
       })
     },
     getGroups(){
-      this.axios.get('getGroups')
+      this.axios.get('getGroupNames')
       .then(res=>{
         if (res.status==200) {
           this.groupNames=res.data.groups

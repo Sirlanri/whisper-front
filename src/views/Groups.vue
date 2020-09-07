@@ -30,6 +30,19 @@ export default {
         {id:1,amount:10,name:"群组5",intro:"这是第个群组！",imgsrc:"https://blog.ri-co.cn/wp-content/uploads/2020/04/white-grey.jpg"},
       ]
     }
+  },
+  methods:{
+    getGroups(){
+      this.axios.get('getGroups')
+      .then(res=>{
+        if (res.status==200) {
+          this.groups=res.data.groups
+        }
+      })
+    }
+  },
+  created(){
+    this.getGroups()
   }
 };
 </script>
