@@ -80,7 +80,7 @@
               clearable
               v-model="selectGroup"
               :items="groupNames"
-              item-text="name"
+              
               label="要发布的群名称"
             ></v-autocomplete>
           </v-col>
@@ -170,14 +170,11 @@ export default {
       groupintro:"",
       dialog:false,
       content:"",
-      pics:null,
+      pics:[],
       selectGroup:"",
       selectTag:[],
       groupNames:[
-        {name:"无",id:0},
-        {name:"小组1",id:1},
-        {name:"第二",id:2},
-        {name:"老三组",id:3},
+        "测试1",
       ],
       tags:[
         "标签1","标签2"
@@ -197,15 +194,25 @@ export default {
       this.axios.post('newPost',sendData)
       .then(res=>{
         if (res.status==200) {
-          this.result="上传成功"
+          this.result="发布成功"
+          this.resultWin=true
+          this.dialog=false
         }else{
           this.result=res.data
         }
         this.resultWin=true
       })
+      this.picUrls=[]
     },
     uploadPic(){
+      let len = this.pics.length
+      if (len==0) {
+        this.newPost()
+        return
+      }
+      let index = 0
       this.pics.forEach(ele => {
+        index++
         var file = ele
         console.log(file)
         let formData = new FormData()
@@ -215,6 +222,9 @@ export default {
         }).then(res=>{
           if (res.status==200) {
             this.picUrls.push(res.data)
+            if (len==index) {
+              this.newPost()
+            }
           }else{
             this.result="上传图片失败"+res.data
             this.resultWin=true
@@ -222,7 +232,7 @@ export default {
           }
         })
       });
-      this.newPost()
+      
     },
     logout(){
       this.axios.get('logout')
