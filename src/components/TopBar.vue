@@ -10,7 +10,7 @@
         首页
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn icon @click="dialog=!dialog" v-if="isLogin"><v-icon>mdi-plus-circle</v-icon></v-btn>
+      <v-btn icon @click="openPostWin" v-if="isLogin"><v-icon>mdi-plus-circle</v-icon></v-btn>
       <v-menu v-if="isLogin">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -184,6 +184,27 @@ export default {
     }
   },
   methods:{
+    openPostWin(){
+      this.dialog=true
+      this.getGroups()
+      this.getTags()
+    },
+    getTags(){
+      this.axios.get('getTags')
+      .then(res=>{
+        if (res.status==200) {
+          this.tags=res.data.tags
+        }
+      })
+    },
+    getGroups(){
+      this.axios.get('getGroups')
+      .then(res=>{
+        if (res.status==200) {
+          this.groupNames=res.data.groups
+        }
+      })
+    },
     newPost(){
       let sendData={
         content:this.content,
