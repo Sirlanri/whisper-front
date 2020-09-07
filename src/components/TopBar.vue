@@ -116,12 +116,12 @@
             <v-textarea outlined label="群组介绍" v-model="groupintro"></v-textarea>
           </v-col>
           <v-col cols="10" offset="1">
-            <v-file-input show-size counter label="群图片"></v-file-input>
+            <v-file-input show-size counter label="群图片" v-model="groupPic"></v-file-input>
           </v-col>
           <v-row>
             <v-spacer></v-spacer>
             <v-btn class="btnmargin" outlined color="error" large @click="groupDialog=false">放弃</v-btn>
-            <v-btn class="btnmargin" color="primary" large>发布</v-btn>
+            <v-btn class="btnmargin" color="primary" large :disabled="btndisable" @click="uploadGroupPic">发布</v-btn>
           </v-row>
 
         </v-row>
@@ -161,6 +161,7 @@ import store from "@/store/index"
 export default {
   data(){
     return{
+      groupPic:[],
       btndisable:false,
       logoutWin:false,
       result:"",
@@ -185,6 +186,39 @@ export default {
     }
   },
   methods:{
+    newGroup(picurl){
+      let sendData={
+        name:this.groupname,
+        intro:this.groupintro,
+        pic:picurl
+      }
+      this.axios.post('newGroup',sendData)
+      .then(res=>{
+        this.groupDialog=false
+        this.result=res.data
+        this.resultWin=true
+        this.btndisable=false
+      })
+    },
+    uploadGroupPic(){
+      this.btndisable=true
+      var file = this.groupPic
+      console.log(file)
+      let formData = new FormData()
+      formData.append("img",file)
+      this.axios.post('uploadPics',formData,{
+        headers:{'Content-Type':'multipart/form-data'}
+      }).then(res=>{
+        if (res.status==200) {
+          this.newGroup(res.data)
+
+        }else{
+          this.result=res.data
+          this.resultWin=true
+          return
+        }
+      })
+    },
     openPostWin(){
       this.dialog=true
       this.getGroups()
@@ -219,6 +253,7 @@ export default {
           this.result="发布成功"
           this.resultWin=true
           this.dialog=false
+          this.btndisable=false
         }else{
           this.result=res.data
         }
