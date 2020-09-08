@@ -45,6 +45,7 @@ export default {
         {
           username:"深蓝",
           groupname:"source",
+          avatar:"",
           content:'第一条信息的内容',
           topic:["测试","测试2"],
           time:"4/23 13:50",
