@@ -6,21 +6,21 @@
       
       <v-col lg="3" md="5" sm="6" cols="10" offset="1" offset-sm="0" offset-md="1" offset-lg="0">
         <div class="flex-column" v-for="(card,index) in cards1" :key="index">
-          <card v-on:tagname="openTag" :time="card.time"
+          <card v-on:tagname="openTag" :time="card.time" :avatar="card.avatar"
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
             :content="card.content" :topics="card.topic" :replays="card.replays"></card>
         </div>
       </v-col>
       <v-col lg="3" md="5" sm="6" class="hidden-xs-and-down">
         <div class="flex-column" v-for="(card,index) in cards2" :key="index">
-          <card v-on:tagname="openTag" :time="card.time"
+          <card v-on:tagname="openTag" :time="card.time" :avatar="card.avatar"
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
             :content="card.content" :topics="card.topic" :replays="card.replays"></card>
         </div>
       </v-col>
       <v-col lg="3" md="0" class="hidden-md-and-down">
         <div class="flex-column" v-for="(card,index) in cards3" :key="index">
-          <card v-on:tagname="openTag" :time="card.time"
+          <card v-on:tagname="openTag" :time="card.time" :avatar="card.avatar"
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
             :content="card.content" :topics="card.topic" :replays="card.replays"></card>
         </div>
@@ -45,7 +45,7 @@ export default {
         {
           username:"深蓝",
           groupname:"source",
-          avatar:"",
+          avatar:"https://pic1.zhimg.com/v2-2dc154cd8b6adcc9af9804b0686e30eb_xl.jpg",
           content:'第一条信息的内容',
           topic:["测试","测试2"],
           time:"4/23 13:50",

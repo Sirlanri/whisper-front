@@ -2,8 +2,8 @@
   <v-card  class="mycard" :elevation="5" color="rgba(255,255,255,.7)">
     <!-- 头像-用户名>群名称 时间--> 
     <v-card-title>
-      <v-avatar color="indigo" size="24" class="myavatar">
-        <v-icon dark>mdi-account-circle</v-icon>
+      <v-avatar color="indigo" size="30" class="myavatar">
+        <v-img :src="avatar"></v-img>
       </v-avatar>
       <v-btn text class="groupname">{{username}}</v-btn>
       <v-icon class="from-group" v-if="groupname!=''">mdi-chevron-right</v-icon>
@@ -95,6 +95,7 @@ export default {
     }
   },
   props:{
+    avatar:String,
     username:String,
     groupname:String,
     content:String,
