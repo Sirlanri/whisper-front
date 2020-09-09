@@ -202,23 +202,24 @@ export default {
       this.cards1=[]
       this.cards2=[]
       this.cards3=[]
-      var count1=1
-      this.cardsData.forEach(element => {
-        if (count1%3==0) {
-          this.cards3.push(element)
-          count1++
-          
-        }
-        if (count1%2==0) {
-          this.cards2.push(element)
-          count1++
-          
+      var len = this.cardsData.length
+      for (let index = 0; index < len/3; index++) {
+        
+        this.cards1.push(this.cardsData[index*3])
+        if (index*3+1<=len) {
+          this.cards2.push(this.cardsData[index*3+1])
+          if (index*3+2<len) {
+            this.cards3.push(this.cardsData[index*3+2])
+          }else{
+            break
+          }
         }else{
-          this.cards1.push(element)
-          count1++
+          break
         }
-      });
-
+        
+        
+      }
+      
     },
     //将数据均匀地分到2列
     shunt2(){
