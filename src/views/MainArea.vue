@@ -8,21 +8,21 @@
         <div class="flex-column" v-for="(card,index) in cards1" :key="index">
           <card v-on:tagname="openTag" :time="card.time" :avatar="card.avatar"
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
-            :content="card.content" :topics="card.topic" :replays="card.replays"></card>
+            :content="card.content" :topics="card.topic" :replays="card.replys"></card>
         </div>
       </v-col>
       <v-col lg="3" md="5" sm="6" class="hidden-xs-and-down">
         <div class="flex-column" v-for="(card,index) in cards2" :key="index">
           <card v-on:tagname="openTag" :time="card.time" :avatar="card.avatar"
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
-            :content="card.content" :topics="card.topic" :replays="card.replays"></card>
+            :content="card.content" :topics="card.topic" :replays="card.replys"></card>
         </div>
       </v-col>
       <v-col lg="3" md="0" class="hidden-md-and-down">
         <div class="flex-column" v-for="(card,index) in cards3" :key="index">
           <card v-on:tagname="openTag" :time="card.time" :avatar="card.avatar"
             :username="card.username" :groupname="card.groupname" :pics="card.pics"
-            :content="card.content" :topics="card.topic" :replays="card.replays"></card>
+            :content="card.content" :topics="card.topic" :replays="card.replys"></card>
         </div>
       </v-col>
     </v-row>
@@ -176,10 +176,23 @@ export default {
       screenWidth:1800
     }
   },
+  created(){
+    this.getAllPost()
+  },
   computed:{
     
   },
   methods:{
+    //获取全部post
+    getAllPost(){
+      this.cardsData=[]
+      this.axios.get('getAllPost')
+        .then(res=>{
+          if (res.status==200) {
+            this.cardsData=res.data.posts
+          }
+        })
+    },
     //card组件点击tag后，显示此tag的全部推文
     openTag(tagname){
       console.log(tagname)
@@ -244,6 +257,19 @@ export default {
     this.shunt3()
   },
   watch:{
+    cardsData:function() {
+      if (this.screenWidth>=1264) {
+        this.shunt3()
+        return
+      }
+      if (this.screenWidth<=600) {
+        this.shunt1()
+        return
+      }
+      else{
+        this.shunt2()
+      }
+    },
     screenWidth:function() {
       if (this.screenWidth>=1264) {
         this.shunt3()

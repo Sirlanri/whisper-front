@@ -2,7 +2,7 @@
   <v-card  class="mycard" :elevation="5" color="rgba(255,255,255,.7)">
     <!-- 头像-用户名>群名称 时间--> 
     <v-card-title>
-      <v-avatar color="indigo" size="30" class="myavatar">
+      <v-avatar color="indigo" size="40" class="myavatar">
         <v-img :src="avatar"></v-img>
       </v-avatar>
       <v-btn text class="groupname">{{username}}</v-btn>
@@ -106,6 +106,9 @@ export default {
   },
   computed:{
     ismoreReply(){
+      if (this.replays==undefined) {
+        return false
+      }
       let replaylen = this.replays.length
       if (replaylen<4) {
         return false
@@ -113,6 +116,9 @@ export default {
       return true
     },
     shortReplys(){
+      if (this.replays==undefined) {
+        return 
+      }
       var short=new Array()
       for (let index = 0; index < this.replays.length&&index<4; index++) {
         short[index]=this.replays[index]
@@ -120,6 +126,9 @@ export default {
       return short
     },
     restReplys(){
+      if (this.replays==undefined) {
+        return 
+      }
       var rest = new Array()
       for (let index = 4; index < this.replays.length; index++) {
         rest[index-4]=this.replays[index]
