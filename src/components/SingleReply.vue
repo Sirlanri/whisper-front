@@ -4,9 +4,9 @@
     <v-row align-content="center">
       <v-col cols="6">
           <v-avatar size="36">
-            <v-img src="https://pic2.zhimg.com/v2-2dc154cd8b6adcc9af9804b0686e30eb_xl.jpg"></v-img>
+            <v-img :src="avatar"></v-img>
           </v-avatar>
-          回复人昵称
+          {{name}}
       </v-col>
       <v-col cols="2" offset="3">
         <v-btn icon large :color="haveRead?'':'blue'" @click="changRead">
@@ -19,7 +19,7 @@
     <v-row>
       <v-col cols="9">
         <v-card-text>
-          回复的内容
+          {{content}}
         </v-card-text>
       </v-col>
       <v-col cols="3">
@@ -35,8 +35,15 @@
 export default {
   data(){
     return{
-      haveRead:false
+      
     }
+  },
+  props:{
+    name:String,
+    avatar:String,
+    haveRead:Boolean,
+    content:String,
+    id:Number,
   },
   methods:{
     changRead(){
