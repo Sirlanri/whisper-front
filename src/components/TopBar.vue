@@ -203,7 +203,6 @@ export default {
     uploadGroupPic(){
       this.btndisable=true
       var file = this.groupPic
-      console.log(file)
       let formData = new FormData()
       formData.append("img",file)
       this.axios.post('uploadPics',formData,{
@@ -268,11 +267,10 @@ export default {
         this.newPost()
         return
       }
-      let index = 0
+      var index = 0
       this.pics.forEach(ele => {
-        index++
+        
         var file = ele
-        console.log(file)
         let formData = new FormData()
         formData.append("img",file)
         this.axios.post('uploadPics',formData,{
@@ -280,8 +278,10 @@ export default {
         }).then(res=>{
           if (res.status==200) {
             this.picUrls.push(res.data)
+            index++
             if (len==index) {
               this.newPost()
+              return
             }
           }else{
             this.result="上传图片失败"+res.data
