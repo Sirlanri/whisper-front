@@ -41,7 +41,7 @@
         <v-row>
           <v-col cols="10" offset="1">
             <v-textarea outlined label="随笔内容（不得超过256字哦）" 
-            v-model="content" counter :rules="areaRules">
+            v-model="content" counter :rules="areaRules" clearable>
             </v-textarea>
           </v-col>
           <v-col cols="10" offset="1">

@@ -28,6 +28,22 @@
     </v-row>
     
   </v-card>
+
+  <v-snackbar
+    v-model="resultWin"
+  >
+    {{ result }}
+    <template v-slot:action="{ attrs }">
+      <v-btn
+        color="blue"
+        text
+        v-bind="attrs"
+        @click="resultWin = false"
+      >
+        知道了
+      </v-btn>
+    </template>
+  </v-snackbar>
 </v-col>
 </template>
 
@@ -35,7 +51,8 @@
 export default {
   data(){
     return{
-      
+      result:"",
+      resultWin:false,
     }
   },
   props:{
@@ -47,7 +64,18 @@ export default {
   },
   methods:{
     changRead(){
-      this.haveRead=!this.haveRead
+      this.axios.get('readMsg',{
+        params:{id:this.id}
+      }).then(res=>{
+        if (res.status==200) {
+          this.result="已标为已读"
+          this.haveRead=true
+        }else{
+          this.result=res.data
+        }
+        this.resultWin=true
+      })
+      
     }
   }
 };
