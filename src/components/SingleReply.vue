@@ -23,7 +23,7 @@
         </v-card-text>
       </v-col>
       <v-col cols="3">
-        <v-btn>回复</v-btn>
+        <v-btn @click="replyWin=true">回复</v-btn>
       </v-col>
     </v-row>
     
@@ -44,6 +44,29 @@
       </v-btn>
     </template>
   </v-snackbar>
+
+  <v-dialog v-model="replyWin" max-width="500">
+    <v-card>
+      
+        <v-card-title>
+          回复消息
+        </v-card-title>
+        <v-card-text>
+          <v-textarea
+            label="输入你的回复"
+            outlined
+            rows="3"
+            v-model="replyContent"
+          ></v-textarea>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn outlined large color="error" @click="replyWin=false">取消</v-btn>
+          <v-btn color="primary" large @click="sendReply">发送</v-btn>
+        </v-card-actions>
+      
+    </v-card>
+  </v-dialog>
 </v-col>
 </template>
 
@@ -53,6 +76,8 @@ export default {
     return{
       result:"",
       resultWin:false,
+      replyWin:false,
+      replyContent:"",
     }
   },
   props:{
@@ -61,8 +86,24 @@ export default {
     haveRead:Boolean,
     content:String,
     id:Number,
+    postid:Number
   },
   methods:{
+    sendReply(){
+      let sendData={
+        id:this.postid,
+        content:this.replyContent,
+        name:this.name
+      }
+      this.axios.post('newReply',sendData)
+        .then(res=>{
+          if (res.status==200) {
+            this.replyWin=false
+          }
+          this.result=res.data
+          this.resultWin=true
+        })
+    },
     changRead(){
       this.axios.get('readMsg',{
         params:{id:this.id}

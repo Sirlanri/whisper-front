@@ -9,6 +9,7 @@
         :haveRead="re.haveRead"
         :content="re.content"
         :id="re.id"
+        :postid="re.postid"
       ></reply>
     </v-row>
   </div>
