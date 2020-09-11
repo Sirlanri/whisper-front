@@ -110,7 +110,7 @@ export default {
         return false
       }
       let replaylen = this.replays.length
-      if (replaylen<4) {
+      if (replaylen<=4) {
         return false
       }
       return true
