@@ -145,7 +145,7 @@ export default {
 
     //登录，返回true
     islogin(){
-      let power = this.$store.state.power
+      let power = this.$store.state.userData.power
       if (power=="visitor") {
         return false
       }else{
@@ -179,14 +179,12 @@ export default {
           this.getUserInfo()
           this.result="登录成功"
           this.resultWin=true
-          this.$store.commit('changePower','user')
           this.dialog=false
         }
         if (res.status==201) {
           this.getUserInfo()
           this.result="欢迎管理员登录~"
           this.resultWin=true
-          this.$store.commit('changePower','admin')
           this.dialog=false
         }else{
           this.result=res.data

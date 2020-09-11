@@ -19,7 +19,23 @@ export default {
     topbar,
     leftbar,
   },
-  
+  created(){
+    this.checkLogin()
+  },
+  methods:{
+    //从cookie中读取数据，检测是否已登录
+    checkLogin(){
+      if (!this.$store.getters.isLogin) {
+        this.axios.get('GetUserInfoByCookie')
+          .then(res=>{
+            if (res.status==200) {
+              this.$store.commit('setUserData',res.data)
+            }
+          })
+      }
+      
+    }
+}
   
 };
 </script>
