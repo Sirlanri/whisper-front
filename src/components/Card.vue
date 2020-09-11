@@ -76,13 +76,28 @@
 
     <!-- 发表新评论 --> 
     <v-card-actions>
-      <v-text-field append-icon="mdi-send" label="评论" 
-        v-show="replay" @click:append="sendreply"></v-text-field>
+      <v-text-field append-icon="mdi-send" label="评论" v-model="replyContent"
+        v-show="replay" @click:append="sendReply"></v-text-field>
       <v-spacer></v-spacer>
       <v-btn icon text @click="replay=!replay" large color="#5b5b5bdb">
         <v-icon>mdi-message-plus-outline</v-icon>
       </v-btn>
     </v-card-actions>
+    <v-snackbar
+      v-model="resultWin"
+    >
+      {{ result }}
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="resultWin = false"
+        >
+          知道了
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-card>
 </template>
 
@@ -91,7 +106,10 @@ export default {
   data(){
     return{
       replay:false,
-      morereply:false
+      morereply:false,
+      replyContent:"",
+      result:"",
+      resultWin:false
     }
   },
   props:{
@@ -103,6 +121,7 @@ export default {
     topics:Array,
     replays:Array,
     pics:Array,
+    postid:Number
   },
   computed:{
     ismoreReply(){
@@ -147,8 +166,21 @@ export default {
     }
   },
   methods:{
-    sendreply(){
-
+    //发送评论
+    sendReply(){
+      let sendData={
+        id:this.postid,
+        content:this.replyContent,
+        name:this.username
+      }
+      this.axios.post('newReply',sendData)
+        .then(res=>{
+          if (res.status==200) {
+            this.replyContent=""
+          }
+          this.result=res.data
+          this.resultWin=true
+        })
     },
     clickTag(tag){
       let name=tag.target.textContent
