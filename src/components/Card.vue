@@ -2,7 +2,7 @@
   <v-card  class="mycard" :elevation="5" color="rgba(255,255,255,.7)">
     <!-- 头像-用户名>群名称 时间--> 
     <v-card-title>
-      <v-avatar color="indigo" size="40" class="myavatar">
+      <v-avatar color="indigo" size="50" class="myavatar">
         <v-img :src="avatar"></v-img>
       </v-avatar>
       <v-btn text class="groupname">{{username}}</v-btn>

@@ -55,7 +55,8 @@
             :pics="card.pics"
             :content="card.content"
             :topics="card.topic"
-            :replays="card.replays"
+            :replays="card.replys"
+             :avatar="card.avatar" :postid="card.id"
           ></card>
         </div>
       </v-col>
@@ -69,7 +70,8 @@
             :pics="card.pics"
             :content="card.content"
             :topics="card.topic"
-            :replays="card.replays"
+            :replays="card.replys"
+             :avatar="card.avatar" :postid="card.id"
           ></card>
         </div>
       </v-col>
@@ -83,7 +85,8 @@
             :pics="card.pics"
             :content="card.content"
             :topics="card.topic"
-            :replays="card.replays"
+            :replays="card.replys"
+             :avatar="card.avatar" :postid="card.id"
           ></card>
         </div>
       </v-col>
@@ -97,12 +100,12 @@
             <v-text-field v-model="cMail" label="邮箱"></v-text-field>
             <v-textarea v-model="cIntro" label="个人简介" outlined></v-textarea>
           </v-card-text>
-          <v-card-action>
+          <v-card-actions>
             <v-col offset-md="8" offset="5" cols="4">
               <v-btn outlined color="error" large @click="changeInfoWin=false">放弃</v-btn>
               <v-btn color="primary" large @click="commitChange">修改</v-btn>
             </v-col>
-          </v-card-action>
+          </v-card-actions>
         </v-col>
       </v-card>
     </v-dialog>
@@ -118,12 +121,12 @@
               v-model="cBannar"
             ></v-file-input>
           </v-card-text>
-          <v-card-action>
+          <v-card-actions>
             <v-col offset-md="8" offset="5" cols="4">
               <v-btn outlined color="error" large @click="changeBannarWin=false">放弃</v-btn>
               <v-btn color="primary" large @click="commitBannar">修改</v-btn>
             </v-col>
-          </v-card-action>
+          </v-card-actions>
         </v-col>
       </v-card>
     </v-dialog>
@@ -139,12 +142,12 @@
               v-model="cAvatar"
             ></v-file-input>
           </v-card-text>
-          <v-card-action>
+          <v-card-actions>
             <v-col offset-md="8" offset="5" cols="4">
               <v-btn outlined color="error" large @click="changeAvatarWin=false">放弃</v-btn>
               <v-btn color="primary" large @click="commitAvatar">修改</v-btn>
             </v-col>
-          </v-card-action>
+          </v-card-actions>
         </v-col>
       </v-card>
     </v-dialog>
@@ -168,198 +171,7 @@ export default {
       cIntro: "",
       cAvatar: null,
       cBannar: null,
-      cardsData: [
-        {
-          username: "深蓝",
-          groupname: "source",
-          content:
-            "第一条信息的内容，有点长，然后我想看看这个玩一二会多长啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊",
-          topic: ["测试", "测试2"],
-          time: "4/23 13:50",
-          pics: [
-            "https://blog.ri-co.cn/wp-content/uploads/2020/04/purple.jpg",
-            "https://blog.ri-co.cn/wp-content/uploads/2020/04/white1.jpg",
-            "https://blog.ri-co.cn/wp-content/uploads/2020/04/black-white.jpg",
-            "https://blog.ri-co.cn/wp-content/uploads/2020/04/red-white.jpg",
-          ],
-          replays: [
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-          ],
-        },
-        {
-          username: "深蓝",
-          groupname: "source",
-          content: "第一条信息的内容",
-          topic: ["测试", "测试2"],
-          time: "4/23 13:50",
-          pics: [
-            "https://blog.ri-co.cn/wp-content/uploads/2020/04/white1.jpg",
-            "https://blog.ri-co.cn/wp-content/uploads/2020/04/black-white.jpg",
-            "https://blog.ri-co.cn/wp-content/uploads/2020/04/red-white.jpg",
-          ],
-          replays: [
-            {
-              name: "visiter1",
-              imgsrc: "",
-              content: "精彩！",
-            },
-            {
-              name: "visiter1",
-              imgsrc: "",
-              content: "精彩！",
-            },
-            {
-              name: "visiter1",
-              imgsrc: "",
-              content: "精彩！",
-            },
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-            {
-              name: "visiter1",
-              imgsrc: "",
-              content: "精彩！",
-            },
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-          ],
-        },
-        {
-          username: "深蓝",
-          groupname: "",
-          content: "第2条信息的内容",
-          topic: ["测试"],
-          time: "4/23 13:50",
-          pics: ["https://blog.ri-co.cn/wp-content/uploads/2020/04/blue.jpg"],
-          replays: [
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-          ],
-        },
-        {
-          username: "深蓝",
-          groupname: "",
-          content: "第3条信息的内容",
-          topic: ["测试"],
-          time: "4/23 13:50",
-          replays: [
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-          ],
-        },
-        {
-          username: "深蓝",
-          groupname: "",
-          content: "第4条信息的内容",
-          topic: ["测试"],
-          pics: ["https://blog.ri-co.cn/wp-content/uploads/2020/04/blue.jpg"],
-          time: "4/23 13:50",
-          replays: [
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-          ],
-        },
-        {
-          username: "深蓝",
-          groupname: "小组1",
-          content: "第5条信息的内容",
-          topic: ["测试"],
-          time: "4/23 13:50",
-          replays: [
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-          ],
-        },
-        {
-          username: "深蓝",
-          groupname: "小组1",
-          content: "第5条信息的内容",
-          topic: ["测试"],
-          time: "4/23 13:50",
-          replays: [
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-          ],
-        },
-        {
-          username: "深蓝",
-          groupname: "小组1",
-          content: "第5条信息的内容",
-          topic: ["测试"],
-          time: "4/23 13:50",
-          replays: [
-            {
-              name: "visiter1",
-              imgsrc:
-                "https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-              content: "精彩！",
-            },
-          ],
-        },
-      ],
+      cardsData:[],
       cards1: [],
       cards2: [],
       cards3: [],
@@ -391,9 +203,8 @@ export default {
       this.cards3=[]
       var len = this.cardsData.length
       for (let index = 0; index < len/3; index++) {
-        
         this.cards1.push(this.cardsData[index*3])
-        if (index*3+1<=len) {
+        if (index*3+1<len) {
           this.cards2.push(this.cardsData[index*3+1])
           if (index*3+2<len) {
             this.cards3.push(this.cardsData[index*3+2])
@@ -432,6 +243,16 @@ export default {
       this.cards1 = this.cardsData;
       store.commit("closeDrawer");
     },
+    //获取自己发送的全部post
+    getUserPost(){
+      this.axios.get('getPostByUser',{
+        params:{name:this.$store.state.userData.name}
+      }).then(res=>{
+        if (res.status==200) {
+          this.cardsData=res.data.posts
+        }
+      })
+    }
   },
   mounted() {
     const that = this;
@@ -441,9 +262,24 @@ export default {
         that.screenWidth = window.screenWidth;
       })();
     };
-    this.shunt3();
+  },
+  created(){
+    this.getUserPost()
   },
   watch: {
+    cardsData:function() {
+      if (this.screenWidth>=1264) {
+        this.shunt3()
+        return
+      }
+      if (this.screenWidth<=600) {
+        this.shunt1()
+        return
+      }
+      else{
+        this.shunt2()
+      }
+    },
     screenWidth: function () {
       if (this.screenWidth >= 1264) {
         this.shunt3();

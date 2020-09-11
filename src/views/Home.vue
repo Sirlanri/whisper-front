@@ -26,7 +26,7 @@ export default {
     //从cookie中读取数据，检测是否已登录
     checkLogin(){
       if (!this.$store.getters.isLogin) {
-        this.axios.get('GetUserInfoByCookie')
+        this.axios.get('getUserInfoByCookie')
           .then(res=>{
             if (res.status==200) {
               this.$store.commit('setUserData',res.data)
