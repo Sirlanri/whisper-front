@@ -9,7 +9,7 @@ export default new Vuex.Store({
     
     userData:{
       power:"visitor", //权限，visitor,user,admin
-      name:"Rico深蓝",
+      name:"none",
       avatar:"https://blog.ri-co.cn/wp-content/uploads/2020/08/QQ截图20200821143241.jpg",
       mail:"mail@ri-co.cn",
       intro:"全沾工程师",

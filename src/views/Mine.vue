@@ -218,6 +218,7 @@ export default {
               this.result=res.data+" 刷新后查看"
               this.resultWin=true
             }else{
+              this.changeAvatarWin=false
               this.result=res.data
               this.resultWin=true
             }
@@ -242,10 +243,11 @@ export default {
             params:{url:res.data}
           }).then(res=>{
             if (res.status==200) {
-              this.changeAvatarWin=false
+              this.changeBannarWin=false
               this.result=res.data+" 刷新后查看"
               this.resultWin=true
             }else{
+              this.changeBannarWin=false
               this.result=res.data
               this.resultWin=true
             }
@@ -263,9 +265,11 @@ export default {
       this.axios.post('changeInfo',sendData)
         .then(res=>{
           if (res.status==200) {
+            this.changeInfoWin=false
             this.result=res.data
             this.resultWin=true
           }else{
+            this.changeInfoWin=false
             this.result=res.data
             this.resultWin=true
           }
@@ -351,9 +355,10 @@ export default {
         that.screenWidth = window.screenWidth;
       })();
     };
+    this.getUserPost()
   },
   created(){
-    this.getUserPost()
+    
   },
   watch: {
     cardsData:function() {
