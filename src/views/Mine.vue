@@ -254,7 +254,23 @@ export default {
       })
     },
     //向后端提交用户信息的修改
-    commitChange() {},
+    commitChange() {
+      let sendData={
+        name:this.cUserName,
+        mail:this.cMail,
+        intro:this.cIntro
+      }
+      this.axios.post('changeInfo',sendData)
+        .then(res=>{
+          if (res.status==200) {
+            this.result=res.data
+            this.resultWin=true
+          }else{
+            this.result=res.data
+            this.resultWin=true
+          }
+        })
+    },
     //用户点击更改资料按钮
     changeInfo() {
       this.cUserName = store.state.userData.name;
