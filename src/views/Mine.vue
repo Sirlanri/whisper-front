@@ -101,10 +101,10 @@
             <v-textarea v-model="cIntro" label="个人简介" outlined></v-textarea>
           </v-card-text>
           <v-card-actions>
-            <v-col offset-md="8" offset="5" cols="4">
-              <v-btn outlined color="error" large @click="changeInfoWin=false">放弃</v-btn>
-              <v-btn color="primary" large @click="commitChange">修改</v-btn>
-            </v-col>
+            <v-spacer></v-spacer>
+            <v-btn outlined color="error" large @click="changeInfoWin=false">放弃</v-btn>
+            <v-btn color="primary" large @click="commitChange">修改</v-btn>
+          
           </v-card-actions>
         </v-col>
       </v-card>
@@ -122,10 +122,9 @@
             ></v-file-input>
           </v-card-text>
           <v-card-actions>
-            <v-col offset-md="8" offset="5" cols="4">
+            <v-spacer></v-spacer>
               <v-btn outlined color="error" large @click="changeBannarWin=false">放弃</v-btn>
               <v-btn color="primary" large @click="commitBannar">修改</v-btn>
-            </v-col>
           </v-card-actions>
         </v-col>
       </v-card>
@@ -143,10 +142,9 @@
             ></v-file-input>
           </v-card-text>
           <v-card-actions>
-            <v-col offset-md="8" offset="5" cols="4">
+            <v-spacer></v-spacer>
               <v-btn outlined color="error" large @click="changeAvatarWin=false">放弃</v-btn>
               <v-btn color="primary" large @click="commitAvatar">修改</v-btn>
-            </v-col>
           </v-card-actions>
         </v-col>
       </v-card>

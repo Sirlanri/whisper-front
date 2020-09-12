@@ -158,9 +158,8 @@ export default {
   methods:{
     //登录后调用此函数，获取用户信息
     getUserInfo(){
-      this.axios.get('getUserInfo',{
-        params:{mail:this.email}
-      }).then(res=>{
+      this.axios.get('getUserInfo')
+      .then(res=>{
         if (res.status==200) {
           this.$store.commit('setUserData',res.data)
         }else{
