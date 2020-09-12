@@ -149,6 +149,22 @@
         </v-col>
       </v-card>
     </v-dialog>
+
+    <v-snackbar
+      v-model="resultWin"
+    >
+      {{ result }}
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="resultWin = false"
+        >
+          知道了
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -174,13 +190,69 @@ export default {
       cards2: [],
       cards3: [],
       screenWidth: 1800,
+      btndisable:false,
+      result:"",
+      resultWin:false,
     };
   },
   methods: {
+    
     //提交头像的更换
-    commitAvatar() {},
+    commitAvatar() {
+      this.btndisable=true
+      let formData=new FormData()
+      formData.append("img",this.cAvatar)
+      console.log(this.cAvatar)
+      this.axios.post('uploadPics',formData,{
+        headers:{'Content-Type':'multipart/form-data'}
+      }).then(res=>{
+        if (res.status!=200) {
+          this.result="上传头像失败，请重试"
+          this.resultWin=true
+        }else{
+          this.axios.get('changeAvatar',{
+            params:{url:res.data}
+          }).then(res=>{
+            if (res.status==200) {
+              this.changeAvatarWin=false
+              this.result=res.data+" 刷新后查看"
+              this.resultWin=true
+            }else{
+              this.result=res.data
+              this.resultWin=true
+            }
+          })
+        }
+      })
+    },
     //提交bannar的更换
-    commitBannar() {},
+    commitBannar() {
+      this.btndisable=true
+      let formData=new FormData()
+      formData.append("img",this.cBannar)
+      console.log(this.cAvatar)
+      this.axios.post('uploadPics',formData,{
+        headers:{'Content-Type':'multipart/form-data'}
+      }).then(res=>{
+        if (res.status!=200) {
+          this.result="上传bannar失败，请重试"
+          this.resultWin=true
+        }else{
+          this.axios.get('changeBannar',{
+            params:{url:res.data}
+          }).then(res=>{
+            if (res.status==200) {
+              this.changeAvatarWin=false
+              this.result=res.data+" 刷新后查看"
+              this.resultWin=true
+            }else{
+              this.result=res.data
+              this.resultWin=true
+            }
+          })
+        }
+      })
+    },
     //向后端提交用户信息的修改
     commitChange() {},
     //用户点击更改资料按钮
@@ -199,6 +271,9 @@ export default {
       this.cards1=[]
       this.cards2=[]
       this.cards3=[]
+      if (this.cardsData==undefined) {
+        return
+      }
       var len = this.cardsData.length
       for (let index = 0; index < len/3; index++) {
         this.cards1.push(this.cardsData[index*3])
