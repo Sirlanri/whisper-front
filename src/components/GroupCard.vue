@@ -1,6 +1,6 @@
 <template>
 <v-col lg="4" md="6" cols="10" offset="1" offset-md="0">
-  <v-card class="group-card">
+  <v-card class="group-card" v-ripple @click="openPost">
     <v-img class="align-end"
         height="200px"
         :src="imgsrc">
@@ -8,37 +8,23 @@
     <v-card-title>
       {{name}}
       <v-spacer></v-spacer>
-      <span class="amount">{{amount}}</span>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <span class="count-num" v-bind="attrs" v-on="on">&nbsp;{{amount}}</span>
+          
+        </template>
+        <span>此群的文章数</span>
+      </v-tooltip>
+      <div>
+        
+      </div>
       
     </v-card-title>
     <v-card-text class="text--primary">
       {{intro}}
     </v-card-text>
     
-    <v-card-actions>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn outlined color="primary"
-            v-bind="attrs" v-on="on">
-            <v-icon>mdi-pencil</v-icon>
-            发布
-          </v-btn>
-        </template>
-        <span>在此群组发布新帖</span>
-      </v-tooltip>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn color="#3949AB" outlined
-            v-bind="attrs" v-on="on">
-            <v-icon>mdi-view-array-outline</v-icon>
-            浏览
-          </v-btn>
-        </template>
-        <span>浏览此群的帖子</span>
-      </v-tooltip>
-
-      
-    </v-card-actions>
+    
   </v-card>
   </v-col>
 </template>
@@ -51,6 +37,12 @@ export default {
     name:String,
     intro:String,
     amount:Number,
+  },
+  methods:{
+    openPost(){
+      this.$store.commit('setClickUserName',this.id)
+      this.$router.push('/groupPosts')
+    }
   }
 }
 </script>
@@ -65,5 +57,14 @@ export default {
 }
 .amount{
   color:#5b5b5b;
+}
+.count-word{
+  font-size: 1rem;
+}
+.count-num{
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #686868;
+  padding-left: 5px;
 }
 </style>

@@ -40,6 +40,7 @@ export default {
   },
   data(){
     return{
+      flag:"这是群组post",
       cardsData:[
         {
           username:"深蓝",
@@ -175,20 +176,18 @@ export default {
       screenWidth:1800
     }
   },
-  created(){
-    this.getAllPost()
-  },
-  computed:{
-    
-  },
+  
   methods:{
-    //获取全部post
+    //获取此群组的post
     getAllPost(){
       this.cardsData=[]
-      this.axios.get('getAllPost')
+      this.axios.get('getPostByGroup',{
+        params:{id:this.$store.state.clickUserName}
+      })
         .then(res=>{
           if (res.status==200) {
             this.cardsData=res.data.posts
+            this.shunt3()
           }
         })
     },
@@ -201,6 +200,9 @@ export default {
       this.cards1=[]
       this.cards2=[]
       this.cards3=[]
+      if (this.cardsData==undefined) {
+        return
+      }
       var len = this.cardsData.length
       for (let index = 0; index < len/3; index++) {
         
@@ -254,7 +256,8 @@ export default {
         that.screenWidth = window.screenWidth
       })()
     }
-    this.shunt3()
+    this.getAllPost()
+    
   },
   watch:{
     cardsData:function() {

@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     leftdrawer:true,
-    clickUserName:"",
+    clickUserName:"",   //用于页面跳转，用户页和群页面都用这个属性
     userData:{
       power:"visitor", //权限，visitor,user,admin
       name:"none",
