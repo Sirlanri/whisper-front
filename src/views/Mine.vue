@@ -1,98 +1,6 @@
 <template>
   <div>
-    <v-row>
-      <v-col lg="2" class="d-none d-lg-flex"></v-col>
-      <v-col lg="9">
-        <v-card>
-          <v-img src="../assets/pics/bannar_black.png" class="align-end" height="300"  v-if="userData.bannar==undefined||userData.bannar==''">
-            <v-btn class="changeBtnTop" dark @click="changeBannarWin=true">更换背景图</v-btn>
-            <v-btn class="changeBtn" @click="changeInfo">更改资料</v-btn>
-          </v-img>
-          <v-img :src="userData.bannar" class="align-end" height="300" v-else>
-            <v-btn class="changeBtnTop" dark @click="changeBannarWin=true">更换背景图</v-btn>
-            <v-btn class="changeBtn" @click="changeInfo">更改资料</v-btn>
-          </v-img>
-          <v-row>
-            <v-col lg="3">
-              <v-img class="avatar align-center justify-center" src="../assets/pics/avart.png" v-if="userData.bannar==undefined||userData.avatar==''">
-                <v-btn x-large block dark class="changAvatarBtn" @click="changeAvatarWin=true">更换头像</v-btn>
-              </v-img>
-              <v-img class="avatar align-center justify-center" :src="userData.avatar" v-else>
-                <v-btn x-large block dark class="changAvatarBtn" @click="changeAvatarWin=true">更换头像</v-btn>
-              </v-img>
-            </v-col>
-            <v-col lg="5">
-              <v-card-title>{{userData.name}}</v-card-title>
-              <v-card-subtitle>{{userData.intro}}</v-card-subtitle>
-            </v-col>
-            <v-col lg="3" offset="1">
-              <v-card-text class="d-flex">
-                <div class="colum-line">
-                  发文数
-                  <br />
-                  <span class="count-text">&nbsp;{{userData.postCount}}</span>
-                </div>
-                <div class="colum-line" style="border-right:none">
-                  评论数
-                  <br />&nbsp;
-                  <span class="count-text">{{userData.replyCount}}</span>
-                </div>
-              </v-card-text>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-col>
-      <v-col lg="2" class="d-none d-lg-flex"></v-col>
-
-      <v-col lg="3" md="5" sm="6" cols="10" offset="1" offset-sm="0" offset-md="1" offset-lg="0">
-        <div class="flex-column" v-for="(card,index) in cards1" :key="index">
-          <card
-            v-on:tagname="openTag"
-            :time="card.time"
-            :username="card.username"
-            :groupname="card.groupname"
-            :pics="card.pics"
-            :content="card.content"
-            :topics="card.topic"
-            :replays="card.replys"
-            :avatar="card.avatar" :postid="card.id"
-            :groupid="card.groupid"
-          ></card>
-        </div>
-      </v-col>
-      <v-col lg="3" md="5" sm="6" class="hidden-xs-and-down">
-        <div class="flex-column" v-for="(card,index) in cards2" :key="index">
-          <card
-            v-on:tagname="openTag"
-            :time="card.time"
-            :username="card.username"
-            :groupname="card.groupname"
-            :pics="card.pics"
-            :content="card.content"
-            :topics="card.topic"
-            :replays="card.replys"
-            :avatar="card.avatar" :postid="card.id"
-            :groupid="card.groupid"
-          ></card>
-        </div>
-      </v-col>
-      <v-col lg="3" md="0" class="hidden-md-and-down">
-        <div class="flex-column" v-for="(card,index) in cards3" :key="index">
-          <card
-            v-on:tagname="openTag"
-            :time="card.time"
-            :username="card.username"
-            :groupname="card.groupname"
-            :pics="card.pics"
-            :content="card.content"
-            :topics="card.topic"
-            :replays="card.replys"
-            :avatar="card.avatar" :postid="card.id"
-            :groupid="card.groupid"
-          ></card>
-        </div>
-      </v-col>
-    </v-row>
+    <waterfall :cardsData="cardsData"></waterfall>
     <v-dialog v-model="changeInfoWin" max-width="800">
       <v-card>
         <v-col cols="10" offset="1">
@@ -171,11 +79,10 @@
 </template>
 
 <script>
-import card from "@/components/Card.vue";
-import store from "@/store/index";
+import waterfall from "@/components/WaterFall.vue";
 export default {
   components: {
-    card,
+    waterfall,
   },
   data() {
     return {
@@ -187,11 +94,7 @@ export default {
       cIntro: "",
       cAvatar: null,
       cBannar: null,
-      cardsData:[],
-      cards1: [],
-      cards2: [],
-      cards3: [],
-      screenWidth: 1800,
+      cardsData:[],      
       btndisable:false,
       result:"",
       resultWin:false,
@@ -279,65 +182,12 @@ export default {
     },
     //用户点击更改资料按钮
     changeInfo() {
-      this.cUserName = store.state.userData.name;
-      this.cMail = store.state.userData.mail;
-      this.cIntro = store.state.userData.intro;
+      this.cUserName = this.userData.name;
+      this.cMail = this.userData.mail;
+      this.cIntro = this.userData.intro;
       this.changeInfoWin = true;
     },
-    //card组件点击tag后，显示此tag的全部推文
-    openTag(tagname) {
-      console.log(tagname);
-    },
-    //将数据均匀地分到3列
-    shunt3(){
-      this.cards1=[]
-      this.cards2=[]
-      this.cards3=[]
-      if (this.cardsData==undefined) {
-        return
-      }
-      var len = this.cardsData.length
-      for (let index = 0; index < len/3; index++) {
-        this.cards1.push(this.cardsData[index*3])
-        if (index*3+1<len) {
-          this.cards2.push(this.cardsData[index*3+1])
-          if (index*3+2<len) {
-            this.cards3.push(this.cardsData[index*3+2])
-          }else{
-            break
-          }
-        }else{
-          break
-        }
-        
-        
-      }
-      
-    },
-    //将数据均匀地分到2列
-    shunt2() {
-      this.cards1 = [];
-      this.cards2 = [];
-      this.cards3 = [];
-      var count2 = 1;
-      this.cardsData.forEach((element) => {
-        if (count2 % 2 == 0) {
-          this.cards1.push(element);
-          count2++;
-        } else {
-          this.cards2.push(element);
-          count2++;
-        }
-      });
-      store.commit("closeDrawer");
-    },
-    //只分到一列
-    shunt1() {
-      this.cards2 = [];
-      this.cards3 = [];
-      this.cards1 = this.cardsData;
-      store.commit("closeDrawer");
-    },
+    
     //获取自己发送的全部post
     getUserPost(){
       this.axios.get('getPostByUser',{
@@ -359,36 +209,7 @@ export default {
     };
     this.getUserPost()
   },
-  created(){
-    
-  },
-  watch: {
-    cardsData:function() {
-      if (this.screenWidth>=1264) {
-        this.shunt3()
-        return
-      }
-      if (this.screenWidth<=600) {
-        this.shunt1()
-        return
-      }
-      else{
-        this.shunt2()
-      }
-    },
-    screenWidth: function () {
-      if (this.screenWidth >= 1264) {
-        this.shunt3();
-        return;
-      }
-      if (this.screenWidth <= 600) {
-        this.shunt1();
-        return;
-      } else {
-        this.shunt2();
-      }
-    },
-  },
+  
   computed: {
     userData() {
       return this.$store.state.userData;
