@@ -43,6 +43,11 @@ Vue.use(VueRouter)
         component: () => import('../views/Mine.vue')
       },
       {
+        path:'user',
+        name:'user',
+        component: () => import('../views/User.vue')
+      },
+      {
         path:'about',
         name:'about',
         component: () => import('../views/About.vue')

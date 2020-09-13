@@ -2,10 +2,10 @@
   <v-card  class="mycard" :elevation="5" color="rgba(255,255,255,.7)">
     <!-- 头像-用户名>群名称 时间--> 
     <v-card-title>
-      <v-avatar color="indigo" size="50" class="myavatar">
+      <v-avatar color="indigo" size="50" class="myavatar" @click="jumpUser">
         <v-img :src="avatar"></v-img>
       </v-avatar>
-      <v-btn text class="groupname">{{username}}</v-btn>
+      <v-btn text class="groupname" @click="jumpUser" >{{username}}</v-btn>
       <v-icon class="from-group" v-if="groupname!=''">mdi-chevron-right</v-icon>
       <v-btn text class="groupname">{{groupname}} </v-btn>
     </v-card-title>
@@ -166,6 +166,11 @@ export default {
     }
   },
   methods:{
+    //点击用户名称，跳转到用户的个人页面
+    jumpUser(){
+      this.$store.commit('setClickUserName',this.username)
+      this.$router.push('/user')
+    },
     //发送评论
     sendReply(){
       let sendData={

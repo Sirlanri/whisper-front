@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     leftdrawer:true,
-    
+    clickUserName:"",
     userData:{
       power:"visitor", //权限，visitor,user,admin
       name:"none",
@@ -45,6 +45,11 @@ export default new Vuex.Store({
     setUserData(state,data){
       state.userData=data
     },
+
+    //点击其他用户名称，将name写入state
+    setClickUserName(state,name){
+      state.clickUserName=name
+    }
   },
   actions: {
   },
