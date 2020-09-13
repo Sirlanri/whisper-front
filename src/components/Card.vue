@@ -7,7 +7,7 @@
       </v-avatar>
       <v-btn text class="groupname" @click="jumpUser" >{{username}}</v-btn>
       <v-icon class="from-group" v-if="groupname!=''">mdi-chevron-right</v-icon>
-      <v-btn text class="groupname">{{groupname}} </v-btn>
+      <v-btn text class="groupname" @click="openPost">{{groupname}} </v-btn>
     </v-card-title>
 
     <!-- 内容 图片 --> 
@@ -121,7 +121,8 @@ export default {
     topics:Array,
     replays:Array,
     pics:Array,
-    postid:Number
+    postid:Number,
+    groupid:Number
   },
   computed:{
     ismoreReply(){
@@ -166,6 +167,11 @@ export default {
     }
   },
   methods:{
+    //点击群名称后跳转到群页面，将id写入vuex
+    openPost(){
+      this.$store.commit('setClickUserName',this.groupid)
+      this.$router.push('/groupPosts')
+    },
     //点击用户名称，跳转到用户的个人页面
     jumpUser(){
       this.$store.commit('setClickUserName',this.username)

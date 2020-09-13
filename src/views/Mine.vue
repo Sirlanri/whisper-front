@@ -2,7 +2,6 @@
   <div>
     <v-row>
       <v-col lg="2" class="d-none d-lg-flex"></v-col>
-
       <v-col lg="9">
         <v-card>
           <v-img src="../assets/pics/bannar_black.png" class="align-end" height="300"  v-if="userData.bannar==undefined||userData.bannar==''">
@@ -56,7 +55,8 @@
             :content="card.content"
             :topics="card.topic"
             :replays="card.replys"
-             :avatar="card.avatar" :postid="card.id"
+            :avatar="card.avatar" :postid="card.id"
+            :groupid="card.groupid"
           ></card>
         </div>
       </v-col>
@@ -71,7 +71,8 @@
             :content="card.content"
             :topics="card.topic"
             :replays="card.replys"
-             :avatar="card.avatar" :postid="card.id"
+            :avatar="card.avatar" :postid="card.id"
+            :groupid="card.groupid"
           ></card>
         </div>
       </v-col>
@@ -86,7 +87,8 @@
             :content="card.content"
             :topics="card.topic"
             :replays="card.replys"
-             :avatar="card.avatar" :postid="card.id"
+            :avatar="card.avatar" :postid="card.id"
+            :groupid="card.groupid"
           ></card>
         </div>
       </v-col>

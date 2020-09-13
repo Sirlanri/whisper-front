@@ -50,7 +50,8 @@
             :content="card.content"
             :topics="card.topic"
             :replays="card.replys"
-             :avatar="card.avatar" :postid="card.id"
+            :avatar="card.avatar" :postid="card.id"
+            :groupid="card.groupid"
           ></card>
         </div>
       </v-col>
@@ -65,7 +66,8 @@
             :content="card.content"
             :topics="card.topic"
             :replays="card.replys"
-             :avatar="card.avatar" :postid="card.id"
+            :avatar="card.avatar" :postid="card.id"
+            :groupid="card.groupid"
           ></card>
         </div>
       </v-col>
@@ -80,7 +82,8 @@
             :content="card.content"
             :topics="card.topic"
             :replays="card.replys"
-             :avatar="card.avatar" :postid="card.id"
+            :avatar="card.avatar" :postid="card.id"
+            :groupid="card.groupid"
           ></card>
         </div>
       </v-col>

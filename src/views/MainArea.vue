@@ -6,21 +6,21 @@
       <v-col lg="3" md="5" sm="6" cols="10" offset="1" offset-sm="0" offset-md="1" offset-lg="0">
         <div class="flex-column" v-for="(card,index) in cards1" :key="index">
           <card v-on:tagname="openTag" :time="card.time" :avatar="card.avatar" :postid="card.id"
-            :username="card.username" :groupname="card.groupname" :pics="card.pics"
+            :username="card.username" :groupname="card.groupname" :pics="card.pics" :groupid="card.groupid"
             :content="card.content" :topics="card.topic" :replays="card.replys"></card>
         </div>
       </v-col>
       <v-col lg="3" md="5" sm="6" class="hidden-xs-and-down">
         <div class="flex-column" v-for="(card,index) in cards2" :key="index">
           <card v-on:tagname="openTag" :time="card.time" :avatar="card.avatar" :postid="card.id"
-            :username="card.username" :groupname="card.groupname" :pics="card.pics"
+            :username="card.username" :groupname="card.groupname" :pics="card.pics" :groupid="card.groupid"
             :content="card.content" :topics="card.topic" :replays="card.replys"></card>
         </div>
       </v-col>
       <v-col lg="3" md="0" class="hidden-md-and-down">
         <div class="flex-column" v-for="(card,index) in cards3" :key="index">
           <card v-on:tagname="openTag" :time="card.time" :avatar="card.avatar" :postid="card.id"
-            :username="card.username" :groupname="card.groupname" :pics="card.pics"
+            :username="card.username" :groupname="card.groupname" :pics="card.pics" :groupid="card.groupid"
             :content="card.content" :topics="card.topic" :replays="card.replys"></card>
         </div>
       </v-col>
