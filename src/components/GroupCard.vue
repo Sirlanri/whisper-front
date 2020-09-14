@@ -20,6 +20,9 @@
           <v-list-item @click="delDialog=true" color="warning">
             删除群
           </v-list-item>
+          <v-list-item @click="delAllDialog=true" color="warning">
+            删除群及其全部Post
+          </v-list-item>
           
         </v-list>
       </v-menu>
@@ -48,14 +51,33 @@
     
   </v-card>
 
-  <v-dialog v-model="delDialog" max-width="300">
+  <v-dialog v-model="delDialog" max-width="400">
     <v-card>
       <v-col cols="10" offset="1">
         <v-card-title>
           确认删除此群？
         </v-card-title>
+        <v-card-text>
+          群信息会被删除，群内的post会被修改为无群状态
+        </v-card-text>
         <v-card-actions class="justify-center">
           <v-btn @click="delDialog=false" large color="primary">取消</v-btn>
+          <v-btn @click="delGroup" large color="red">删除</v-btn>
+        </v-card-actions>
+      </v-col>
+    </v-card>
+  </v-dialog>
+  <v-dialog v-model="delAllDialog" max-width="400">
+    <v-card>
+      <v-col cols="10" offset="1">
+        <v-card-title>
+          警告
+        </v-card-title>
+        <v-card-text>
+          此操作会删除群及其群里的全部post！
+        </v-card-text>
+        <v-card-actions class="justify-center">
+          <v-btn @click="delAllDialog=false" large color="primary">取消</v-btn>
           <v-btn @click="delGroup" large color="red">删除</v-btn>
         </v-card-actions>
       </v-col>
@@ -68,7 +90,8 @@
 export default {
   data(){
     return{
-      delDialog:false
+      delDialog:false,
+      delAllDialog:false
     }
   },
   props:{
