@@ -10,17 +10,26 @@ export default new Vuex.Store({
     userData:{
       power:"visitor", //权限，visitor,user,admin
       name:"none",
-      avatar:"https://blog.ri-co.cn/wp-content/uploads/2020/08/QQ截图20200821143241.jpg",
-      mail:"mail@ri-co.cn",
-      intro:"全沾工程师",
-      bannar:"https://blog.ri-co.cn/wp-content/uploads/2020/04/purple.jpg",
-      postCount:10,
-      replyCount:20,
+      avatar:"",
+      mail:"",
+      intro:"",
+      bannar:"",
+      postCount:0,
+      replyCount:0,
     },
   },
   getters:{
     isLogin(state){
       if (state.userData.power=="user"||state.userData.power=="admin") {
+        return true
+      }else{
+        return false
+      }
+    },
+
+    //判断是否为admin
+    isAdmin(state){
+      if (state.userData.power=="admin") {
         return true
       }else{
         return false
