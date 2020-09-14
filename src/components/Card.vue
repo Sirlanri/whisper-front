@@ -50,12 +50,10 @@
             >
           </v-avatar>
         </v-col>
-         <v-col class="single-reply single-reply-word flex-nowrap" cols="3">
-           {{replay.name}}：
+         <v-col class="single-reply single-reply-word flex-nowrap" >
+           {{replay.name}}：{{replay.content}}
          </v-col>
-         <v-col class="single-reply single-reply-word flex-wrap" >
-           {{replay.content}}
-         </v-col>
+         
         
       </v-row>
 
