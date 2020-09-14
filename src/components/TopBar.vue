@@ -161,7 +161,7 @@ import store from "@/store/index"
 export default {
   data(){
     return{
-      groupPic:[],
+      groupPic:null,
       btndisable:false,
       logoutWin:false,
       result:"",
@@ -176,10 +176,10 @@ export default {
       selectGroup:"",
       selectTag:[],
       groupNames:[
-        "测试1",
+        "获取群列表失败",
       ],
       tags:[
-        "标签1","标签2"
+        "获取标签列表失败"
       ],
       //图片上传之后，返回的图片URL列表
       picUrls:[]
@@ -198,6 +198,11 @@ export default {
         this.result=res.data
         this.resultWin=true
         this.btndisable=false
+        if (res.status==200) {
+          this.groupname=""
+          this.groupintro=""
+          this.groupPic=null
+        }
       })
     },
     uploadGroupPic(){
@@ -253,6 +258,11 @@ export default {
           this.resultWin=true
           this.dialog=false
           this.btndisable=false
+          //将post的内容全部清空
+          this.content=""
+          this.picUrls=[]
+          this.selectGroup=""
+          this.selectTag=[]
         }else{
           this.result=res.data
         }
