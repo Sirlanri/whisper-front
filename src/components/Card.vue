@@ -8,6 +8,27 @@
       <v-btn text class="groupname" @click="jumpUser" >{{username}}</v-btn>
       <v-icon class="from-group" v-if="groupname!=''">mdi-chevron-right</v-icon>
       <v-btn text class="groupname" @click="openPost">{{groupname}} </v-btn>
+      <v-spacer></v-spacer>
+      <v-menu v-if="isAdmin">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item @click="delPost" color="warning">
+            删除Post
+          </v-list-item>
+          <v-list-item @click="delUser">
+            封禁此用户
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-card-title>
 
     <!-- 内容 图片 --> 
@@ -122,7 +143,8 @@ export default {
       morereply:false,
       replyContent:"",
       result:"",
-      resultWin:false
+      resultWin:false,
+      delDialog:false,
     }
   },
   props:{
@@ -177,9 +199,18 @@ export default {
       }else{
         return false
       }
+    },
+    isAdmin(){
+      return this.$store.getters.isAdmin
     }
   },
   methods:{
+    delUser(){
+
+    },
+    delPost(){
+
+    },
     //点击群名称后跳转到群页面，将id写入vuex
     openPost(){
       this.$store.commit('setClickUserName',this.groupid)
