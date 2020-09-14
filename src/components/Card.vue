@@ -43,12 +43,20 @@
     <v-card-subtitle style="padding-bottom:0">
       <v-row align-content="center" 
         v-for="(replay,index) in shortReplys" :key="index">
-         <v-avatar size="20">
-          <img
-            :src="replay.imgsrc"
-          >
-        </v-avatar>
-        {{replay.name}}：{{replay.content}}
+        <v-col cols="2" class="single-reply">
+          <v-avatar size="35">
+            <img
+              :src="replay.imgsrc"
+            >
+          </v-avatar>
+        </v-col>
+         <v-col class="single-reply single-reply-word flex-nowrap" cols="3">
+           {{replay.name}}：
+         </v-col>
+         <v-col class="single-reply single-reply-word flex-wrap" >
+           {{replay.content}}
+         </v-col>
+        
       </v-row>
 
     <!-- 可折叠的更多评论 --> 
@@ -56,12 +64,19 @@
     <v-expand-transition>
       <v-card-subtitle v-if="morereply" style="padding-top:0">
         <v-row v-for="(replay,index) in restReplys" :key="index" align-content="center">
-          <v-avatar size="20">
+          <v-col cols="2" class="single-reply">
+          <v-avatar size="35">
             <img
-            :src="replay.imgsrc"
-          >
+              :src="replay.imgsrc"
+            >
           </v-avatar>
-        {{replay.name}}：{{replay.content}}
+        </v-col>
+         <v-col class="single-reply single-reply-word flex-nowrap" cols="3">
+           {{replay.name}}：
+         </v-col>
+         <v-col class="single-reply single-reply-word flex-wrap" >
+           {{replay.content}}
+         </v-col>
         </v-row>
       </v-card-subtitle>
     </v-expand-transition>
@@ -220,11 +235,13 @@ export default {
   font-size: 1rem;
   margin: 0;
 }
-.wwww{
-  color: #3b3b3b;
-  color: #0041bb;
-}
 .content-area{
   padding-bottom: 0.8rem;
+}
+.single-reply{
+  padding-top: 3px;
+}
+.single-reply-word{
+  padding-top: 9px;
 }
 </style>
