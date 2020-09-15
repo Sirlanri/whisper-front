@@ -4,7 +4,7 @@
     <v-img class="align-start justify-end"
         height="200px"
         :src="imgsrc">
-        <v-spacer></v-spacer>
+        
         <v-menu v-if="isAdmin">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -62,7 +62,7 @@
         </v-card-text>
         <v-card-actions class="justify-center">
           <v-btn @click="delDialog=false" large color="primary">取消</v-btn>
-          <v-btn @click="delGroup" large color="red">删除</v-btn>
+          <v-btn @click="delGroupOnly" large color="red">删除</v-btn>
         </v-card-actions>
       </v-col>
     </v-card>
@@ -78,18 +78,29 @@
         </v-card-text>
         <v-card-actions class="justify-center">
           <v-btn @click="delAllDialog=false" large color="primary">取消</v-btn>
-          <v-btn @click="delGroup" large color="red">删除</v-btn>
+          <v-btn @click="delGroupAll" large color="red">删除</v-btn>
         </v-card-actions>
       </v-col>
     </v-card>
   </v-dialog>
-  </v-col>
+  
+  <v-snackbar v-model="resultWin">
+    {{result}}
+    <template  v-slot:action="{ attrs }">
+      <v-btn color="blue" text @click="resultWin=false" v-bind="attrs">
+        知道了
+      </v-btn>
+    </template>
+  </v-snackbar>
+</v-col>
 </template>
 
 <script>
 export default {
   data(){
     return{
+      result:"",
+      resultWin:false,
       delDialog:false,
       delAllDialog:false
     }
@@ -102,8 +113,35 @@ export default {
     amount:Number,
   },
   methods:{
-    delGroup(){
-
+    //删除群+其post
+    delGroupAll(){
+      this.axios.get('/delGroupAll',{
+        params:{id:this.id}
+      }).then(res=>{
+        if (res.status==200) {
+          this.result=res.data
+          this.delAllDialog=false
+          this.resultWin=true
+        }else{
+          this.result=res.data
+          this.resultWin=true
+        }
+      })
+    },
+    //只删除群
+    delGroupOnly(){
+      this.axios.get('/delGroupOnly',{
+        params:{id:this.id}
+      }).then(res=>{
+        if (res.status==200) {
+          this.result=res.data
+          this.delAllDialog=false
+          this.resultWin=true
+        }else{
+          this.result=res.data
+          this.resultWin=true
+        }
+      })
     },
     openPost(){
       this.$store.commit('setClickUserName',this.id)
