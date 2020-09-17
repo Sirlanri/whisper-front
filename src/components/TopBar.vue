@@ -258,6 +258,8 @@ export default {
           this.resultWin=true
           this.dialog=false
           this.btndisable=false
+          //修改flag，让瀑布流刷新
+          this.$store.commit('refresh')
           //将post的内容全部清空
           this.content=""
           this.picUrls=[]

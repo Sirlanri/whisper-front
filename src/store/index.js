@@ -6,6 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     leftdrawer:true,
+    //用于组件间，传递刷新信息
+    refreshFlag:false,
     clickUserName:"",   //用于页面跳转，用户页和群页面都用这个属性
     userData:{
       power:"visitor", //权限，visitor,user,admin
@@ -58,6 +60,11 @@ export default new Vuex.Store({
     //点击其他用户名称，将name写入state
     setClickUserName(state,name){
       state.clickUserName=name
+    },
+
+    //修改刷新flag
+    refresh(state){
+      state.refreshFlag=!state.refreshFlag
     }
   },
   actions: {

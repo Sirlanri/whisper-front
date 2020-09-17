@@ -274,11 +274,20 @@ export default {
     };
     this.getUserPost()
   },
+
+  watch:{
+    refresh(){
+      this.getUserPost()
+    }
+  },
   
   computed: {
     userData() {
       return this.$store.state.userData;
     },
+    refresh(){
+      return this.$store.state.refreshFlag
+    }
   },
 };
 </script>
