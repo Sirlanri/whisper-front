@@ -212,10 +212,10 @@ export default {
         if (res.status==200) {
           this.result=res.data
           this.resultWin=true
-        }else{
-          this.result=res.data
-          this.resultWin=true
         }
+      }).catch(res=>{
+        this.result=res.response.data
+        this.resultWin=true
       })
     },
     delPost(){
@@ -225,10 +225,10 @@ export default {
         if (res.status==200) {
           this.result=res.data
           this.resultWin=true
-        }else{
-          this.result=res.data
-          this.resultWin=true
         }
+      }).catch(res=>{
+        this.result=res.response.data
+        this.resultWin=true
       })
     },
     //点击群名称后跳转到群页面，将id写入vuex
@@ -255,7 +255,10 @@ export default {
           }
           this.result=res.data
           this.resultWin=true
-        })
+        }).catch(res=>{
+        this.result=res.response.data
+        this.resultWin=true
+      })
     },
     clickTag(tag){
       let name=tag.target.textContent

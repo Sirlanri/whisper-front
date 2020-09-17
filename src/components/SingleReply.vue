@@ -102,13 +102,12 @@ export default {
           if (res.status==200) {
             this.replyWin=false
             this.btndis=false
-          }else{
-            this.result=res.data
-            this.resultWin=true
-            this.btndis=false
           }
-          
-        })
+        }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
+      })
     },
     changRead(){
       this.axios.get('readMsg',{
@@ -120,6 +119,10 @@ export default {
         }else{
           this.result=res.data
         }
+        this.resultWin=true
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
         this.resultWin=true
       })
       

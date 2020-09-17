@@ -93,6 +93,10 @@ export default {
           this.result=res.data
           this.resultWin=true
         }
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
       })
     },
     

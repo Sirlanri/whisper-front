@@ -125,11 +125,11 @@ export default {
           this.delAllDialog=false
           this.resultWin=true
           this.btndis=false
-        }else{
-          this.btndis=false
-          this.result=res.data
-          this.resultWin=true
         }
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
       })
     },
     //只删除群
@@ -143,11 +143,11 @@ export default {
           this.delDialog=false
           this.resultWin=true
           this.btndis=false
-        }else{
-          this.btndis=false
-          this.result=res.data
-          this.resultWin=true
         }
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
       })
     },
     openPost(){

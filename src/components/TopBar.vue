@@ -98,7 +98,7 @@
         <v-row>
           <v-spacer></v-spacer>
           <v-btn class="btnmargin" outlined color="error" large @click="dialog=false">放弃</v-btn>
-          <v-btn class="btnmargin" color="primary" :disabled="btndisable" large @click="uploadPic">发布</v-btn>
+          <v-btn class="btnmargin" color="primary" :disabled="btndis" large @click="uploadPic">发布</v-btn>
         </v-row>
       </v-card-text>
     </v-card>
@@ -121,7 +121,7 @@
           <v-row>
             <v-spacer></v-spacer>
             <v-btn class="btnmargin" outlined color="error" large @click="groupDialog=false">放弃</v-btn>
-            <v-btn class="btnmargin" color="primary" large :disabled="btndisable" @click="uploadGroupPic">发布</v-btn>
+            <v-btn class="btnmargin" color="primary" large :disabled="btndis" @click="uploadGroupPic">发布</v-btn>
           </v-row>
 
         </v-row>
@@ -162,7 +162,7 @@ export default {
   data(){
     return{
       groupPic:null,
-      btndisable:false,
+      btndis:false,
       logoutWin:false,
       result:"",
       resultWin:false,
@@ -194,19 +194,25 @@ export default {
       }
       this.axios.post('newGroup',sendData)
       .then(res=>{
-        this.groupDialog=false
-        this.result=res.data
-        this.resultWin=true
-        this.btndisable=false
         if (res.status==200) {
+          //清除原内容
           this.groupname=""
           this.groupintro=""
           this.groupPic=null
+
+          this.groupDialog=false
+          this.result=res.data
+          this.resultWin=true
+          this.btndis=false
         }
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
       })
     },
     uploadGroupPic(){
-      this.btndisable=true
+      this.btndis=true
       var file = this.groupPic
       let formData = new FormData()
       formData.append("img",file)
@@ -215,12 +221,11 @@ export default {
       }).then(res=>{
         if (res.status==200) {
           this.newGroup(res.data)
-
-        }else{
-          this.result=res.data
-          this.resultWin=true
-          return
         }
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
       })
     },
     openPostWin(){
@@ -257,7 +262,7 @@ export default {
           this.result="发布成功"
           this.resultWin=true
           this.dialog=false
-          this.btndisable=false
+          this.btndis=false
           //修改flag，让瀑布流刷新
           this.$store.commit('refresh')
           //将post的内容全部清空
@@ -265,15 +270,16 @@ export default {
           this.picUrls=[]
           this.selectGroup=""
           this.selectTag=[]
-        }else{
-          this.result=res.data
         }
         this.resultWin=true
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
       })
-      this.picUrls=[]
     },
     uploadPic(){
-      this.btndisable=true
+      this.btndis=true
       let len = this.pics.length
       if (len==0) {
         this.newPost()
@@ -300,7 +306,11 @@ export default {
             this.resultWin=true
             return
           }
-        })
+        }).catch(res=>{
+          this.btndis=false
+          this.result=res.response.data
+          this.resultWin=true
+      })
       });
       
     },
@@ -313,6 +323,10 @@ export default {
         }
         this.resultWin=true
         this.logoutWin=false
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
       })
     },
     goHome(){

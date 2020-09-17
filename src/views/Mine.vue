@@ -167,13 +167,12 @@ export default {
               this.resultWin=true
               this.btndis=false
               this.checkLogin()
-            }else{
-              this.changeAvatarWin=false
-              this.result=res.data
-              this.resultWin=true
-              this.btndis=false
             }
-          })
+          }).catch(res=>{
+          this.btndis=false
+          this.result=res.response.data
+          this.resultWin=true
+        })
         }
       })
     },
@@ -199,13 +198,12 @@ export default {
               this.result=res.data
               this.resultWin=true
               this.btndis=false
-            }else{
-              this.changeBannarWin=false
-              this.result=res.data
-              this.resultWin=true
-              this.btndis=false
             }
-          })
+          }).catch(res=>{
+          this.btndis=false
+          this.result=res.response.data
+          this.resultWin=true
+        })
         }
       })
     },
@@ -225,13 +223,12 @@ export default {
             this.resultWin=true
             this.btndis=false
             this.checkLogin()
-          }else{
-            this.changeInfoWin=false
-            this.result=res.data
-            this.resultWin=true
-            this.btndis=false
           }
-        })
+        }).catch(res=>{
+          this.btndis=false
+          this.result=res.response.data
+          this.resultWin=true
+      })
     },
     //用户点击更改资料按钮
     changeInfo() {

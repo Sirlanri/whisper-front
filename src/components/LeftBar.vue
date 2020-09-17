@@ -167,6 +167,10 @@ export default {
           this.result="获取用户信息失败"
           this.resultWin=true
         }
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
       })
     },
     //登录
@@ -194,6 +198,10 @@ export default {
           this.result=res.data
           this.resultWin=true
         }
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
       })
       
     },
@@ -223,6 +231,10 @@ export default {
           this.resultWin=true
           return
         }
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
       })
     },
     jumpto(name){
