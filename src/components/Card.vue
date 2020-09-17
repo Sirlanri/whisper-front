@@ -206,10 +206,30 @@ export default {
   },
   methods:{
     delUser(){
-
+      this.axios.get('/',{
+        params:{id:this.postid}
+      }).then(res=>{
+        if (res.status==200) {
+          this.result=res.data
+          this.resultWin=true
+        }else{
+          this.result=res.data
+          this.resultWin=true
+        }
+      })
     },
     delPost(){
-
+      this.axios.get('/delPost',{
+        params:{id:this.postid}
+      }).then(res=>{
+        if (res.status==200) {
+          this.result=res.data
+          this.resultWin=true
+        }else{
+          this.result=res.data
+          this.resultWin=true
+        }
+      })
     },
     //点击群名称后跳转到群页面，将id写入vuex
     openPost(){

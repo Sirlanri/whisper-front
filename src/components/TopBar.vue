@@ -10,7 +10,7 @@
         首页
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn icon @click="openPostWin" v-if="isLogin"><v-icon>mdi-plus-circle</v-icon></v-btn>
+      <v-btn icon @click="openPostWin" v-if="isLogin"><v-icon>mdi-pencil-plus-outline</v-icon></v-btn>
       <v-menu v-if="isLogin">
         <template v-slot:activator="{ on, attrs }">
           <v-btn

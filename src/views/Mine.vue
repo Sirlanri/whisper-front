@@ -240,6 +240,18 @@ export default {
           this.cardsData=res.data.posts
         }
       })
+    },
+
+    //从cookie中读取数据，检测是否已登录
+    checkLogin(){
+      this.axios.get('getUserInfoByCookie')
+        .then(res=>{
+          if (res.status==200) {
+            this.$store.commit('setUserData',res.data)
+          }
+        })
+      
+      
     }
   },
   mounted() {
