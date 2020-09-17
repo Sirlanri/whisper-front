@@ -62,7 +62,7 @@
         </v-card-text>
         <v-card-actions class="justify-center">
           <v-btn @click="delDialog=false" large color="primary">取消</v-btn>
-          <v-btn @click="delGroupOnly" large color="red">删除</v-btn>
+          <v-btn @click="delGroupOnly" large color="red" :disabled="btndis">删除</v-btn>
         </v-card-actions>
       </v-col>
     </v-card>
@@ -78,7 +78,7 @@
         </v-card-text>
         <v-card-actions class="justify-center">
           <v-btn @click="delAllDialog=false" large color="primary">取消</v-btn>
-          <v-btn @click="delGroupAll" large color="red">删除</v-btn>
+          <v-btn @click="delGroupAll" large color="red" :disabled="btndis">删除</v-btn>
         </v-card-actions>
       </v-col>
     </v-card>
@@ -102,7 +102,8 @@ export default {
       result:"",
       resultWin:false,
       delDialog:false,
-      delAllDialog:false
+      delAllDialog:false,
+      btndis:false,
     }
   },
   props:{
@@ -115,6 +116,7 @@ export default {
   methods:{
     //删除群+其post
     delGroupAll(){
+      this.btndis=true
       this.axios.get('/delGroupAll',{
         params:{id:this.id}
       }).then(res=>{
@@ -122,7 +124,9 @@ export default {
           this.result=res.data
           this.delAllDialog=false
           this.resultWin=true
+          this.btndis=false
         }else{
+          this.btndis=false
           this.result=res.data
           this.resultWin=true
         }
@@ -130,14 +134,17 @@ export default {
     },
     //只删除群
     delGroupOnly(){
+      this.btndis=true
       this.axios.get('/delGroupOnly',{
         params:{id:this.id}
       }).then(res=>{
         if (res.status==200) {
           this.result=res.data
-          this.delAllDialog=false
+          this.delDialog=false
           this.resultWin=true
+          this.btndis=false
         }else{
+          this.btndis=false
           this.result=res.data
           this.resultWin=true
         }

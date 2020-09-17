@@ -62,7 +62,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn outlined large color="error" @click="replyWin=false">取消</v-btn>
-          <v-btn color="primary" large @click="sendReply">发送</v-btn>
+          <v-btn color="primary" large @click="sendReply" :disabled="btndis">发送</v-btn>
         </v-card-actions>
       
     </v-card>
@@ -78,6 +78,7 @@ export default {
       resultWin:false,
       replyWin:false,
       replyContent:"",
+      btndis:false
     }
   },
   props:{
@@ -90,6 +91,7 @@ export default {
   },
   methods:{
     sendReply(){
+      this.btndis=true
       let sendData={
         id:this.postid,
         content:this.replyContent,
@@ -99,9 +101,13 @@ export default {
         .then(res=>{
           if (res.status==200) {
             this.replyWin=false
+            this.btndis=false
+          }else{
+            this.result=res.data
+            this.resultWin=true
+            this.btndis=false
           }
-          this.result=res.data
-          this.resultWin=true
+          
         })
     },
     changRead(){

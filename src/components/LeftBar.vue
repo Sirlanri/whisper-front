@@ -91,8 +91,8 @@
             <v-row>
               <v-spacer></v-spacer>
               <v-btn outlined large color="primary" style="margin-right:2rem" @click="dialog=false">取消</v-btn>
-              <v-btn color="primary" large v-show="loginwindow" @click="goLogin">登录</v-btn>
-              <v-btn color="primary" large v-show="!loginwindow" @click="goRegist">注册</v-btn>
+              <v-btn color="primary" large v-show="loginwindow" @click="goLogin" :disabled="btndis">登录</v-btn>
+              <v-btn color="primary" large v-show="!loginwindow" @click="goRegist" :disabled="btndis">注册</v-btn>
             </v-row>
           </v-card-text>
           
@@ -131,7 +131,8 @@ export default {
       password:"",
       nickname:"",
       resultWin:false,
-      result:""
+      result:"",
+      btndis:false,
     }
   },
   computed:{
@@ -170,22 +171,26 @@ export default {
     },
     //登录
     goLogin(){
+      this.btndis=true
       this.axios.post('login',{
         mail:this.email,
         password:this.password
       }).then(res=>{
         if (res.status==200) {
+          this.btndis=false
           this.getUserInfo()
           this.result="登录成功"
           this.resultWin=true
           this.dialog=false
         }
         if (res.status==201) {
+          this.btndis=false
           this.getUserInfo()
           this.result="欢迎管理员登录~"
           this.resultWin=true
           this.dialog=false
         }else{
+          this.btndis=false
           this.result=res.data
           this.resultWin=true
         }
@@ -193,23 +198,27 @@ export default {
       
     },
     goRegist(){
+      this.btndis=true
       this.axios.post('regist',{
         name:this.nickname,
         password:this.password,
         mail:this.email
       }).then(res=>{
         if (res.status==200) {
+          this.btndis=false
           this.result=res.data
           this.resultWin=true
           this.dialog=false
           return
         }
         if (res.status==201) {
+          this.btndis=false
           this.result=res.data
           this.resultWin=true
           return
         }
         if (res.status==202) {
+          this.btndis=false
           this.result=res.data
           this.resultWin=true
           return

@@ -56,7 +56,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn outlined color="error" large @click="changeInfoWin=false">放弃</v-btn>
-            <v-btn color="primary" large @click="commitChange">修改</v-btn>
+            <v-btn color="primary" large @click="commitChange" :disabled="btndis">修改</v-btn>
           
           </v-card-actions>
         </v-col>
@@ -77,7 +77,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
               <v-btn outlined color="error" large @click="changeBannarWin=false">放弃</v-btn>
-              <v-btn color="primary" large @click="commitBannar">修改</v-btn>
+              <v-btn color="primary" large @click="commitBannar" :disabled="btndis">修改</v-btn>
           </v-card-actions>
         </v-col>
       </v-card>
@@ -97,7 +97,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
               <v-btn outlined color="error" large @click="changeAvatarWin=false">放弃</v-btn>
-              <v-btn color="primary" large @click="commitAvatar">修改</v-btn>
+              <v-btn color="primary" large @click="commitAvatar" :disabled="btndis">修改</v-btn>
           </v-card-actions>
         </v-col>
       </v-card>
@@ -138,7 +138,7 @@ export default {
       cAvatar: null,
       cBannar: null,
       cardsData:[],      
-      btndisable:false,
+      btndis:false,
       result:"",
       resultWin:false,
     };
@@ -147,7 +147,7 @@ export default {
     
     //提交头像的更换
     commitAvatar() {
-      this.btndisable=true
+      this.btndis=true
       let formData=new FormData()
       formData.append("img",this.cAvatar)
       console.log(this.cAvatar)
@@ -163,12 +163,15 @@ export default {
           }).then(res=>{
             if (res.status==200) {
               this.changeAvatarWin=false
-              this.result=res.data+" 刷新后查看"
+              this.result=res.data
               this.resultWin=true
+              this.btndis=false
+              this.checkLogin()
             }else{
               this.changeAvatarWin=false
               this.result=res.data
               this.resultWin=true
+              this.btndis=false
             }
           })
         }
@@ -176,7 +179,7 @@ export default {
     },
     //提交bannar的更换
     commitBannar() {
-      this.btndisable=true
+      this.btndis=true
       let formData=new FormData()
       formData.append("img",this.cBannar)
       console.log(this.cAvatar)
@@ -191,13 +194,16 @@ export default {
             params:{url:res.data}
           }).then(res=>{
             if (res.status==200) {
+              this.checkLogin()
               this.changeBannarWin=false
-              this.result=res.data+" 刷新后查看"
+              this.result=res.data
               this.resultWin=true
+              this.btndis=false
             }else{
               this.changeBannarWin=false
               this.result=res.data
               this.resultWin=true
+              this.btndis=false
             }
           })
         }
@@ -205,6 +211,7 @@ export default {
     },
     //向后端提交用户信息的修改
     commitChange() {
+      this.btndis=true
       let sendData={
         name:this.cUserName,
         mail:this.cMail,
@@ -216,10 +223,13 @@ export default {
             this.changeInfoWin=false
             this.result=res.data
             this.resultWin=true
+            this.btndis=false
+            this.checkLogin()
           }else{
             this.changeInfoWin=false
             this.result=res.data
             this.resultWin=true
+            this.btndis=false
           }
         })
     },
