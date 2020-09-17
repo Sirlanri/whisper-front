@@ -8,6 +8,7 @@
       <v-btn text class="groupname" @click="jumpUser" >{{username}}</v-btn>
       <v-icon class="from-group" v-if="groupname!=''">mdi-chevron-right</v-icon>
       <v-btn text class="groupname" @click="openPost">{{groupname}} </v-btn>
+
       <v-spacer></v-spacer>
       <v-menu v-if="isAdmin">
         <template v-slot:activator="{ on, attrs }">
@@ -29,7 +30,40 @@
           </v-list-item>
         </v-list>
       </v-menu>
+
+      <v-menu v-if="isMyPost">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item @click="delMyPostDia=true" color="warning">
+            删除
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-card-title>
+
+    <v-dialog v-model="delMyPostDia" max-width="500">
+      <v-card>
+        <v-col cols="10" offset="1">
+          <v-card-title>
+            确认删除？
+          </v-card-title>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn outlined @click="delMyPostDia=false" large>取消</v-btn>
+            <v-btn color="error" @click="delMyPost" large>删除</v-btn>
+          </v-card-actions>
+        </v-col>
+      </v-card>
+    </v-dialog>
 
     <!-- 内容 图片 --> 
     <v-card-text>
@@ -117,6 +151,7 @@
         <v-icon>mdi-message-plus-outline</v-icon>
       </v-btn>
     </v-card-actions>
+
     <v-snackbar
       v-model="resultWin"
     >
@@ -145,6 +180,7 @@ export default {
       result:"",
       resultWin:false,
       delDialog:false,
+      delMyPostDia:false
     }
   },
   props:{
@@ -160,6 +196,18 @@ export default {
     groupid:Number
   },
   computed:{
+    //判断post是否是自己发的，管理员无视
+    isMyPost(){
+      //如果是管理员，就无视这个按钮
+      if (this.isAdmin) {
+        return false
+      }
+      if (this.username==this.$store.state.userData.name) {
+        return true
+      }else{
+        return false
+      }
+    },
     ismoreReply(){
       if (this.replays==undefined) {
         return false
@@ -205,8 +253,23 @@ export default {
     }
   },
   methods:{
+    delMyPost(){
+      this.axios.get('delMyPost',{
+        params:{id:this.postid}
+      }).then(res=>{
+        if (res.status==200) {
+          this.delMyPostDia=false
+          this.result="删除成功"
+          this.resultWin=true
+        }
+      }).catch(res=>{
+        this.delMyPostDia=false
+        this.result=res.response.data
+        this.resultWin=true
+      })
+    },
     delUser(){
-      this.axios.get('/',{
+      this.axios.get('/delUserByPost',{
         params:{id:this.postid}
       }).then(res=>{
         if (res.status==200) {
