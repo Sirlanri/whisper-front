@@ -22,11 +22,11 @@
         </template>
 
         <v-list>
-          <v-list-item @click="delPost" color="warning">
-            删除Post
+          <v-list-item @click="delPost">
+            删除推文
           </v-list-item>
-          <v-list-item @click="delUser">
-            封禁此用户
+          <v-list-item @click="delUserDia=true">
+            封删此用户
           </v-list-item>
         </v-list>
       </v-menu>
@@ -60,6 +60,24 @@
             <v-spacer></v-spacer>
             <v-btn outlined @click="delMyPostDia=false" large>取消</v-btn>
             <v-btn color="error" @click="delMyPost" large>删除</v-btn>
+          </v-card-actions>
+        </v-col>
+      </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="delUserDia" max-width="500">
+      <v-card>
+        <v-col cols="10" offset="1">
+          <v-card-title>
+            删除警告
+          </v-card-title>
+          <v-card-text>
+            此操作将删除用户及其发布全部推文！
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn outlined @click="delUserDia=false" large>取消</v-btn>
+            <v-btn color="error" @click="delUser" large>删除</v-btn>
           </v-card-actions>
         </v-col>
       </v-card>
@@ -179,8 +197,8 @@ export default {
       replyContent:"",
       result:"",
       resultWin:false,
-      delDialog:false,
-      delMyPostDia:false
+      delUserDia:false,
+      delMyPostDia:false,
     }
   },
   props:{
