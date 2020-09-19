@@ -104,7 +104,7 @@ export default {
 	methods: {
 		//card组件点击tag后，显示此tag的全部推文
 		openTag(tagname) {
-			console.log(tagname);
+			console.log("这个功能还没做哦~ ",tagname);
 		},
 		//将数据均匀地分到3列
 		shunt3() {
@@ -203,7 +203,6 @@ export default {
           this.$refs.lazy.isActive=false
           return
         }
-        console.log("开始ismore冒泡",this.index+20)
         this.$emit("moreData",this.index)
         this.isMore=false
         //改变v-lazy的data

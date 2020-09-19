@@ -152,7 +152,6 @@ export default {
       this.btndis=true
       let formData=new FormData()
       formData.append("img",this.cAvatar)
-      console.log(this.cAvatar)
       this.axios.post('uploadPics',formData,{
         headers:{'Content-Type':'multipart/form-data'}
       }).then(res=>{
@@ -183,7 +182,6 @@ export default {
       this.btndis=true
       let formData=new FormData()
       formData.append("img",this.cBannar)
-      console.log(this.cAvatar)
       this.axios.post('uploadPics',formData,{
         headers:{'Content-Type':'multipart/form-data'}
       }).then(res=>{

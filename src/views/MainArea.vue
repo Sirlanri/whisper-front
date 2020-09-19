@@ -43,7 +43,6 @@ export default {
       
     },
     getMorePost(index){
-      console.log("触发了懒加载")
       if (index==0) {
         this.$refs.fall.countFlag=0
       }
