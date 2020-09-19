@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<waterfall :cardsData="cardsData" :canLoad="flag" @moreData="getMorePost"></waterfall>
+		<waterfall :cardsData="cardsData" @moreData="getMorePost"></waterfall>
 	</div>
 </template>
 
@@ -13,7 +13,6 @@ export default {
 	data() {
 		return {
       cardsData:[],
-      flag:false,
       
     };
 	},
@@ -39,7 +38,6 @@ export default {
 			this.axios.get("getAllPost").then((res) => {
 				if (res.status == 200) {
           this.cardsData = res.data.posts;
-          this.flag=true
 				}
       });
       

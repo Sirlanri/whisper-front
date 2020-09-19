@@ -89,7 +89,6 @@ export default {
 	},
 	props: {
     cardsData: Array,
-    canLoad:Boolean,
 	},
 	data() {
 		return {
@@ -99,7 +98,6 @@ export default {
       screenWidth: 1800,
       isMore:false,
       index:20,
-      lock:true,
       countFlag:0,
 		};
 	},
