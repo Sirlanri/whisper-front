@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<waterfall :cardsData="cardsData" @moreData="getMorePost"></waterfall>
+		<waterfall :cardsData="cardsData" :canLoad="flag" @moreData="getMorePost"></waterfall>
 	</div>
 </template>
 
@@ -13,7 +13,8 @@ export default {
 	data() {
 		return {
       cardsData:[],
-      index:0,
+      flag:false,
+      
     };
 	},
 	mounted() {
@@ -33,12 +34,15 @@ export default {
 	methods: {
 		//获取全部post
 		getAllPost() {
-			this.cardsData = [];
+      this.cardsData = [];
+      
 			this.axios.get("getAllPost").then((res) => {
 				if (res.status == 200) {
-					this.cardsData = res.data.posts;
+          this.cardsData = res.data.posts;
+          this.flag=true
 				}
-			});
+      });
+      
     },
     getMorePost(index){
       console.log("触发了懒加载")
@@ -46,7 +50,9 @@ export default {
         params:{num:index}
       }).then(res=>{
         if (res.status==200) {
-          this.cardsData.push.apply(this.cardsData,res.data.posts)
+          res.data.posts.forEach(post => {
+            this.cardsData.push(post)
+          });
           //this.cardsData=res.data.posts
         }
       })

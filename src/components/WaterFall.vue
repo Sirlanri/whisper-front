@@ -18,8 +18,13 @@
           :topics="card.topic"
           :replays="card.replys"
         ></card>
-        
 			</div>
+      <v-skeleton-loader
+        max-width="400"
+        type="list-item-avatar, divider, list-item-three-line">
+      </v-skeleton-loader>
+      <v-lazy v-model="isMore" transition="fade-transition"
+        ref="lazy"></v-lazy>
       
 		</v-col>
     
@@ -39,6 +44,12 @@
 					:replays="card.replys"
 				></card>
 			</div>
+      <v-skeleton-loader
+        max-width="400"
+        type="list-item-avatar, divider, list-item-three-line">
+      </v-skeleton-loader>
+      <v-lazy v-model="isMore" transition="fade-transition"
+        ref="lazy"></v-lazy>
       
 		</v-col>
 		<v-col lg="3" md="0" class="hidden-md-and-down">
@@ -57,10 +68,13 @@
 					:replays="card.replys"
 				></card>
 			</div>
-      加载！！！
-        <v-lazy v-model="isMore" transition="fade-transition" ref="lazy">
-          加载中，请稍后~
-        </v-lazy>
+      <v-skeleton-loader
+        max-width="400"
+        type="list-item-avatar, divider, list-item-three-line">
+      </v-skeleton-loader>
+      <v-lazy v-model="isMore" transition="fade-transition"
+        ref="lazy"></v-lazy>
+        
       
 		</v-col>
     
@@ -74,7 +88,8 @@ export default {
 		card,
 	},
 	props: {
-		cardsData: Array,
+    cardsData: Array,
+    canLoad:Boolean,
 	},
 	data() {
 		return {
@@ -83,7 +98,9 @@ export default {
 			cards3: [],
       screenWidth: 1800,
       isMore:false,
-      index:0,
+      index:20,
+      lock:true,
+      countFlag:0,
 		};
 	},
 	methods: {
@@ -178,12 +195,20 @@ export default {
     },
     isMore:function(value){
       if (value==true) {
+        if (this.countFlag<3) {
+          //改变v-lazy的data
+          this.countFlag+=1
+          this.isMore=false
+          this.$refs.lazy.isActive=false
+          return
+        }
         console.log("开始ismore冒泡",this.index+20)
         this.$emit("moreData",this.index)
         this.isMore=false
         //改变v-lazy的data
         this.$refs.lazy.isActive=false
         this.index+=20
+        
       }
     }
 	},
