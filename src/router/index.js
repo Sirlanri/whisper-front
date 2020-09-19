@@ -13,7 +13,10 @@ Vue.use(VueRouter)
       {
         path:'',
         name:'mainarea',
-        component: () => import('../views/MainArea.vue')
+        component: () => import('../views/MainArea.vue'),
+        meta:{
+          title:"首页 Whisper轻语"
+        }
       },
       {
         path:'message',
@@ -23,39 +26,61 @@ Vue.use(VueRouter)
           {
             path:"",
             name:"replys",
-            component:()=>import('../views/Replys.vue')
+            component:()=>import('../views/Replys.vue'),
+            meta:{
+              title:"评论 Whisper轻语"
+            }
           }
-        ]
+        ],
+        
       },
       {
         path:'group',
         name:'group',
-        component: () => import('../views/Groups.vue')
+        component: () => import('../views/Groups.vue'),
+        meta:{
+          title:"群列表 Whisper轻语"
+        }
       },
       {
         path:'groupPosts',
         name:'groupPosts',
-        component: () => import('../views/GroupPosts.vue')
+        component: () => import('../views/GroupPosts.vue'),
+        meta:{
+          title:"群内推文 Whisper轻语"
+        }
       },
       {
         path:'topic',
         name:'topic',
-        component: () => import('../views/Topics.vue')
+        component: () => import('../views/Topics.vue'),
+        meta:{
+          title:"话题列表 Whisper轻语"
+        }
       },
       {
         path:'mine',
         name:'mine',
-        component: () => import('../views/Mine.vue')
+        component: () => import('../views/Mine.vue'),
+        meta:{
+          title:"我的 Whisper轻语"
+        }
       },
       {
         path:'user',
         name:'user',
-        component: () => import('../views/User.vue')
+        component: () => import('../views/User.vue'),
+        meta:{
+          title:"用户信息 Whisper轻语"
+        }
       },
       {
         path:'about',
         name:'about',
-        component: () => import('../views/About.vue')
+        component: () => import('../views/About.vue'),
+        meta:{
+          title:"关于 Whisper轻语"
+        }
       },
 
     ]
