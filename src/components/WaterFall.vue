@@ -164,8 +164,11 @@ export default {
 			})();
 		};
 		
-	},
-	created() {},
+  },
+  
+	created() {
+    
+  },
 	watch: {
 		cardsData: function () {
 			if (this.screenWidth >= 1264) {

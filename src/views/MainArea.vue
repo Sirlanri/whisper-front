@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<waterfall :cardsData="cardsData" @moreData="getMorePost"></waterfall>
+		<waterfall :cardsData="cardsData" @moreData="getMorePost" ref="fall"></waterfall>
 	</div>
 </template>
 
@@ -44,6 +44,9 @@ export default {
     },
     getMorePost(index){
       console.log("触发了懒加载")
+      if (index==0) {
+        this.$refs.fall.countFlag=0
+      }
       this.axios.get('getLazyPost',{
         params:{num:index}
       }).then(res=>{

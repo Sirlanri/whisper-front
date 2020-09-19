@@ -43,7 +43,9 @@
         </v-card>
       </v-col>
     </v-row>
-    <waterfall :cardsData="cardsData"></waterfall>
+
+    <waterfall :cardsData="cardsData" @moreData="getUserPost" ref="fall"></waterfall>
+
     <v-dialog v-model="changeInfoWin" max-width="800">
       <v-card>
         <v-col cols="10" offset="1">
@@ -238,13 +240,21 @@ export default {
       this.changeInfoWin = true;
     },
     
-    //获取自己发送的全部post
-    getUserPost(){
+    //获取自己发送的post，懒加载
+    getUserPost(num){
+      /* 重点！ waterfall组件内的countFlag很重要，只有countFlag>3时才会emit给父组件
+       由于vue默认复用组件，如果页面切换，countFlag的值默认就为3，会做三次请求*/
+      if (num==0) {
+        this.$refs.fall.countFlag=0
+      }
       this.axios.get('getPostByUser',{
-        params:{name:this.$store.state.userData.name}
+        params:{name:this.$store.state.userData.name,
+        num:num}
       }).then(res=>{
         if (res.status==200) {
-          this.cardsData=res.data.posts
+          res.data.posts.forEach(post => {
+            this.cardsData.push(post)
+          });
         }
       })
     },
@@ -269,7 +279,7 @@ export default {
         that.screenWidth = window.screenWidth;
       })();
     };
-    this.getUserPost()
+    this.getUserPost(0)
   },
 
   watch:{
