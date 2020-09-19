@@ -46,8 +46,8 @@ export default {
         params:{num:index}
       }).then(res=>{
         if (res.status==200) {
-          //this.cardsData.push.apply(this.cardsData,res.data.posts)
-          this.cardsData=res.data.posts
+          this.cardsData.push.apply(this.cardsData,res.data.posts)
+          //this.cardsData=res.data.posts
         }
       })
     }
