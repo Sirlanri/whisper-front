@@ -20,14 +20,7 @@
         ></card>
         
 			</div>
-      加载！！！
-        <v-lazy v-model="isMore" transition="fade-transition"
-        value="false"
-        :options="{
-          threshold: .5
-        }">
-          加载中，请稍后~
-        </v-lazy>
+      
 		</v-col>
     
 		<v-col lg="3" md="5" sm="6" class="hidden-xs-and-down">
@@ -64,6 +57,10 @@
 					:replays="card.replys"
 				></card>
 			</div>
+      加载！！！
+        <v-lazy v-model="isMore" transition="fade-transition" ref="lazy">
+          加载中，请稍后~
+        </v-lazy>
       
 		</v-col>
     
@@ -179,11 +176,13 @@ export default {
 				this.shunt2();
 			}
     },
-    isMore(){
-      if (this.isMore==true) {
-        console.log("开始ismore冒泡")
+    isMore:function(value){
+      if (value==true) {
+        console.log("开始ismore冒泡",this.index+20)
         this.$emit("moreData",this.index)
         this.isMore=false
+        //改变v-lazy的data
+        this.$refs.lazy.isActive=false
         this.index+=20
       }
     }
