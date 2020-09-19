@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<waterfall :cardsData="cardsData"></waterfall>
+		<waterfall :cardsData="cardsData" @moreData="getMorePost"></waterfall>
 	</div>
 </template>
 
@@ -12,7 +12,8 @@ export default {
 	},
 	data() {
 		return {
-      cardsData:[]		
+      cardsData:[],
+      index:0,
     };
 	},
 	mounted() {
@@ -38,7 +39,18 @@ export default {
 					this.cardsData = res.data.posts;
 				}
 			});
-		},
+    },
+    getMorePost(index){
+      console.log("触发了懒加载")
+      this.axios.get('getLazyPost',{
+        params:{num:index}
+      }).then(res=>{
+        if (res.status==200) {
+          //this.cardsData.push.apply(this.cardsData,res.data.posts)
+          this.cardsData=res.data.posts
+        }
+      })
+    }
 	},
 };
 </script>
