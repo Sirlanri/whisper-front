@@ -7,7 +7,7 @@
       </v-avatar>
       <v-btn text class="groupname" @click="jumpUser" >{{username}}</v-btn>
       <v-icon class="from-group" v-if="groupname!=''">mdi-chevron-right</v-icon>
-      <v-btn text class="groupname" @click="openPost">{{groupname}} </v-btn>
+      <v-btn text class="groupname" @click="openPost" v-if="groupname!=''">{{groupname}} </v-btn>
 
       <v-spacer></v-spacer>
       <v-menu v-if="isAdmin">
