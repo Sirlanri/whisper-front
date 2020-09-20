@@ -214,7 +214,14 @@ export default {
 	},
 	computed: {
 		
-	},
+  },
+  //防止组件复用造成冲突，离开页面后就还原数据
+  destroyed(){
+    console.log('调用销毁函数')
+    this.index=20
+    this.countFlag=0
+    this.isMore=false
+  }
 };
 </script>
 

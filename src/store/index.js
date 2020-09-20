@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    particle:true,  //控制粒子背景
+    particle:false,  //控制粒子背景
     leftdrawer:true,
     //用于组件间，传递刷新信息
     refreshFlag:false,

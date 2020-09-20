@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<waterfall :cardsData="cardsData" @moreData="getMorePost" ref="fall"></waterfall>
+		<waterfall :cardsData="cardsData"
+      @moreData="getMorePost" ref="fall">
+      </waterfall>
 	</div>
 </template>
 
@@ -13,7 +15,6 @@ export default {
 	data() {
 		return {
       cardsData:[],
-      
     };
 	},
 	mounted() {
@@ -27,7 +28,8 @@ export default {
   watch:{
     refresh(){
       this.getAllPost()
-    }
+    },
+    
   },
 
 	methods: {
@@ -43,9 +45,6 @@ export default {
       
     },
     getMorePost(index){
-      if (index==0) {
-        this.$refs.fall.countFlag=0
-      }
       this.axios.get('getLazyPost',{
         params:{num:index}
       }).then(res=>{
