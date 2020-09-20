@@ -8,7 +8,24 @@
           </v-avatar>
           {{name}}
       </v-col>
-      <v-col cols="2" offset="3">
+      <v-col cols="4" offset="2">
+        <v-menu >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on">
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item @click="groupDelDialog=true">
+            <v-list-item-title>删除此回复</v-list-item-title>
+          </v-list-item>
+        </v-list>
+        
+      </v-menu>
         <v-btn icon large :color="haveRead?'':'blue'" @click="changRead">
           <v-icon>mdi-read</v-icon>
         </v-btn>
@@ -67,6 +84,24 @@
       
     </v-card>
   </v-dialog>
+
+  <v-dialog v-model="groupDelDialog" max-width="500">
+    <v-card>
+      
+        <v-card-title>
+          删除确认
+        </v-card-title>
+        <v-card-text>
+          将会删除这条回复
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn outlined large @click="groupDelDialog=false">取消</v-btn>
+          <v-btn color="error" large @click="delReply" :disabled="btndis">删除</v-btn>
+        </v-card-actions>
+      
+    </v-card>
+  </v-dialog>
 </v-col>
 </template>
 
@@ -78,7 +113,8 @@ export default {
       resultWin:false,
       replyWin:false,
       replyContent:"",
-      btndis:false
+      btndis:false,
+      groupDelDialog:false
     }
   },
   props:{
@@ -90,6 +126,22 @@ export default {
     postid:Number
   },
   methods:{
+    delReply(){
+      this.btndis=true
+      this.axios.get('delReply',{
+        params:{id:this.id}
+      }).then(res=>{
+        if (res.status==200) {
+          this.groupDelDialog=false
+          this.result=res.data
+          this.resultWin=true
+        }else{
+          this.result=res.data
+          this.resultWin=true
+        }
+        this.btndis=false
+      })
+    },
     sendReply(){
       this.btndis=true
       let sendData={

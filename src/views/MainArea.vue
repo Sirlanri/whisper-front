@@ -49,6 +49,9 @@ export default {
         params:{num:index}
       }).then(res=>{
         if (res.status==200) {
+          if (res.data.posts==undefined) {
+            return
+          }
           res.data.posts.forEach(post => {
             this.cardsData.push(post)
           });

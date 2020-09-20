@@ -99,6 +99,7 @@ export default {
       isMore:false,
       index:20,
       countFlag:0,
+      showMoreCard:true
 		};
 	},
 	methods: {
@@ -163,7 +164,9 @@ export default {
 				that.screenWidth = window.screenWidth;
 			})();
 		};
-		
+    console.log("调用了瀑布流布局")
+    console.log("id序数index为",this.index)
+    console.log("countFlag为",this.countFlag)
   },
   
 	created() {
@@ -195,12 +198,13 @@ export default {
 			}
     },
     isMore:function(value){
+      this.showMoreCard=false
       if (value==true) {
         if (this.countFlag<3) {
           //改变v-lazy的data
           this.countFlag+=1
           this.isMore=false
-          this.$refs.lazy.isActive=false
+          //this.$refs.lazy.isActive=false
           return
         }
         this.$emit("moreData",this.index)
@@ -208,7 +212,7 @@ export default {
         //改变v-lazy的data
         this.$refs.lazy.isActive=false
         this.index+=20
-        
+        this.showMoreCard=true
       }
     }
 	},

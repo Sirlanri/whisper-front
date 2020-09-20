@@ -283,7 +283,7 @@ export default {
 
   watch:{
     refresh(){
-      this.getUserPost()
+      this.getUserPost(0)
     }
   },
   
