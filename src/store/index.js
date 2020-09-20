@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    particle:true,  //控制粒子背景
     leftdrawer:true,
     //用于组件间，传递刷新信息
     refreshFlag:false,
@@ -65,6 +66,11 @@ export default new Vuex.Store({
     //修改刷新flag
     refresh(state){
       state.refreshFlag=!state.refreshFlag
+    },
+
+    //背景开关
+    changeParticle(state){
+      state.particle=!state.particle
     }
   },
   actions: {

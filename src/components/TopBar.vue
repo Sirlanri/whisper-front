@@ -11,7 +11,7 @@
       </v-btn>
       <v-spacer></v-spacer>
       <v-btn icon @click="openPostWin" v-if="isLogin"><v-icon>mdi-pencil-plus-outline</v-icon></v-btn>
-      <v-menu v-if="isLogin">
+      <v-menu >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon
@@ -22,12 +22,20 @@
           </v-btn>
         </template>
 
-        <v-list>
+        <v-list v-if="isLogin">
           <v-list-item @click="groupDialog=!groupDialog">
             <v-list-item-title>创建群</v-list-item-title>
           </v-list-item>
           <v-list-item @click="logoutWin=!logoutWin">
             <v-list-item-title>注销登录</v-list-item-title>
+          </v-list-item>
+        </v-list>
+        <v-divider></v-divider>
+        <v-list>
+          <v-list-item @click="switchPartical">
+            <v-list-item-title>
+              粒子背景开关
+            </v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -186,6 +194,11 @@ export default {
     }
   },
   methods:{
+    //控制粒子背景开关
+    switchPartical(){
+      console.log('提交commit')
+      this.$store.commit('changeParticle')
+    },
     newGroup(picurl){
       let sendData={
         name:this.groupname,

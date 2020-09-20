@@ -2,8 +2,9 @@
   <v-app>
     
     <vue-particles
-    class="partical"
+      class="partical"
        color="#1b1b1b"
+       v-show="particleSwitch"
        :particleOpacity="0.9"
        :particlesNumber="50"
        shapeType="circle"
@@ -36,6 +37,12 @@ export default {
   data: () => ({
     //
   }),
+
+  computed:{
+    particleSwitch(){
+      return this.$store.state.particle
+    }
+  }
 };
 </script>
 <style>
