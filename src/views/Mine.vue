@@ -44,7 +44,7 @@
       </v-col>
     </v-row>
 
-    <waterfall :cardsData="cardsData" @moreData="getUserPost" ></waterfall>
+    <waterfall :cardsData="cardsData" @moreData="getUserPost" :nopost="nopost"></waterfall>
 
     <v-dialog v-model="changeInfoWin" max-width="800">
       <v-card>
@@ -143,6 +143,7 @@ export default {
       btndis:false,
       result:"",
       resultWin:false,
+      nopost:false,
     };
   },
   methods: {
@@ -246,6 +247,7 @@ export default {
       }).then(res=>{
         if (res.status==200) {
           if (res.data.posts==undefined) {
+            this.nopost=true
             return
           }
           res.data.posts.forEach(post => {

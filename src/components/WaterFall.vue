@@ -89,6 +89,8 @@ export default {
 	},
 	props: {
     cardsData: Array,
+    //如果后端请求不到数据了，就停止请求
+    nopost:Boolean
 	},
 	data() {
 		return {
@@ -153,7 +155,7 @@ export default {
 			//this.$store.commit("closeDrawer");
     },
     
-    //检测是否显示加载区域
+    //区域检测函数（核心）
     onIntersect (entries) {
         // More information about these options
         // is located here: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
@@ -203,6 +205,9 @@ export default {
     },
     
     loadFlag(flag){
+      if (this.nopost==true) {
+        return
+      }
       if (flag==false||this.cardsData.length==0) {
         return
       }

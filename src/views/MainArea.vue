@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<waterfall :cardsData="cardsData"
-      @moreData="getMorePost">
+      @moreData="getMorePost" :nopost="nopost">
       </waterfall>
 	</div>
 </template>
@@ -15,6 +15,7 @@ export default {
 	data() {
 		return {
       cardsData:[],
+      nopost:false,
     };
 	},
 	mounted() {
@@ -51,6 +52,7 @@ export default {
       }).then(res=>{
         if (res.status==200) {
           if (res.data.posts==undefined) {
+            this.nopost=true
             return
           }
           res.data.posts.forEach(post => {

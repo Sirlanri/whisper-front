@@ -37,7 +37,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <waterfall :cardsData="cardsData" @moreData="getUserPost" ref="fall"></waterfall>
+    <waterfall :cardsData="cardsData" @moreData="getUserPost" :nopost="nopost"></waterfall>
 
     <v-snackbar
       v-model="resultWin"
@@ -75,6 +75,7 @@ export default {
       cAvatar: null,
       cBannar: null,
       cardsData:[],
+      nopost:false,
       
       btndisable:false,
       result:"",
@@ -109,6 +110,7 @@ export default {
       }).then(res=>{
         if (res.status==200) {
           if (res.data.posts==undefined) {
+            this.nopost=true
             return
           }
           res.data.posts.forEach(post => {
