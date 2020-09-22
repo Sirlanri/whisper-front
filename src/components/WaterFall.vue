@@ -135,7 +135,7 @@ export default {
       this.cards1 = [];
       this.cards2 = [];
       this.cards3 = [];
-      var count2 = 1;
+      var count2 = 0;
       this.cardsData.forEach((element) => {
         if (count2 % 2 == 0) {
           this.cards1.push(element);
