@@ -11,6 +11,11 @@
         :id="re.id"
         :postid="re.postid"
       ></reply>
+      <v-skeleton-loader
+        v-intersect="onIntersect"
+        width="400"
+        type="list-item-avatar, divider, list-item-three-line">
+      </v-skeleton-loader>
     </v-row>
   </div>
 </template>
@@ -23,40 +28,10 @@ export default {
   },
   data() {
     return {
-      replysData: [
-        {
-          id: 1,
-          name: "深蓝蓝",
-          avatar:
-            "https://pic2.zhimg.com/v2-2dc154cd8b6adcc9af9804b0686e30eb_xl.jpg",
-          haveRead: true,
-          content: "回复的内容在这儿~",
-        },
-        {
-          id: 2,
-          name: "深蓝蓝",
-          avatar:
-            "https://pic2.zhimg.com/v2-2dc154cd8b6adcc9af9804b0686e30eb_xl.jpg",
-          haveRead: false,
-          content: "回复的内容在这儿~",
-        },
-        {
-          id: 3,
-          name: "深蓝蓝",
-          avatar:
-            "https://pic2.zhimg.com/v2-2dc154cd8b6adcc9af9804b0686e30eb_xl.jpg",
-          haveRead: false,
-          content: "回复的内容在这儿~",
-        },
-        {
-          id: 4,
-          name: "深蓝蓝",
-          avatar:
-            "https://pic2.zhimg.com/v2-2dc154cd8b6adcc9af9804b0686e30eb_xl.jpg",
-          haveRead: false,
-          content: "回复的内容在这儿~",
-        },
-      ],
+      replysData: [],
+      replyCount:20,
+      loadFlag:false,
+      noReply:false
     };
   },
   methods:{
@@ -68,10 +43,48 @@ export default {
             this.replysData=res.data.replys
           }
         })
-    }
+    },
+
+    //通过懒加载获取reply
+    getReplys(num){
+      this.axios.get('getReplys',{
+        params:{num:num}
+      }).then(res=>{
+        if (res.status==200) {
+          if (res.data.replys==null) {
+            this.noReply=true
+            return
+          }
+          res.data.replys.forEach(reply => {
+            this.replysData.push(reply)
+          });
+        }
+      })
+    },
+    //区域检测函数（核心）
+    onIntersect (entries) {
+      // More information about these options
+      // is located here: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+      this.loadFlag = entries[0].isIntersecting
+    },
+
+    
   },
-  created(){
-    this.getAllReply()
+  mounted(){
+    this.getReplys(0)
+  },
+
+  watch:{
+    loadFlag(flag){
+      if (this.noReply==true) {
+        return
+      }
+      if (flag==false||this.replysData.length==0) {
+        return
+      }
+      this.getReplys(this.replyCount)
+      this.replyCount+=20
+    }
   }
 };
 </script>
