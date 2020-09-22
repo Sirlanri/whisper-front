@@ -1,5 +1,5 @@
 <template>
-	<waterfall :cardsData="cardsData"></waterfall>
+	<waterfall :cardsData="cardsData" @moreData="getMorePost" :nopost="nopost"></waterfall>
 </template>
 
 <script>
@@ -66,149 +66,8 @@ export default {
 						},
 					],
 				},
-				{
-					username: "深蓝",
-					groupname: "source",
-					content: "第一条信息的内容",
-					topic: ["测试", "测试2"],
-					time: "4/23 13:50",
-					pics: [
-						"https://blog.ri-co.cn/wp-content/uploads/2020/04/white1.jpg",
-						"https://blog.ri-co.cn/wp-content/uploads/2020/04/black-white.jpg",
-						"https://blog.ri-co.cn/wp-content/uploads/2020/04/red-white.jpg",
-					],
-					replays: [
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-					],
-				},
-				{
-					username: "深蓝",
-					groupname: "",
-					content: "第2条信息的内容",
-					topic: ["测试"],
-					time: "4/23 13:50",
-					pics: ["https://blog.ri-co.cn/wp-content/uploads/2020/04/blue.jpg"],
-					replays: [
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-					],
-				},
-				{
-					username: "深蓝",
-					groupname: "",
-					content: "第3条信息的内容",
-					topic: ["测试"],
-					time: "4/23 13:50",
-					replays: [
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-					],
-				},
-				{
-					username: "深蓝",
-					groupname: "",
-					content: "第4条信息的内容",
-					topic: ["测试"],
-					pics: ["https://blog.ri-co.cn/wp-content/uploads/2020/04/blue.jpg"],
-					time: "4/23 13:50",
-					replays: [
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-					],
-				},
-				{
-					username: "深蓝",
-					groupname: "小组1",
-					content: "第5条信息的内容",
-					topic: ["测试"],
-					time: "4/23 13:50",
-					replays: [
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-					],
-				},
-				{
-					username: "深蓝",
-					groupname: "小组1",
-					content: "第5条信息的内容",
-					topic: ["测试"],
-					time: "4/23 13:50",
-					replays: [
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-					],
-				},
-				{
-					username: "深蓝",
-					groupname: "小组1",
-					content: "第5条信息的内容",
-					topic: ["测试"],
-					time: "4/23 13:50",
-					replays: [
-						{
-							name: "visiter1",
-							imgsrc:
-								"https://blog.ri-co.cn/wp-content/uploads/2020/02/网站logo2.png",
-							content: "精彩！",
-						},
-					],
-				},
-			],
+      ],
+      nopost:false
 		};
 	},
 
@@ -225,7 +84,25 @@ export default {
 						this.cardsData = res.data.posts;
 					}
 				});
-		},
+    },
+    
+    getMorePost(index){
+      console.log("调用冒泡 ",index)
+      this.axios.get('getPostByGroup',{
+        params:{id:this.$store.state.clickUserName,num:index}
+      }).then(res=>{
+        if (res.status==200) {
+          if (res.data.posts==undefined) {
+            this.nopost=true
+            return
+          }
+          res.data.posts.forEach(post => {
+            this.cardsData.push(post)
+          });
+          //this.cardsData=res.data.posts
+        }
+      })
+    }
 	},
 	mounted() {
 		this.getAllPost();
