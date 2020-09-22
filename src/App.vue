@@ -4,7 +4,7 @@
     <vue-particles
       class="partical"
        color="#1b1b1b"
-       v-show="particleSwitch"
+       v-if="particleSwitch"
        :particleOpacity="0.9"
        :particlesNumber="50"
        shapeType="circle"
