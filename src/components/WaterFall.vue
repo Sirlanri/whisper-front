@@ -20,11 +20,11 @@
         ></card>
 			</div>
       <v-skeleton-loader
+        v-intersect="onIntersect"
         max-width="400"
         type="list-item-avatar, divider, list-item-three-line">
       </v-skeleton-loader>
-      <v-lazy v-model="isMore" transition="fade-transition"
-        ref="lazy"></v-lazy>
+      
       
 		</v-col>
     
@@ -45,11 +45,11 @@
 				></card>
 			</div>
       <v-skeleton-loader
+        v-intersect="onIntersect"
         max-width="400"
         type="list-item-avatar, divider, list-item-three-line">
       </v-skeleton-loader>
-      <v-lazy v-model="isMore" transition="fade-transition"
-        ref="lazy"></v-lazy>
+      
       
 		</v-col>
 		<v-col lg="3" md="0" class="hidden-md-and-down">
@@ -69,11 +69,11 @@
 				></card>
 			</div>
       <v-skeleton-loader
+        v-intersect="onIntersect"
         max-width="400"
         type="list-item-avatar, divider, list-item-three-line">
       </v-skeleton-loader>
-      <v-lazy v-model="isMore" transition="fade-transition"
-        ref="lazy"></v-lazy>
+      
         
       
 		</v-col>
@@ -96,10 +96,8 @@ export default {
 			cards2: [],
 			cards3: [],
       screenWidth: 1800,
-      isMore:false,
-      index:20,
-      countFlag:0,
-      showMoreCard:true
+      postCount:20,
+      loadFlag:false,
 		};
 	},
 	methods: {
@@ -153,7 +151,14 @@ export default {
 			this.cards3 = [];
 			this.cards1 = this.cardsData;
 			//this.$store.commit("closeDrawer");
-		},
+    },
+    
+    //检测是否显示加载区域
+    onIntersect (entries) {
+        // More information about these options
+        // is located here: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+        this.loadFlag = entries[0].isIntersecting
+      },
 		
 	},
 	mounted() {
@@ -165,8 +170,7 @@ export default {
 			})();
 		};
     console.log("调用了瀑布流布局")
-    console.log("id序数index为",this.index)
-    console.log("countFlag为",this.countFlag)
+    
   },
   
 	created() {
@@ -197,24 +201,15 @@ export default {
 				this.shunt2();
 			}
     },
-    isMore:function(value){
-      this.showMoreCard=false
-      if (value==true) {
-        if (this.countFlag<3) {
-          //改变v-lazy的data
-          this.countFlag+=1
-          this.isMore=false
-          //this.$refs.lazy.isActive=false
-          return
-        }
-        this.$emit("moreData",this.index)
-        this.isMore=false
-        //改变v-lazy的data
-        this.$refs.lazy.isActive=false
-        this.index+=20
-        this.showMoreCard=true
+    
+    loadFlag(flag){
+      if (flag==false||this.cardsData.length==0) {
+        return
       }
+      this.$emit('moreData',this.postCount)
+      this.postCount+=20
     }
+    
 	},
 	computed: {
 		
@@ -222,9 +217,7 @@ export default {
   //防止组件复用造成冲突，离开页面后就还原数据
   destroyed(){
     console.log('调用销毁函数')
-    this.index=20
-    this.countFlag=0
-    this.isMore=false
+    
   }
 };
 </script>

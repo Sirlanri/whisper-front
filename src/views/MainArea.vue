@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<waterfall :cardsData="cardsData"
-      @moreData="getMorePost" ref="fall">
+      @moreData="getMorePost">
       </waterfall>
 	</div>
 </template>
@@ -45,6 +45,7 @@ export default {
       
     },
     getMorePost(index){
+      console.log("调用冒泡 ",index)
       this.axios.get('getLazyPost',{
         params:{num:index}
       }).then(res=>{

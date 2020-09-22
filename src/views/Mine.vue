@@ -44,7 +44,7 @@
       </v-col>
     </v-row>
 
-    <waterfall :cardsData="cardsData" @moreData="getUserPost" ref="fall"></waterfall>
+    <waterfall :cardsData="cardsData" @moreData="getUserPost" ></waterfall>
 
     <v-dialog v-model="changeInfoWin" max-width="800">
       <v-card>
@@ -240,9 +240,6 @@ export default {
     
     //获取自己发送的post，懒加载
     getUserPost(num){
-      /* 重点！ waterfall组件内的countFlag很重要，只有countFlag>3时才会emit给父组件
-       由于vue默认复用组件，如果页面切换，countFlag的值默认就为3，会做三次请求*/
-      
       this.axios.get('getPostByUser',{
         params:{name:this.$store.state.userData.name,
         num:num}
