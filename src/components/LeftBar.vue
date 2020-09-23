@@ -68,7 +68,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-dialog v-model="dialog" max-width="800">
+    <v-dialog v-model="LoginDialog" max-width="800">
       <v-card width="100%">
         <v-row>
           <v-col cols="10" offset="1">
@@ -124,7 +124,7 @@ import store from "@/store/index"
 export default {
   data(){
     return{
-      dialog:false,
+      LoginDialog:false,
       loginwindow:true,
       //登录，注册信息
       email:"",
@@ -260,7 +260,7 @@ export default {
         this.$router.push("/about")
         return
       }
-    }
+    },
   }
   
   

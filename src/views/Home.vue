@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <topbar></topbar>
+    <topleft></topleft>
     <div class="whitearea"></div>
-    <leftbar></leftbar>
+    
     
     <router-view></router-view>
     
@@ -11,13 +11,12 @@
 
 <script>
 // @ is an alias to /src
-import topbar from "@/components/TopBar.vue";
-import leftbar from "@/components/LeftBar.vue";
+import topleft from "@/components/TopLeft.vue";
+
 export default {
   name: "Home",
   components: {
-    topbar,
-    leftbar,
+    topleft,
   },
   created(){
     this.checkLogin()
