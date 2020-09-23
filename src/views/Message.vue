@@ -5,7 +5,7 @@
       <v-col md="8" sm="10" offset-md="2" offset-lg="1" offset-sm="1">
         <v-tabs centered grow>
           <v-tab>回复</v-tab>
-          <v-tab>私信</v-tab>
+          <v-tab>私信（创造中）</v-tab>
         </v-tabs>
         <router-view></router-view>
       </v-col>

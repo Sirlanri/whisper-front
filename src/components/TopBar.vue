@@ -196,7 +196,6 @@ export default {
   methods:{
     //控制粒子背景开关
     switchPartical(){
-      console.log('提交commit')
       this.$store.commit('changeParticle')
     },
     newGroup(picurl){
