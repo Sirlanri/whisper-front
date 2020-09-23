@@ -16,6 +16,7 @@
             icon
             v-bind="attrs"
             v-on="on"
+            class="rtmunu"
           >
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
@@ -37,6 +38,7 @@
             icon
             v-bind="attrs"
             v-on="on"
+            class="rtmunu"
           >
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
@@ -376,5 +378,10 @@ export default {
 }
 .single-reply-word{
   padding-top: 9px;
+}
+.rtmunu{
+  position: absolute;
+  right: 10px;
+  top: 20px;
 }
 </style>

@@ -50,6 +50,7 @@ export default {
   */
   background-attachment: fixed;
   min-height: 100vh;
+  overflow-y: hidden;
 }
 .background {
   position: absolute;
