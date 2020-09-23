@@ -56,7 +56,7 @@
           </v-btn>
         </v-list-item>
         <v-list-item  v-else>
-          <v-btn block text large @click="dialog=!dialog">
+          <v-btn block text large @click="loginDialog=!loginDialog">
             <v-list-item-icon>
               <v-icon>mdi-account-circle</v-icon>
             </v-list-item-icon>
@@ -109,7 +109,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-dialog v-model="dialog" max-width="800">
+    <v-dialog v-model="loginDialog" max-width="800">
       <v-card width="100%">
         <v-row>
           <v-col cols="10" offset="1">
@@ -131,7 +131,7 @@
             </v-col>
             <v-row>
               <v-spacer></v-spacer>
-              <v-btn outlined large color="primary" style="margin-right:2rem" @click="dialog=false">取消</v-btn>
+              <v-btn outlined large color="primary" style="margin-right:2rem" @click="loginDialog=false">取消</v-btn>
               <v-btn color="primary" large v-show="loginwindow" @click="goLogin" :disabled="btndis">登录</v-btn>
               <v-btn color="primary" large v-show="!loginwindow" @click="goRegist" :disabled="btndis">注册</v-btn>
             </v-row>
@@ -230,7 +230,7 @@
           <v-row>
             <v-spacer></v-spacer>
             <v-btn class="btnmargin" outlined color="error" large @click="groupDialog=false">放弃</v-btn>
-            <v-btn class="btnmargin" color="primary" large :disabled="btndis" @click="uploadGroupPic">发布</v-btn>
+            <v-btn class="btnmargin" color="primary" large :disabled="btndis" @click="uploadGroupPic">创建</v-btn>
           </v-row>
 
         </v-row>
@@ -295,7 +295,7 @@ data(){
       leftDrawer:null,
 
       //左侧栏
-      LoginDialog:false,
+      loginDialog:false,
       loginwindow:true,
       //登录，注册信息
       email:"",
@@ -493,14 +493,14 @@ data(){
           this.getUserInfo()
           this.result="登录成功"
           this.resultWin=true
-          this.dialog=false
+          this.loginDialog=false
         }
         if (res.status==201) {
           this.btndis=false
           this.getUserInfo()
           this.result="欢迎管理员登录~"
           this.resultWin=true
-          this.dialog=false
+          this.loginDialog=false
         }else{
           this.btndis=false
           this.result=res.data
@@ -524,7 +524,7 @@ data(){
           this.btndis=false
           this.result=res.data
           this.resultWin=true
-          this.dialog=false
+          this.loginDialog=false
           return
         }
         if (res.status==201) {

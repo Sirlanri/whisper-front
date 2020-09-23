@@ -171,7 +171,6 @@ export default {
         that.screenWidth = window.screenWidth;
       })();
     };
-    console.log("调用了瀑布流布局")
     
   },
   
@@ -221,7 +220,6 @@ export default {
   },
   //防止组件复用造成冲突，离开页面后就还原数据
   destroyed(){
-    console.log('调用销毁函数')
     
   }
 };
