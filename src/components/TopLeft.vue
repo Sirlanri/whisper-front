@@ -372,8 +372,9 @@ data(){
       })
     },
     newPost(){
+      let after=this.content.replace(/[\n\r]/g,"<br>")
       let sendData={
-        content:this.content,
+        content:after,
         pics:this.picUrls,
         group:this.selectGroup,
         tags:this.selectTag

@@ -87,8 +87,8 @@
 
     <!-- 内容 图片 --> 
     <v-card-text>
-      <v-row class="content-area">
-        {{content}}
+      <v-row class="content-area" v-html="content">
+        
       </v-row>
       <v-carousel
         :hide-delimiters="onepic"
