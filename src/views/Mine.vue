@@ -13,7 +13,7 @@
             <v-btn class="changeBtn" @click="changeInfo">更改资料</v-btn>
           </v-img>
           <v-row>
-            <v-col lg="3">
+            <v-col sm="3" cols="8" offset="1" offset-sm="0">
               <v-img class="avatar align-center justify-center" src="../assets/pics/avart.png" v-if="userData.bannar==undefined||userData.avatar==''">
                 <v-btn x-large block dark class="changAvatarBtn" @click="changeAvatarWin=true">更换头像</v-btn>
               </v-img>
@@ -21,11 +21,11 @@
                 <v-btn x-large block dark class="changAvatarBtn" @click="changeAvatarWin=true">更换头像</v-btn>
               </v-img>
             </v-col>
-            <v-col lg="5">
-              <v-card-title>{{userData.name}}</v-card-title>
-              <v-card-subtitle>{{userData.intro}}</v-card-subtitle>
+            <v-col lg="5" sm="5" cols="10"  offset-sm="0">
+              <v-card-title class="justify-center">{{userData.name}}</v-card-title>
+              <v-card-subtitle class="justify-center d-flex">{{userData.intro}}</v-card-subtitle>
             </v-col>
-            <v-col lg="3" offset="1">
+            <v-col sm="4" offset-sm="0" offset="2" cols="8">
               <v-card-text class="d-flex">
                 <div class="colum-line">
                   发文数
