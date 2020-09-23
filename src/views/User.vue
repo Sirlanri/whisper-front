@@ -8,18 +8,18 @@
           </v-img>
           <v-img :src="userData.bannar" class="align-end" height="300" v-else>
           </v-img>
-          <v-row>
-            <v-col lg="3">
+          <v-row class="d-flex">
+            <v-col lg="3" class="order-1">
               <v-img class="avatar align-center justify-center" src="../assets/pics/avart.png" v-if="userData.bannar==undefined||userData.avatar==''">
               </v-img>
               <v-img class="avatar align-center justify-center" :src="userData.avatar" v-else>
               </v-img>
             </v-col>
-            <v-col lg="5">
+            <v-col lg="5" class="order-sm-2 order-3">
               <v-card-title>{{userData.name}}</v-card-title>
               <v-card-subtitle>{{userData.intro}}</v-card-subtitle>
             </v-col>
-            <v-col lg="3" offset="1">
+            <v-col lg="3" offset="1" class="order-sm-3 order-2">
               <v-card-text class="d-flex">
                 <div class="colum-line">
                   发文数

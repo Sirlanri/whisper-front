@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="overy">
     <v-col lg="2" class="d-none d-lg-flex"></v-col>
 
     <v-col lg="3" md="5" sm="6" cols="10" offset="1" offset-sm="0" offset-md="1" offset-lg="0">
@@ -228,4 +228,7 @@ export default {
 </script>
 
 <style>
+.overy{
+  overflow-y: hidden;
+}
 </style>
