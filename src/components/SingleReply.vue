@@ -1,5 +1,5 @@
 <template>
-<v-col cols="10" offset="1" offset-md="0" md="6" >
+<v-col cols="12" sm="6" offset-sm="0"  >
   <v-card>
     <v-row align-content="center">
       <v-col cols="6">
@@ -39,9 +39,10 @@
           {{content}}
         </v-card-text>
       </v-col>
-      <v-col cols="3">
-        <v-btn @click="replyWin=true">回复</v-btn>
-      </v-col>
+      <v-spacer></v-spacer>
+      
+      <v-btn @click="replyWin=true" class="replyBtn">回复</v-btn>
+      
     </v-row>
     
   </v-card>
@@ -186,5 +187,10 @@ export default {
 <style scoped>
 .v-avatar{
   margin: 0 1rem;
+}
+.replyBtn{
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
 }
 </style>

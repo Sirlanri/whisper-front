@@ -9,17 +9,17 @@
           <v-img :src="userData.bannar" class="align-end" height="300" v-else>
           </v-img>
           <v-row class="d-flex">
-            <v-col lg="3" class="order-1">
+            <v-col sm="3" cols="8" offset="1" offset-sm="0">
               <v-img class="avatar align-center justify-center" src="../assets/pics/avart.png" v-if="userData.bannar==undefined||userData.avatar==''">
               </v-img>
               <v-img class="avatar align-center justify-center" :src="userData.avatar" v-else>
               </v-img>
             </v-col>
-            <v-col lg="5" class="order-sm-2 order-3">
-              <v-card-title>{{userData.name}}</v-card-title>
-              <v-card-subtitle>{{userData.intro}}</v-card-subtitle>
+            <v-col sm="5" cols="10"  offset-sm="0">
+              <v-card-title class="justify-center">{{userData.name}}</v-card-title>
+              <v-card-subtitle class="justify-center d-flex">{{userData.intro}}</v-card-subtitle>
             </v-col>
-            <v-col lg="3" offset="1" class="order-sm-3 order-2">
+            <v-col sm="4" offset-sm="0" offset="2" cols="8" >
               <v-card-text class="d-flex">
                 <div class="colum-line">
                   发文数

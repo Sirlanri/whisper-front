@@ -1,7 +1,7 @@
 <template>
   <div>
     
-    <v-navigation-drawer fixed stateless color="rgba(255,255,255,0.7)"
+    <v-navigation-drawer fixed  color="rgba(255,255,255,0.7)"
       v-model="leftdrawer" style="top:64px" width="220px">
       <v-list>
         <v-list-item v-if="islogin">
@@ -141,6 +141,7 @@ export default {
         return store.state.leftdrawer
       },
       set:function(){
+        
       }
     },
 
@@ -157,6 +158,7 @@ export default {
   },
 
   methods:{
+    
     //登录后调用此函数，获取用户信息
     getUserInfo(){
       this.axios.get('getUserInfoByCookie')

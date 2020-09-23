@@ -2,7 +2,7 @@
   <v-row class="overy">
     <v-col lg="2" class="d-none d-lg-flex"></v-col>
 
-    <v-col lg="3" md="5" sm="6" cols="10" offset="1" offset-sm="0" offset-md="1" offset-lg="0">
+    <v-col lg="3" md="5" sm="6" cols="12" offset-sm="0" offset-md="1" offset-lg="0">
       <div class="flex-column" v-for="(card,index) in cards1" :key="index">
         
         <card
