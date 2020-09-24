@@ -4,7 +4,7 @@
       <v-col lg="2" class="d-none d-lg-flex"></v-col>
       <v-col class="area">
         <v-row>
-          <v-col lg="7" sm="6" cols="10" offset-sm="0" offset="1">
+          <v-col lg="7" sm="6" cols="12" offset-sm="0" >
             <v-card>
               <v-card-title>简介</v-card-title>
               <v-card-text>
@@ -44,7 +44,7 @@
               </v-card-actions>
             </v-card>
           </v-col>
-          <v-col lg="4" sm="6" cols="10" offset-sm="0" offset="1">
+          <v-col lg="4" sm="6" cols="12" offset-sm="0">
             <v-card>
               <v-card-title>贡献</v-card-title>
               <v-card-subtitle>提出意见，反馈bug</v-card-subtitle>
