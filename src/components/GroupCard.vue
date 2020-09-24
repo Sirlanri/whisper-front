@@ -1,5 +1,5 @@
 <template>
-<v-col lg="4" sm="6" cols="10" offset="1" offset-sm="0">
+<v-col lg="4" sm="6" cols="12" offset-sm="0">
   <v-card class="group-card" v-ripple @click="openPost">
     <v-img class="align-start justify-end"
         height="200px"
