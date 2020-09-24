@@ -20,6 +20,7 @@
         ></card>
       </div>
       <v-skeleton-loader
+        v-show="!nopost"
         v-intersect="onIntersect"
         max-width="400"
         type="list-item-avatar, divider, list-item-three-line">
@@ -45,6 +46,7 @@
         ></card>
       </div>
       <v-skeleton-loader
+        v-show="!nopost"
         v-intersect="onIntersect"
         max-width="400"
         type="list-item-avatar, divider, list-item-three-line">
@@ -69,6 +71,7 @@
         ></card>
       </div>
       <v-skeleton-loader
+        v-show="!nopost"
         v-intersect="onIntersect"
         max-width="400"
         type="list-item-avatar, divider, list-item-three-line">
@@ -97,7 +100,7 @@ export default {
       cards1: [],
       cards2: [],
       cards3: [],
-      screenWidth: 1800,
+      screenWidth:window.innerWidth,
       postCount:20,
       loadFlag:false,
     };
@@ -212,16 +215,14 @@ export default {
       }
       this.$emit('moreData',this.postCount)
       this.postCount+=20
-    }
+    },
+    
     
   },
   computed: {
     
   },
-  //防止组件复用造成冲突，离开页面后就还原数据
-  destroyed(){
-    
-  }
+  
 };
 </script>
 
