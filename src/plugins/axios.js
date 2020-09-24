@@ -11,7 +11,8 @@ import axios from "axios";
 let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
   // timeout: 60 * 1000, // Timeout
-  baseURL:"http://localhost:8090/whisper",
+  baseURL:"https://api.ri-co.cn/whisper",
+  //baseURL:"http://localhost:8090/whisper",
   withCredentials: true, // Check cross-site Access-Control
 };
 
