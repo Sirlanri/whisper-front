@@ -148,12 +148,12 @@
       <v-card-title>新随笔</v-card-title>
       <v-card-text>
         <v-row>
-          <v-col cols="10" offset="1">
+          <v-col cols="12" offset="0" md="10" offset-md="1">
             <v-textarea outlined label="随笔内容（不得超过256字哦）" 
             v-model="content" counter :rules="areaRules" clearable>
             </v-textarea>
           </v-col>
-          <v-col cols="10" offset="1">
+          <v-col cols="12" offset="0" md="10" offset-md="1">
             <v-file-input
               v-model="pics"
               id="pics"
@@ -184,7 +184,7 @@
               </template>
             </v-file-input>
           </v-col>
-          <v-col cols="10" offset="1">
+          <v-col cols="12" offset="0" md="10" offset-md="1">
             <v-autocomplete
               clearable
               v-model="selectGroup"
@@ -193,7 +193,7 @@
               label="要发布的群名称"
             ></v-autocomplete>
           </v-col>
-          <v-col cols="10" offset="1">
+          <v-col cols="12" offset="0" md="10" offset-md="1">
              <v-combobox
               v-model="selectTag"
               :items="tags"
@@ -218,14 +218,14 @@
       <v-card-title>创建一个群</v-card-title>
       <v-card-text>
         <v-row>
-          <v-col cols="10" offset="1">
+          <v-col cols="12" offset="0" md="10" offset-md="1">
             <v-text-field label="群名称" v-model="groupname"></v-text-field>
           </v-col>
-          <v-col cols="10" offset="1">
+          <v-col cols="12" offset="0" md="10" offset-md="1">
             <v-textarea outlined label="群组介绍" v-model="groupintro"></v-textarea>
           </v-col>
-          <v-col cols="10" offset="1">
-            <v-file-input show-size counter label="群图片" v-model="groupPic"></v-file-input>
+          <v-col cols="12" offset="0" md="10" offset-md="1">
+            <v-file-input show-size counter label="背景图" v-model="groupPic"></v-file-input>
           </v-col>
           <v-row>
             <v-spacer></v-spacer>
