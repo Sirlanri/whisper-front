@@ -19,12 +19,8 @@
           :replays="card.replys"
         ></card>
       </div>
-      <v-skeleton-loader
-        v-show="!nopost"
-        v-intersect="onIntersect"
-        max-width="400"
-        type="list-item-avatar, divider, list-item-three-line">
-      </v-skeleton-loader>
+      
+      <div v-intersect="onIntersect"></div>
       
       
     </v-col>
@@ -45,12 +41,7 @@
           :replays="card.replys"
         ></card>
       </div>
-      <v-skeleton-loader
-        v-show="!nopost"
-        v-intersect="onIntersect"
-        max-width="400"
-        type="list-item-avatar, divider, list-item-three-line">
-      </v-skeleton-loader>
+      <div v-intersect="onIntersect"></div>
       
       
     </v-col>
@@ -70,12 +61,7 @@
           :replays="card.replys"
         ></card>
       </div>
-      <v-skeleton-loader
-        v-show="!nopost"
-        v-intersect="onIntersect"
-        max-width="400"
-        type="list-item-avatar, divider, list-item-three-line">
-      </v-skeleton-loader>
+      <div v-intersect="onIntersect"></div>
       
         
       
