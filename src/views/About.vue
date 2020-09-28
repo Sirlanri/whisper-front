@@ -55,7 +55,7 @@
             </v-card>
             <v-card>
               <v-card-title>更新记录</v-card-title>
-              <v-card-subtitle>Version: Alpha 0.1</v-card-subtitle>
+              <v-card-subtitle>Version: Alpha 0.3</v-card-subtitle>
               <v-card-text>
                 2020/8/8  前端写的差不多啦 <br>
                 2020/9/20  后端写的差不多啦 <br>
