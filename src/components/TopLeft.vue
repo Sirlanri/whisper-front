@@ -179,7 +179,7 @@
                   v-else-if="index === 2"
                   class="overline grey--text text--darken-3 mx-2"
                 >
-                  +{{ pics.length - 2 }} File(s)
+                  +{{ pics.length - 2 }} 张
                 </span>
               </template>
             </v-file-input>
