@@ -418,7 +418,7 @@ data(){
           headers:{'Content-Type':'multipart/form-data'}
         }).then(res=>{
           if (res.status==200) {
-            this.picUrls.push(res.data)
+            this.picUrls[index]=(res.data)
             index++
             if (len==index) {
               this.newPost()
