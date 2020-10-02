@@ -11,11 +11,7 @@
         :id="re.id"
         :postid="re.postid"
       ></reply>
-      <v-skeleton-loader
-        v-intersect="onIntersect"
-        width="400"
-        type="list-item-avatar, divider, list-item-three-line">
-      </v-skeleton-loader>
+      <div v-intersect="onIntersect"></div>
     </v-row>
   </div>
 </template>
