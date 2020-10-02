@@ -403,6 +403,10 @@ data(){
     },
     uploadPic2(num){
       this.btndis=true
+      if (this.pics.length==0) {
+        this.newPost()
+        return
+      }
       let formData = new FormData()
       formData.append("img",this.pics[num])
       this.axios.post('uploadPics',formData,{
