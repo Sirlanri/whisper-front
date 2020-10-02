@@ -2,9 +2,9 @@
   <v-card  class="mycard" :elevation="5" color="rgba(255,255,255,.7)">
     <!-- 头像-用户名>群名称 时间--> 
     <v-card-title>
-      <v-avatar color="indigo" size="50" class="myavatar" @click="jumpUser">
+      <v-avatar size="50" class="myavatar" @click="jumpUser">
         <v-img :src="avatar" v-if="avatar!=''"></v-img>
-        <v-icon v-else color="white" large>mdi-account</v-icon>
+        <v-icon v-else color="#5d5d5d" large>mdi-account</v-icon>
       </v-avatar>
       <v-btn text class="groupname" @click="jumpUser" >{{username}}</v-btn>
       <v-icon class="from-group" v-if="groupname!=''">mdi-chevron-right</v-icon>
