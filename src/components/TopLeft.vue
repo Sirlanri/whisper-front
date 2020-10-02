@@ -207,7 +207,7 @@
         <v-row>
           <v-spacer></v-spacer>
           <v-btn class="btnmargin" outlined color="error" large @click="dialog=false">放弃</v-btn>
-          <v-btn class="btnmargin" color="primary" :disabled="btndis" large @click="uploadPic">发布</v-btn>
+          <v-btn class="btnmargin" color="primary" :disabled="btndis" large @click="uploadPic2(0)">发布</v-btn>
         </v-row>
       </v-card-text>
     </v-card>
@@ -401,6 +401,35 @@ data(){
         this.resultWin=true
       })
     },
+    uploadPic2(num){
+      this.btndis=true
+      let formData = new FormData()
+      formData.append("img",this.pics[num])
+      this.axios.post('uploadPics',formData,{
+        headers:{'Content-Type':'multipart/form-data'}
+      }).then(res=>{
+        if (res.status==200) {
+          this.picUrls.push(res.data)
+          console.log("当前写入picURLS：",res.data)
+          if (this.pics.length==num+1) {
+            this.newPost()
+            return
+          }else{
+            this.uploadPic2(num+1)
+          }
+        }else{
+          this.result="上传图片失败"+res.data
+          this.resultWin=true
+          return
+        }
+      }).catch(res=>{
+        this.btndis=false
+        this.result=res.response.data
+        this.resultWin=true
+    })
+    },
+
+    //此方法为异步，暂时被uploadPic2取代
     uploadPic(){
       this.btndis=true
       let len = this.pics.length
@@ -408,19 +437,18 @@ data(){
         this.newPost()
         return
       }
-      var index = 0
-      this.pics.forEach(ele => {
-        
-        var file = ele
+      
+
+      for (let i=0;i<len;i++){
         let formData = new FormData()
-        formData.append("img",file)
+        formData.append("img",this.pics[i])
         this.axios.post('uploadPics',formData,{
           headers:{'Content-Type':'multipart/form-data'}
         }).then(res=>{
           if (res.status==200) {
-            this.picUrls[index]=(res.data)
-            index++
-            if (len==index) {
+            this.picUrls[i]=(res.data)
+            console.log("当前写入picURLS：",res.data)
+            if (len==i+1) {
               this.newPost()
               return
             }
@@ -434,8 +462,8 @@ data(){
           this.result=res.response.data
           this.resultWin=true
       })
-      });
-      
+      }
+            
     },
     logout(){
       this.axios.get('logout')
@@ -575,6 +603,11 @@ data(){
   computed:{
     isLogin(){
       return this.$store.getters.isLogin
+    }
+  },
+  watch:{
+    pics(){
+      console.log(this.pics)
     }
   }
 }
