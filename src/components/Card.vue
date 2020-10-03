@@ -89,8 +89,8 @@
     <!-- 内容 图片 --> 
     <v-card-text>
       <v-row class="content-area" v-html="content">
-        
       </v-row>
+      
       <v-carousel
         :hide-delimiters="onepic"
         :show-arrows="!onepic"
@@ -99,10 +99,10 @@
         hide-delimiter-background
       >
         <v-carousel-item v-for="(pic,i) in pics" :key="i" class="pic-area"
-        :src="pic">
+         :src="pic">
         </v-carousel-item>
       </v-carousel>
-
+      
       <!-- tag话题 --> 
       <v-row>
         <v-chip outlined v-for="topic in topics" :key="topic" @click="clickTag">

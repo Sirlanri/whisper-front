@@ -12,7 +12,7 @@ let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
   // timeout: 60 * 1000, // Timeout
   baseURL:"https://api.ri-co.cn/whisper",
-  //baseURL:"http://localhost:8090/whisper",
+  //baseURL:"http://10.187.176.189:8090/whisper",
   withCredentials: true, // Check cross-site Access-Control
 };
 
