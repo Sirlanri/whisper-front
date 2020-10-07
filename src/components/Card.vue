@@ -91,12 +91,11 @@
       <v-row class="content-area" v-html="content">
       </v-row>
       
-      <el-carousel v-if="havePic" class="image">
-        <el-carousel-item v-for="(pic,index) in pics" :key="index" >
-          <el-image :src="pic" fit="cover" >
-          </el-image>
-        </el-carousel-item>
-      </el-carousel>
+      <el-image v-if="havePic"
+        :src="firstPic"
+        :preview-src-list="pics"
+        lazy
+        ></el-image>
 
       <!-- tag话题 --> 
       <v-row>
@@ -197,6 +196,7 @@ export default {
       resultWin:false,
       delUserDia:false,
       delMyPostDia:false,
+      firstPic:"",
     }
   },
   props:{
@@ -268,6 +268,8 @@ export default {
       if (this.pics==undefined||this.pics.length==0) {
         return false
       }else{
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.firstPic=this.pics[0]
         return true
       }
     },
