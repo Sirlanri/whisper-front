@@ -7,10 +7,11 @@ import vuetify from './plugins/vuetify'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime';
 
-import {Carousel,CarouselItem,Image} from 'element-ui'
+import {Carousel,CarouselItem,Image,Avatar} from 'element-ui'
 Vue.use(Carousel)
 Vue.use(CarouselItem)
 Vue.use(Image)
+Vue.use(Avatar)
 
 import VueParticles from 'vue-particles'  
 Vue.use(VueParticles) 

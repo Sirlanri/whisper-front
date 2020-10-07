@@ -6,14 +6,14 @@
         <v-card>
           <v-img src="../assets/pics/bannar_black.png" class="align-end" height="300"  v-if="userData.bannar==undefined||userData.bannar==''">
           </v-img>
-          <v-img :src="userData.bannar" class="align-end" height="300" v-else>
-          </v-img>
+          <el-image :src="userData.bannar" fit="cover" class="align-end bannar" v-else>
+          </el-image>
           <v-row class="d-flex">
             <v-col sm="3" cols="8" offset="1" offset-sm="0">
               <v-img class="avatar align-center justify-center" src="../assets/pics/avart.png" v-if="userData.bannar==undefined||userData.avatar==''">
               </v-img>
-              <v-img class="avatar align-center justify-center" :src="userData.avatar" v-else>
-              </v-img>
+              <el-image class="avatar align-center justify-center" fit="cover" :src="userData.avatar" v-else>
+              </el-image>
             </v-col>
             <v-col sm="5" cols="10"  offset-sm="0">
               <v-card-title class="justify-center">{{userData.name}}</v-card-title>
@@ -187,5 +187,8 @@ export default {
 }
 .changAvatarBtn:hover {
   opacity: 1;
+}
+.bannar{
+  height: 300px;
 }
 </style>

@@ -2,10 +2,12 @@
   <v-card  class="mycard" :elevation="5" color="rgba(255,255,255,.7)">
     <!-- 头像-用户名>群名称 时间--> 
     <v-card-title>
-      <v-avatar size="50" class="myavatar" @click="jumpUser">
-        <v-img :src="avatar" v-if="avatar!=''"></v-img>
-        <v-icon v-else color="#5d5d5d" large>mdi-account</v-icon>
-      </v-avatar>
+      <el-avatar class="el-avatar" @click="jumpUser" shape="circle"
+       :src="avatar" v-if="avatar!=''">
+        <el-image  fit="cover" class="el-avatar"></el-image>
+        
+      </el-avatar>
+      <v-icon v-else color="#5d5d5d" large>mdi-account</v-icon>
       <v-btn text class="groupname" @click="jumpUser" >{{username}}</v-btn>
       <v-icon class="from-group" v-if="groupname!=''">mdi-chevron-right</v-icon>
       <v-btn text class="groupname" @click="openPost" v-if="groupname!=''">{{groupname}} </v-btn>
@@ -391,5 +393,9 @@ export default {
 }
 .image{
   height: auto;
+}
+.el-avatar{
+  height: 50px;
+  width: 50px;
 }
 </style>
