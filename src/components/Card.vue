@@ -91,18 +91,13 @@
       <v-row class="content-area" v-html="content">
       </v-row>
       
-      <v-carousel
-        :hide-delimiters="onepic"
-        :show-arrows="!onepic"
-        height="auto"
-        show-arrows-on-hover
-        hide-delimiter-background
-      >
-        <v-carousel-item v-for="(pic,i) in pics" :key="i" class="pic-area"
-         :src="pic">
-        </v-carousel-item>
-      </v-carousel>
-      
+      <el-carousel v-if="havePic" class="image">
+        <el-carousel-item v-for="(pic,index) in pics" :key="index" >
+          <el-image :src="pic" fit="cover" >
+          </el-image>
+        </el-carousel-item>
+      </el-carousel>
+
       <!-- tag话题 --> 
       <v-row>
         <v-chip outlined v-for="topic in topics" :key="topic" @click="clickTag">
@@ -269,6 +264,13 @@ export default {
         return false
       }
     },
+    havePic(){
+      if (this.pics==undefined||this.pics.length==0) {
+        return false
+      }else{
+        return true
+      }
+    },
     isAdmin(){
       return this.$store.getters.isAdmin
     }
@@ -384,5 +386,8 @@ export default {
   position: absolute;
   right: 10px;
   top: 20px;
+}
+.image{
+  height: auto;
 }
 </style>
