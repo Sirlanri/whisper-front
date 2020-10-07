@@ -55,11 +55,12 @@
             </v-card>
             <v-card>
               <v-card-title>更新记录</v-card-title>
-              <v-card-subtitle>Version: Alpha 0.3</v-card-subtitle>
+              <v-card-subtitle>Version: Alpha 0.4</v-card-subtitle>
               <v-card-text>
                 2020/8/8  前端写的差不多啦 <br>
                 2020/9/20  后端写的差不多啦 <br>
                 2020/9/23  移动端适配 <br>
+                2020/10/7  图片适配旧浏览器 <br>
               </v-card-text>
             </v-card>
           </v-col>
