@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "element-ui": "^2.13.2",
     "http-proxy": "^1.18.1",
     "node-forge": "^0.10.0",
     "particlesjs": "^2.2.3",
