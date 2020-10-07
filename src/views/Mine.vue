@@ -4,22 +4,22 @@
       <v-col lg="2" class="d-none d-lg-flex"></v-col>
       <v-col lg="9">
         <v-card>
-          <el-image src="../assets/pics/bannar_black.png" class="align-end bannar" v-if="userData.bannar==undefined||userData.bannar==''">
+          <v-img src="../assets/pics/bannar_black.png" class="align-end" height="300"  v-if="userData.bannar==undefined||userData.bannar==''">
             <v-btn class="changeBtnTop" dark @click="changeBannarWin=true">更换背景图</v-btn>
             <v-btn class="changeBtn" @click="changeInfo">更改资料</v-btn>
-          </el-image>
-          <el-image :src="userData.bannar" fit="cover" class="align-end bannar" v-else>
+          </v-img>
+          <v-img :src="userData.bannar" class="align-end" height="300" v-else>
             <v-btn class="changeBtnTop" dark @click="changeBannarWin=true">更换背景图</v-btn>
             <v-btn class="changeBtn" @click="changeInfo">更改资料</v-btn>
-          </el-image>
+          </v-img>
           <v-row>
             <v-col sm="3" cols="8" offset="1" offset-sm="0">
-              <el-image class="avatar align-center justify-center" src="../assets/pics/avart.png" v-if="userData.bannar==undefined||userData.avatar==''">
+              <v-img class="avatar align-center justify-center" src="../assets/pics/avart.png" v-if="userData.bannar==undefined||userData.avatar==''">
                 <v-btn x-large block dark class="changAvatarBtn" @click="changeAvatarWin=true">更换头像</v-btn>
-              </el-image>
-              <el-image class="avatar align-center justify-center" fit="cover" :src="userData.avatar" v-else>
+              </v-img>
+              <v-img class="avatar align-center justify-center" :src="userData.avatar" v-else>
                 <v-btn x-large block dark class="changAvatarBtn" @click="changeAvatarWin=true">更换头像</v-btn>
-              </el-image>
+              </v-img>
             </v-col>
             <v-col lg="5" sm="5" cols="10"  offset-sm="0">
               <v-card-title class="justify-center">{{userData.name}}</v-card-title>
@@ -356,5 +356,6 @@ export default {
 }
 .bannar{
   height: 300px;
+  
 }
 </style>
