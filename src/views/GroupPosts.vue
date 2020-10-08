@@ -1,5 +1,9 @@
 <template>
-	<waterfall :cardsData="cardsData" @moreData="getMorePost" :nopost="nopost"></waterfall>
+	<waterfall
+		:cardsData="cardsData"
+		@moreData="getMorePost"
+		:nopost="nopost"
+	></waterfall>
 </template>
 
 <script>
@@ -13,7 +17,7 @@ export default {
 		return {
 			flag: "这是群组post",
 			cardsData: [],
-      nopost:false
+			nopost: false,
 		};
 	},
 
@@ -30,24 +34,26 @@ export default {
 						this.cardsData = res.data.posts;
 					}
 				});
-    },
-    
-    getMorePost(index){
-      this.axios.get('getPostByGroup',{
-        params:{id:this.$store.state.clickUserName,num:index}
-      }).then(res=>{
-        if (res.status==200) {
-          if (res.data.posts==undefined) {
-            this.nopost=true
-            return
-          }
-          res.data.posts.forEach(post => {
-            this.cardsData.push(post)
-          });
-          //this.cardsData=res.data.posts
-        }
-      })
-    }
+		},
+
+		getMorePost(index) {
+			this.axios
+				.get("getPostByGroup", {
+					params: { id: this.$store.state.clickUserName, num: index },
+				})
+				.then((res) => {
+					if (res.status == 200) {
+						if (res.data.posts == undefined) {
+							this.nopost = true;
+							return;
+						}
+						res.data.posts.forEach((post) => {
+							this.cardsData.push(post);
+						});
+						//this.cardsData=res.data.posts
+					}
+				});
+		},
 	},
 	mounted() {
 		this.getAllPost();
