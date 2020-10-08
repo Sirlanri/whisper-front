@@ -45,8 +45,8 @@
   <v-navigation-drawer fixed  color="rgba(255,255,255,0.7)"
       v-model="leftDrawer" style="top:64px" width="220px">
       <v-list>
-        <v-list-item v-if="isLogin">
-          <v-btn block text large @click="jumpto('mine')" >
+        
+          <v-btn block text large @click="jumpto('mine')" v-if="isLogin">
             <v-list-item-icon>
               <v-icon>mdi-account-circle</v-icon>
             </v-list-item-icon>
@@ -54,9 +54,8 @@
               我的
             </v-list-item-content>
           </v-btn>
-        </v-list-item>
-        <v-list-item  v-else>
-          <v-btn block text large @click="loginDialog=!loginDialog">
+        
+          <v-btn  v-else block text large @click="loginDialog=!loginDialog">
             <v-list-item-icon>
               <v-icon>mdi-account-circle</v-icon>
             </v-list-item-icon>
@@ -64,8 +63,8 @@
               登录/注册
             </v-list-item-content>
           </v-btn>
-        </v-list-item>
-        <v-list-item>
+        
+        
           <v-btn block text large @click="jumpto('message')">
             <v-list-item-icon>
               <v-icon>mdi-bell</v-icon>
@@ -74,8 +73,8 @@
               消息
             </v-list-item-content>
           </v-btn>
-        </v-list-item>
-        <v-list-item>
+        
+        
           <v-btn block text large @click="jumpto('group')">
             <v-list-item-icon>
               <v-icon>mdi-account-multiple</v-icon>
@@ -84,8 +83,8 @@
               群组
             </v-list-item-content>
           </v-btn>
-        </v-list-item>
-        <v-list-item>
+        
+        
           <v-btn block text large @click="jumpto('topic')">
             <v-list-item-icon>
               <v-icon>mdi-arrange-send-to-back</v-icon>
@@ -94,8 +93,8 @@
               话题
             </v-list-item-content>
           </v-btn>
-        </v-list-item>
-        <v-list-item>
+        
+        
           <v-btn block text large @click="jumpto('about')">
             <v-list-item-icon>
               <v-icon>mdi-information-outline</v-icon>
@@ -104,7 +103,7 @@
               关于
             </v-list-item-content>
           </v-btn>
-        </v-list-item>
+        
         
       </v-list>
     </v-navigation-drawer>
@@ -631,5 +630,8 @@ data(){
 }
 .row{
   margin: 0;
+}
+.v-list .v-btn{
+  margin-left: 1rem;
 }
 </style>
