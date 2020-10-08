@@ -4,88 +4,88 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: '',
     component: Home,
-    children:[
+    children: [
       {
-        path:'',
-        name:'mainarea',
+        path: '',
+        name: 'mainarea',
         component: () => import('../views/MainArea.vue'),
-        meta:{
-          title:"首页 Whisper轻语"
+        meta: {
+          title: "首页 Whisper轻语"
         }
       },
       {
-        path:'message',
-        name:'',
+        path: 'message',
+        name: '',
         component: () => import('../views/Message.vue'),
-        children:[
+        children: [
           {
-            path:"",
-            name:"replys",
-            component:()=>import('../views/Replys.vue'),
-            meta:{
-              title:"评论 Whisper轻语"
+            path: "",
+            name: "replys",
+            component: () => import('../views/Replys.vue'),
+            meta: {
+              title: "评论 Whisper轻语"
             }
           }
         ],
-        
+
       },
       {
-        path:'group',
-        name:'group',
+        path: 'group',
+        name: 'group',
         component: () => import('../views/Groups.vue'),
-        meta:{
-          title:"群列表 Whisper轻语"
+        meta: {
+          title: "群列表 Whisper轻语"
         }
       },
       {
-        path:'groupPosts',
-        name:'groupPosts',
+        path: 'groupPosts',
+        name: 'groupPosts',
         component: () => import('../views/GroupPosts.vue'),
-        meta:{
-          title:"群内推文 Whisper轻语"
+        meta: {
+          title: "群内推文 Whisper轻语"
         }
       },
       {
-        path:'topic',
-        name:'topic',
+        path: 'topic',
+        name: 'topic',
         component: () => import('../views/Topics.vue'),
-        meta:{
-          title:"话题列表 Whisper轻语"
+        meta: {
+          title: "话题列表 Whisper轻语"
         }
       },
       {
-        path:'mine',
-        name:'mine',
+        path: 'mine',
+        name: 'mine',
         component: () => import('../views/Mine.vue'),
-        meta:{
-          title:"我的 Whisper轻语"
+        meta: {
+          title: "我的 Whisper轻语"
         }
       },
       {
-        path:'user',
-        name:'user',
+        path: 'user',
+        name: 'user',
         component: () => import('../views/User.vue'),
-        meta:{
-          title:"用户信息 Whisper轻语"
+        meta: {
+          title: "用户信息 Whisper轻语"
         }
       },
       {
-        path:'about',
-        name:'about',
+        path: 'about',
+        name: 'about',
         component: () => import('../views/About.vue'),
-        meta:{
-          title:"关于 Whisper轻语"
+        meta: {
+          title: "关于 Whisper轻语"
         }
       },
 
     ]
   }
-  
+
 ]
 
 const router = new VueRouter({
