@@ -7,6 +7,7 @@ import vuetify from './plugins/vuetify'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime';
 
+//未防止不兼容，用部分elm组件
 import {Carousel,CarouselItem,Image,Avatar} from 'element-ui'
 Vue.use(Carousel)
 Vue.use(CarouselItem)
