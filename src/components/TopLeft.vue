@@ -533,7 +533,12 @@ export default {
 				});
 		},
 		goHome() {
-			this.$router.push("/");
+			let path = this.$router.history.current.path;
+			if (path == "/") {
+				this.$store.commit("refresh");
+			} else {
+				this.$router.push("/");
+			}
 		},
 		changDrawer() {
 			this.$store.commit("changeDrawer");
