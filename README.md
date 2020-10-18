@@ -2,7 +2,7 @@
 
 采用瀑布流布局的社交网站，主要用来记录自己的日常生活&碎碎念，会逐渐取代我的WordPress。
 
-当前版本：Alpha（内测）[点击浏览](https://whisper.ri-co.cn)
+当前版本：Beta 1.0（公测）[点击浏览](https://whisper.ri-co.cn)
 
 后端采用Golang编写 [后端代码库](https://github.com/Sirlanri/whisper-back)
 
