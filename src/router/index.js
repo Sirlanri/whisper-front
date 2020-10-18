@@ -4,20 +4,88 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    name: '',
+    component: Home,
+    children: [
+      {
+        path: '',
+        name: 'mainarea',
+        component: () => import('../views/MainArea.vue'),
+        meta: {
+          title: "首页 Whisper轻语"
+        }
+      },
+      {
+        path: 'message',
+        name: '',
+        component: () => import('../views/Message.vue'),
+        children: [
+          {
+            path: "",
+            name: "replys",
+            component: () => import('../views/Replys.vue'),
+            meta: {
+              title: "评论 Whisper轻语"
+            }
+          }
+        ],
+
+      },
+      {
+        path: 'group',
+        name: 'group',
+        component: () => import('../views/Groups.vue'),
+        meta: {
+          title: "群列表 Whisper轻语"
+        }
+      },
+      {
+        path: 'groupPosts',
+        name: 'groupPosts',
+        component: () => import('../views/GroupPosts.vue'),
+        meta: {
+          title: "群内推文 Whisper轻语"
+        }
+      },
+      {
+        path: 'topic',
+        name: 'topic',
+        component: () => import('../views/Topics.vue'),
+        meta: {
+          title: "话题列表 Whisper轻语"
+        }
+      },
+      {
+        path: 'mine',
+        name: 'mine',
+        component: () => import('../views/Mine.vue'),
+        meta: {
+          title: "我的 Whisper轻语"
+        }
+      },
+      {
+        path: 'user',
+        name: 'user',
+        component: () => import('../views/User.vue'),
+        meta: {
+          title: "用户信息 Whisper轻语"
+        }
+      },
+      {
+        path: 'about',
+        name: 'about',
+        component: () => import('../views/About.vue'),
+        meta: {
+          title: "关于 Whisper轻语"
+        }
+      },
+
+    ]
   }
+
 ]
 
 const router = new VueRouter({
@@ -25,5 +93,10 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+const originalPush = VueRouter.prototype.push
+   VueRouter.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
 
 export default router

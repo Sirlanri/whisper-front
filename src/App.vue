@@ -1,60 +1,54 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-content>
-      <HelloWorld/>
-    </v-content>
+    
+    <vue-particles
+      class="partical"
+       color="#1b1b1b"
+       v-if="particleSwitch"
+       :particleOpacity="0.9"
+       :particlesNumber="50"
+       shapeType="circle"
+       :particleSize="2"
+       linesColor="#3b3b3b"
+       :linesWidth="1"
+       :lineLinked="true"
+       :lineOpacity="0.9"
+       :linesDistance="150"
+       :moveSpeed="3"
+       :hoverEffect="true"
+       hoverMode="grab"
+       :clickEffect="true"
+       clickMode="push"
+     >
+     </vue-particles>
+    <router-view></router-view>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    
   },
 
   data: () => ({
     //
   }),
+
+  computed:{
+    particleSwitch(){
+      return this.$store.state.particle
+    }
+  }
 };
 </script>
+<style>
+#particles-js{
+  width: 100%;
+  height: 100%;
+  position: fixed;  
+}
+</style>
