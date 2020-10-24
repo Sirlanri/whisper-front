@@ -106,9 +106,16 @@
 				:key="index"
 			>
 				<v-col cols="2" class="single-reply">
-					<v-avatar size="35">
-						<img :src="replay.imgsrc" />
-					</v-avatar>
+					<el-avatar
+            class="reply-avatar"
+            @click="jumpUser"
+            shape="circle"
+            :src="replay.imgsrc"
+            v-if="replay.imgsrc != ''"
+          >
+            <el-image fit="cover" ></el-image>
+          </el-avatar>
+          <v-icon v-else color="rgb(155 155 155)" large>mdi-account-circle</v-icon>
 				</v-col>
 				<v-col class="single-reply single-reply-word flex-nowrap">
 					{{ replay.name }}：{{ replay.content }}
@@ -388,5 +395,9 @@ export default {
 .el-avatar {
 	height: 50px;
 	width: 50px;
+}
+.reply-avatar{
+  height: 35px;
+	width: 35px;
 }
 </style>
