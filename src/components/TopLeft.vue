@@ -378,7 +378,7 @@ export default {
 			let formData = new FormData();
 			formData.append("img", file);
 			this.axios
-				.post("uploadPics", formData, {
+				.post("https://upload.ri-co.cn/img/upload", formData, {
 					headers: { "Content-Type": "multipart/form-data" },
 				})
 				.then((res) => {
@@ -452,7 +452,7 @@ export default {
 			let formData = new FormData();
 			formData.append("img", this.pics[num]);
 			this.axios
-				.post("uploadPics", formData, {
+				.post("https://upload.ri-co.cn/img/upload", formData, {
 					headers: { "Content-Type": "multipart/form-data" },
 				})
 				.then((res) => {
@@ -478,43 +478,7 @@ export default {
 				});
 		},
 
-		//此方法为异步，暂时被uploadPic2取代
-		uploadPic() {
-			this.btndis = true;
-			let len = this.pics.length;
-			if (len == 0) {
-				this.newPost();
-				return;
-			}
-
-			for (let i = 0; i < len; i++) {
-				let formData = new FormData();
-				formData.append("img", this.pics[i]);
-				this.axios
-					.post("uploadPics", formData, {
-						headers: { "Content-Type": "multipart/form-data" },
-					})
-					.then((res) => {
-						if (res.status == 200) {
-							this.picUrls[i] = res.data;
-							console.log("当前写入picURLS：", res.data);
-							if (len == i + 1) {
-								this.newPost();
-								return;
-							}
-						} else {
-							this.result = "上传图片失败" + res.data;
-							this.resultWin = true;
-							return;
-						}
-					})
-					.catch((res) => {
-						this.btndis = false;
-						this.result = res.response.data;
-						this.resultWin = true;
-					});
-			}
-		},
+		
 		logout() {
 			this.axios
 				.get("logout")

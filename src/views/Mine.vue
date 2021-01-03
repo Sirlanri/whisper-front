@@ -208,7 +208,7 @@ export default {
 			let formData = new FormData();
 			formData.append("img", this.cAvatar);
 			this.axios
-				.post("uploadPics", formData, {
+				.post("https://upload.ri-co.cn/img/upload", formData, {
 					headers: { "Content-Type": "multipart/form-data" },
 				})
 				.then((res) => {
@@ -243,7 +243,7 @@ export default {
 			let formData = new FormData();
 			formData.append("img", this.cBannar);
 			this.axios
-				.post("uploadPics", formData, {
+				.post("https://upload.ri-co.cn/img/upload", formData, {
 					headers: { "Content-Type": "multipart/form-data" },
 				})
 				.then((res) => {
